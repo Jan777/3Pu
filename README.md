@@ -7,7 +7,7 @@ El orco, soportando tantos años de bullying por ser feo, decide meterse en este
 El humano, tan hábil con los hechizos como con el alcohol, no quería ser menos y en una curda irremontable decide meterse a este absurdo mundo simplemente para demostrar que algo bueno tiene y, de ser posible, levantarse a Claudia por el simple hecho de que le gusta lo ajeno y molestar a otras razas para ver el mundo arder. 
 El enano, luego de haber rebotado en siete clubes de basquet y de ponerse mal porque las mujeres no lo veían en el boliche, decide aventurarse en esta lucha para dar fe de que su raza es la más poderosa. En una de esas puede levantarse a Claudia, aunque primero tiene que matar a todas las criaturas... Y conseguirse un banquito para llegar a la orco boca.
 Por último, el elfo, ser increíble lleno de naturaleza y buenos modales decide revelarse ante tanta educación y protocolo yendo a matar a todos solo por diversión. Tal vez así pueda conquistar a Rodolfo... El orco que gusta de Claudia.
-La aventura comienza, para cualquier héroe, solo con un arma. Si la suerte los acompaña, sus habilidades crecerán, sus equipos mejorarán considerablemente y serán invensibles.
+La aventura comienza, para cualquier héroe, solo con un arma. Si la suerte los acompaña, sus habilidades crecerán, sus equipos mejorarán considerablemente y serán invencibles.
 
 ## Sobre las personas
 
