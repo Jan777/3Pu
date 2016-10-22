@@ -1,8 +1,7 @@
-package mergame;
+package mergame.personajes;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import mergame.Personaje;
 
 public class Usuario {
 	private String nombre;

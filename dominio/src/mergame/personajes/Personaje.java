@@ -1,4 +1,7 @@
-package mergame;
+package mergame.personajes;
+
+import mergame.afectables.Atacable;
+import mergame.afectables.Hechizable;
 
 public abstract class Personaje implements Atacable, Hechizable{
 

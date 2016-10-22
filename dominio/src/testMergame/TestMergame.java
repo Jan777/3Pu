@@ -3,16 +3,16 @@ package testMergame;
 import org.junit.Assert;
 import org.junit.Test;
 
-import mergame.ConAnilloDraupnir;
-import mergame.ConEscudoSvalinn;
-import mergame.ConEspadaSkofnung;
 import mergame.Criatura;
-import mergame.Enano;
-import mergame.Humano;
-import mergame.Orco;
-import mergame.Personaje;
-import mergame.Usuario;
- 
+import mergame.items_con_decorator.ConAnilloDraupnir;
+import mergame.items_con_decorator.ConEscudoSvalinn;
+import mergame.items_con_decorator.ConEspadaSkofnung;
+import mergame.personajes.Enano;
+import mergame.personajes.Humano;
+import mergame.personajes.Orco;
+import mergame.personajes.Personaje;
+import mergame.personajes.Usuario;
+
 public class TestMergame {
    
     /*
