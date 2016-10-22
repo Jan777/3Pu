@@ -1,28 +1,23 @@
-package decorator;
+package mergame.personajes;
 
-public class Vampiro extends Personaje {
-	
-	int ataquesRecibidos;
+
+public class Orco extends Personaje {
+
+	int cantidadDeAtaques;
 	
 	@Override
 	protected void despuesDeAtacar() {
-		salud++;
+		cantidadDeAtaques++;
 	}
 	
 	@Override
 	protected int calcularPuntosDeAtaque() {
-		return 10 + ataquesRecibidos;
+		return 10 + cantidadDeAtaques;
 	}
 
 	@Override
 	protected boolean puedeAtacar() {
 		return energia >= calcularPuntosDeAtaque();
-	}
-
-	@Override
-	public void serAtacado(int danio) {
-		super.serAtacado(danio);
-		this.ataquesRecibidos++;
 	}
 
 	@Override
