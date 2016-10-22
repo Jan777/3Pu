@@ -1,15 +1,17 @@
 package testMergame;
-
-import mergame.Criatura;
-import mergame.casta.impl.Guerrero;
-import mergame.items_con_decorator.ConAnilloDraupnir;
-import mergame.items_con_decorator.ConEscudoSvalinn;
-import mergame.items_con_decorator.ConEspadaSkofnung;
-import mergame.personajes.Humano;
-import mergame.personajes.Personaje;
-
+ 
 import org.junit.Assert;
 import org.junit.Test;
+
+import mergame.ConAnilloDraupnir;
+import mergame.ConEscudoSvalinn;
+import mergame.ConEspadaSkofnung;
+import mergame.Criatura;
+import mergame.Enano;
+import mergame.Humano;
+import mergame.Orco;
+import mergame.Personaje;
+import mergame.Usuario;
  
 public class TestMergame {
    
@@ -80,8 +82,8 @@ public class TestMergame {
         Assert.assertEquals(5 + 1, sigmund.obtenerPuntosDeAtaque());
  
         // agrego anillo multiplicador (x2)
-        sigmund = new ConEspadaSkofnung(sigmund);
-        Assert.assertEquals((5 + 1 + 5), sigmund.obtenerPuntosDeAtaque());
+        sigmund = new ConAnilloDraupnir(sigmund);
+        Assert.assertEquals((5 + 1) * 2, sigmund.obtenerPuntosDeAtaque());
     }
     
     @Test
@@ -123,12 +125,35 @@ public class TestMergame {
     	//elPibe curado con 50 de vitalidad
     	Assert.assertEquals((100 + 50), elPibe.getSalud());
     }
-    
+    //? Dado un usuario cuando éste selecciona "crear personaje" entonces el personaje es creado.
     @Test
-    public void instanciacionHumanoGuerrero(){
-    	Humano humano = new Humano();
-    	humano.setEsDeCasta(new Guerrero());
+    public void creacionPersonaje(){
+    	Usuario usuario = new Usuario("ferra", "pass1234");
+    	Personaje elPibe = new Humano();
+    	elPibe.setNombre("fede");
+    	usuario.agregarPesonaje(elPibe);
+    	
+    	Assert.assertEquals(elPibe, usuario.getPersonaje("fede"));
+    }
+    //? Dado un usuario con 3 personajes creados cuando crea un cuarto personaje entonces este no se crea.
+    @Test
+    public void cantidadPersonajes(){
+    	Usuario usuario = new Usuario("ferra", "pass1234");
+    	Personaje elPibe = new Humano();
+    	Personaje elPibe2 = new Orco();
+    	Personaje elPibe3 = new Enano();
+    	Personaje elPibe4 = new Humano();
+    	elPibe.setNombre("ferra");
+    	usuario.agregarPesonaje(elPibe);
+    	elPibe2.setNombre("fede");
+    	usuario.agregarPesonaje(elPibe2);
+    	elPibe3.setNombre("doni");
+    	usuario.agregarPesonaje(elPibe3);
+    	elPibe4.setNombre("bri");
+    	usuario.agregarPesonaje(elPibe4);
+    	
+    	Assert.assertNotEquals(elPibe4, usuario.getPersonaje("bri"));
+    	
     	
     }
-    
 }

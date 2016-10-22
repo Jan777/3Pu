@@ -1,19 +1,11 @@
-package mergame.personajes;
-
-import mergame.afectables.Atacable;
-import mergame.afectables.Hechizable;
-import mergame.casta.EsDeCasta;
+package mergame;
 
 public abstract class Personaje implements Atacable, Hechizable{
 
 	protected int energia = 100;
 	protected int salud = 100;
-	protected EsDeCasta esDeCasta;
+	protected String nombre;
 	
-	public void setEsDeCasta(EsDeCasta esDeCasta) {
-		this.esDeCasta = esDeCasta;
-	}
-
 	public final void atacar(Atacable atacado) {
 		if (puedeAtacar()) {
 			atacado.serAtacado(calcularPuntosDeAtaque());
@@ -57,8 +49,22 @@ public abstract class Personaje implements Atacable, Hechizable{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public void consumoElixir(int puntos){
 		
+	}
+	
 	public void serHechizable(int fuerza, int vida){
 
 	}
+
+	public String getNombre() {
+		return this.nombre;
+	}
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	
 }
