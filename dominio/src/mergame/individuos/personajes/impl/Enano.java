@@ -1,5 +1,6 @@
-package mergame.personajes;
+package mergame.individuos.personajes.impl;
 
+import mergame.individuos.personajes.Personaje;
 
 public class Enano extends Personaje {
 	
@@ -20,15 +21,5 @@ public class Enano extends Personaje {
 		return energia >= calcularPuntosDeAtaque();
 	}
 
-	@Override
-	public void serAtacado(int danio) {
-		super.serAtacado(danio);
-		this.ataquesRecibidos++;
-	}
 
-	@Override
-	public void serHechizado(int fuerza, int vida) {
-		// TODO Auto-generated method stub
-		
-	}
 }

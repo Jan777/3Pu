@@ -1,6 +1,6 @@
 package mergame.items_con_decorator;
 
-import mergame.personajes.Personaje;
+import mergame.individuos.personajes.Personaje;
 
 public class ConEscudoSvalinn extends PersonajeEquipado {
 
@@ -19,10 +19,12 @@ public class ConEscudoSvalinn extends PersonajeEquipado {
 		// TODO Auto-generated method stub
 		personajeEquipado.consumoElixir(puntos);
 	}
+
 	@Override
-	public void serHechizado(int fuerza, int vida) {
+	public void serHechizado(int vidaCurada, int vidaQuitada, int turnosCongelado) {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	
 }

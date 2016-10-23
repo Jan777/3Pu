@@ -1,6 +1,6 @@
 package mergame.items_con_decorator;
 
-import mergame.personajes.Personaje;
+import mergame.individuos.personajes.Personaje;
 
 public class ConEspadaSkofnung extends PersonajeEquipado {
 
@@ -24,9 +24,11 @@ public class ConEspadaSkofnung extends PersonajeEquipado {
 	}
 
 	@Override
-	public void serHechizado(int fuerza, int vida) {
+	public void serHechizado(int vidaCurada, int vidaQuitada, int turnosCongelado) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 }

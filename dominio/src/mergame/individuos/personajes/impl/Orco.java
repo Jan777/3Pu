@@ -1,5 +1,6 @@
-package mergame.personajes;
+package mergame.individuos.personajes.impl;
 
+import mergame.individuos.personajes.Personaje;
 
 public class Orco extends Personaje {
 
@@ -18,11 +19,5 @@ public class Orco extends Personaje {
 	@Override
 	protected boolean puedeAtacar() {
 		return energia >= calcularPuntosDeAtaque();
-	}
-
-	@Override
-	public void serHechizado(int fuerza, int vida) {
-		// TODO Auto-generated method stub
-		
 	}
 }

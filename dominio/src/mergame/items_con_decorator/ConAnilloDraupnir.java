@@ -1,6 +1,6 @@
 package mergame.items_con_decorator;
 
-import mergame.personajes.Personaje;
+import mergame.individuos.personajes.Personaje;
 
 public class ConAnilloDraupnir extends PersonajeEquipado {
 
@@ -24,10 +24,13 @@ public class ConAnilloDraupnir extends PersonajeEquipado {
 		personajeEquipado.consumoElixir(puntos);
 	}
 
+
 	@Override
-	public void serHechizado(int fuerza, int vida) {
+	public void serHechizado(int vidaCurada, int vidaQuitada, int turnosCongelado) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 	
 }

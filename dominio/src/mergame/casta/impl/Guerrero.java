@@ -1,28 +1,17 @@
 package mergame.casta.impl;
 
-import mergame.afectables.Afectable;
-import mergame.afectables.Atacable;
 import mergame.casta.EsDeCasta;
+import mergame.skill.Habilidad;
 
-public class Guerrero implements EsDeCasta {
-
-	@Override
-	public void lanzarSkill1(Afectable _a) {
-		//Atacable a = (Atacable) _a; hago un casteo de atacable o hechizable segun necesite.
-		
-		
+public class Guerrero extends EsDeCasta{
+	public Guerrero(){
+		this.poderFisicoBase = 5;
+		this.poderMagicoBase = 1;
 	}
 
 	@Override
-	public void lanzarSkill2(Afectable a) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void lanzarSkill3(Afectable a) {
-		// TODO Auto-generated method stub
-		
+	public Habilidad getSkill(String skill) {
+		return null;
 	}
 
 }

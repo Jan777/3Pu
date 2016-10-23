@@ -1,4 +1,4 @@
-package mergame.personajes;
+package mergame.individuos.personajes;
 
 import java.util.HashMap;
 import java.util.Map;
