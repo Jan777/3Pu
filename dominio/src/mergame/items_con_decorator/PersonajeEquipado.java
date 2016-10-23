@@ -1,6 +1,6 @@
 package mergame.items_con_decorator;
 
-import mergame.personajes.Personaje;
+import mergame.individuos.personajes.Personaje;
 
 public abstract class PersonajeEquipado extends Personaje{
 

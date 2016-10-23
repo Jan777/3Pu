@@ -1,12 +1,8 @@
-package mergame.personajes;
+package mergame.individuos.personajes.impl;
+
+import mergame.individuos.personajes.Personaje;
 
 public class Elfo extends Personaje{
-
-	@Override
-	public void serHechizado(int fuerza, int vida) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	protected boolean puedeAtacar() {

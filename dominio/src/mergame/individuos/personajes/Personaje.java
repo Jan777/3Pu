@@ -1,20 +1,24 @@
-package mergame.personajes;
+package mergame.individuos.personajes;
 
-import mergame.afectables.Atacable;
-import mergame.afectables.Hechizable;
+import mergame.casta.EsDeCasta;
+import mergame.individuos.Individuo;
+import mergame.skill.Habilidad;
 
-public abstract class Personaje implements Atacable, Hechizable{
-
+public abstract class Personaje extends Individuo{
 	protected int energia = 100;
-	protected int salud = 100;
 	protected String nombre;
+	protected EsDeCasta casta;
 	
-	public final void atacar(Atacable atacado) {
-		if (puedeAtacar()) {
-			atacado.serAtacado(calcularPuntosDeAtaque());
-			energia -= calcularPuntosDeAtaque();
-			despuesDeAtacar();
-		}
+	public EsDeCasta getCasta() {
+		return casta;
+	}
+
+	public void setCasta(EsDeCasta casta) {
+		this.casta = casta;
+		
+		//VER DAÑOS SEGUN NIVEL E ITEMS EQUIPADOS
+		this.poderFisico = this.casta.getPoderFisicoBase();
+		this.poderMagico = this.casta.getPoderMagicoBase();
 	}
 
 	protected void despuesDeAtacar() { }
@@ -26,11 +30,6 @@ public abstract class Personaje implements Atacable, Hechizable{
 		return this.salud > 0;
 	}
 	
-	@Override
-	public void serAtacado(int danio) {
-		this.salud -= danio;
-	}
-
 	public void serCurado() {
 		this.salud = 100;
 	}
@@ -56,10 +55,6 @@ public abstract class Personaje implements Atacable, Hechizable{
 	public void consumoElixir(int puntos){
 		
 	}
-	
-	public void serHechizable(int fuerza, int vida){
-
-	}
 
 	public String getNombre() {
 		return this.nombre;
@@ -69,5 +64,10 @@ public abstract class Personaje implements Atacable, Hechizable{
 		this.nombre = nombre;
 	}
 	
+	public void lanzarSkill(Individuo atacado, String nombreSkill){
+		Habilidad skill = this.casta.getSkill(nombreSkill);
+		
+		skill.realizarHabilidad(this, atacado);
+	}
 	
 }

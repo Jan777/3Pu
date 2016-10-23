@@ -1,5 +1,6 @@
-package mergame.personajes;
+package mergame.individuos.personajes.impl;
 
+import mergame.individuos.personajes.Personaje;
 
 public class Humano extends Personaje {
 	
@@ -24,17 +25,5 @@ public class Humano extends Personaje {
 	public int obtenerPuntosDeDefensa(){
 		return this.puntosDeDefensa;
 	}
-
-	@Override
-	public void consumoElixir(int puntos) {
-		this.puntosDeAtaque += puntos;
-	}
-
-	@Override
-	public void serHechizado(int fuerza, int vida) {
-		this.puntosDeAtaque += fuerza;
-		this.salud += vida;
-	}
-	 
 	
 }

@@ -3,20 +3,22 @@ package testMergame;
 import org.junit.Assert;
 import org.junit.Test;
 
-import mergame.Criatura;
+import mergame.casta.impl.Mago;
+import mergame.individuos.Criatura;
+import mergame.individuos.personajes.Personaje;
+import mergame.individuos.personajes.Usuario;
+import mergame.individuos.personajes.impl.Enano;
+import mergame.individuos.personajes.impl.Humano;
+import mergame.individuos.personajes.impl.Orco;
 import mergame.items_con_decorator.ConAnilloDraupnir;
 import mergame.items_con_decorator.ConEscudoSvalinn;
 import mergame.items_con_decorator.ConEspadaSkofnung;
-import mergame.personajes.Enano;
-import mergame.personajes.Humano;
-import mergame.personajes.Orco;
-import mergame.personajes.Personaje;
-import mergame.personajes.Usuario;
+import mergame.skill.Habilidad;
 
 public class TestMergame {
    
     /*
-     * Especificación de Items
+     * Especificaciï¿½n de Items
      * ~~~~~~~~~~~~~~~~~~~~~~~
      * ConEspadaSkofnung: Esta espada aumenta en 5 pts el ataque
      * ConEscudoSvalinn: Este escudo otorga 10 pts de defensa
@@ -120,12 +122,12 @@ public class TestMergame {
     	
     	Criatura criatura = new Criatura();
     	
-    	criatura.lanzarHechizo("Curar", elPibe);
+    	criatura.lanzarSkill(elPibe, Habilidad.FUEGO);
     	
     	//elPibe curado con 50 de vitalidad
-    	Assert.assertEquals((100 + 50), elPibe.getSalud());
+    	Assert.assertEquals((100 - 1), elPibe.getSalud());
     }
-    //? Dado un usuario cuando éste selecciona "crear personaje" entonces el personaje es creado.
+    //? Dado un usuario cuando ï¿½ste selecciona "crear personaje" entonces el personaje es creado.
     @Test
     public void creacionPersonaje(){
     	Usuario usuario = new Usuario("ferra", "pass1234");
@@ -153,7 +155,20 @@ public class TestMergame {
     	usuario.agregarPesonaje(elPibe4);
     	
     	Assert.assertNotEquals(elPibe4, usuario.getPersonaje("bri"));
+    }
+    @Test
+    public void mago(){
+    	Personaje elPibe = new Humano();
+    	elPibe.setCasta(new Mago());
     	
+    	Personaje ferra = new Orco();
+    	System.out.println(ferra.getSalud());
     	
+    	elPibe.lanzarSkill(ferra, Habilidad.CURAR);
+    	System.out.println(ferra.getSalud());
+    	
+    	elPibe.lanzarSkill(ferra, Habilidad.FUEGO);
+    	System.out.println(ferra.getSalud());
+    	//Assert.assertEquals(elPibe, usuario.getPersonaje("fede"));
     }
 }

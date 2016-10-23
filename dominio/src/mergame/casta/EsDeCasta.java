@@ -1,10 +1,23 @@
 package mergame.casta;
 
-import mergame.afectables.Afectable;
-import mergame.afectables.Atacable;
+import java.util.Map;
 
-public interface EsDeCasta {
-	void lanzarSkill1(Afectable a);
-	void lanzarSkill2(Afectable a);
-	void lanzarSkill3(Afectable a);
+import mergame.skill.Habilidad;
+
+public abstract class EsDeCasta {
+
+	protected Map <String, Habilidad> habilidades;
+	protected int poderMagicoBase;
+	protected int poderFisicoBase;
+	
+	public abstract Habilidad getSkill(String skill);
+
+	public int getPoderMagicoBase() {
+		return poderMagicoBase;
+	}
+
+	public int getPoderFisicoBase() {
+		return poderFisicoBase;
+	}
+	
 }
