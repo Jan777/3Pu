@@ -8,16 +8,16 @@ public class ConEspadaSkofnung extends PersonajeEquipado {
 		super(pj);
 	}
 	
-	public int obtenerPuntosDeAtaqueFisico() {
-		return personajeEquipado.obtenerPuntosDeAtaqueFisico() * 2;
+	public int getPuntosDeAtaqueFisico() {
+		return personajeEquipado.getPuntosDeAtaqueFisico() * 2;
 	}
 	
-	public int obtenerPuntosDeAtaqueMagico() {
-		return personajeEquipado.obtenerPuntosDeAtaqueMagico() *2;
+	public int getPuntosDeAtaqueMagico() {
+		return personajeEquipado.getPuntosDeAtaqueMagico() *2;
 	}
 	
-	public int obtenerPuntosDeDefensa(){
-		return personajeEquipado.obtenerPuntosDeDefensa();
+	public int getPuntosDeDefensa(){
+		return personajeEquipado.getPuntosDeDefensa();
 	}
 
 	@Override

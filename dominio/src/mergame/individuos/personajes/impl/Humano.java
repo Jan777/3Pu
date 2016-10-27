@@ -11,13 +11,8 @@ public class Humano extends Personaje {
 	protected int calcularPuntosDeAtaque() {
 		return 10;
 	}
-
-	@Override
-	protected boolean puedeAtacar() {
-		return energia >= 10;
-	}
 	
-	public int obtenerPuntosDeDefensa(){
+	public int getPuntosDeDefensa(){
 		return this.puntosDeDefensa;
 	}
 

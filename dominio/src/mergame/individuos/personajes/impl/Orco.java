@@ -23,11 +23,6 @@ public class Orco extends Personaje {
 	}
 
 	@Override
-	protected boolean puedeAtacar() {
-		return energia >= calcularPuntosDeAtaque();
-	}
-
-	@Override
 	public void serHechizado(int vidaCurada, int vidaQuitada, int turnosCongelado) {
 		
 		this.cantidadDeAtaquesRecibidos ++;
@@ -47,12 +42,12 @@ public class Orco extends Personaje {
 		Habilidad skill = this.casta.getSkill(nombreSkill);
 		//cuando le pegan 4 veces, el siguiente ataquue es por el doble de daño.
 		if(this.cantidadDeAtaquesRecibidos >= 4){
-			this.poderMagico = this.obtenerPuntosDeAtaqueMagico() * 2;
-			this.poderFisico = this.obtenerPuntosDeAtaqueFisico() * 2;
+			this.poderMagico = this.getPuntosDeAtaqueMagico() * 2;
+			this.poderFisico = this.getPuntosDeAtaqueFisico() * 2;
 			this.cantidadDeAtaquesRecibidos = 0;
 			skill.realizarHabilidad(this, atacado);
-			this.poderMagico = this.obtenerPuntosDeAtaqueMagico() / 2;
-			this.poderFisico = this.obtenerPuntosDeAtaqueFisico() / 2;
+			this.poderMagico = this.getPuntosDeAtaqueMagico() / 2;
+			this.poderFisico = this.getPuntosDeAtaqueFisico() / 2;
 		}
 		else
 			skill.realizarHabilidad(this, atacado);

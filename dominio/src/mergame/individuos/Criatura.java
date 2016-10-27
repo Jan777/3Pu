@@ -37,4 +37,10 @@ public class Criatura extends Individuo {
 		
 	}
 
+	@Override
+	public void atacar(Individuo victima) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
