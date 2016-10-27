@@ -5,7 +5,7 @@ import mergame.individuos.Individuo;
 import mergame.skill.Habilidad;
 
 public abstract class Personaje extends Individuo{
-	protected int energia = 100;
+	protected double experiencia =0;
 	protected String nombre;
 	protected EsDeCasta casta;
 	
@@ -26,10 +26,6 @@ public abstract class Personaje extends Individuo{
 	protected abstract boolean puedeAtacar();
 	protected abstract int calcularPuntosDeAtaque();
 	
-	public boolean estaVivo() {
-		return this.salud > 0;
-	}
-	
 	public void serCurado() {
 		this.salud = 100;
 	}
@@ -42,9 +38,12 @@ public abstract class Personaje extends Individuo{
 		return this.salud;
 	}
 
-	public int obtenerPuntosDeAtaque() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int obtenerPuntosDeAtaqueFisico() {
+		return this.poderFisico;
+	}
+	
+	public int obtenerPuntosDeAtaqueMagico(){
+		return this.poderMagico;
 	}
 	
 	public int obtenerPuntosDeDefensa() {

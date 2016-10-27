@@ -8,10 +8,13 @@ public class ConEspadaSkofnung extends PersonajeEquipado {
 		super(pj);
 	}
 	
-	@Override
-	public int obtenerPuntosDeAtaque() {
-		return personajeEquipado.obtenerPuntosDeAtaque() + 5;
-	}	
+	public int obtenerPuntosDeAtaqueFisico() {
+		return personajeEquipado.obtenerPuntosDeAtaqueFisico() * 2;
+	}
+	
+	public int obtenerPuntosDeAtaqueMagico() {
+		return personajeEquipado.obtenerPuntosDeAtaqueMagico() *2;
+	}
 	
 	public int obtenerPuntosDeDefensa(){
 		return personajeEquipado.obtenerPuntosDeDefensa();
@@ -25,6 +28,12 @@ public class ConEspadaSkofnung extends PersonajeEquipado {
 
 	@Override
 	public void serHechizado(int vidaCurada, int vidaQuitada, int turnosCongelado) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void serAtacado(int danio) {
 		// TODO Auto-generated method stub
 		
 	}

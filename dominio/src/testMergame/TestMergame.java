@@ -3,6 +3,7 @@ package testMergame;
 import org.junit.Assert;
 import org.junit.Test;
 
+import mergame.casta.impl.Guerrero;
 import mergame.casta.impl.Mago;
 import mergame.individuos.Criatura;
 import mergame.individuos.personajes.Personaje;
@@ -25,7 +26,7 @@ public class TestMergame {
      * ConAnilloDraupnir: Este anillo multiplica el ataque x2
      */
    
-    @Test
+   /* @Test
     public void quePuedoAgregarItemDeAtaque() {
  
         Personaje sigmund = new Humano();
@@ -38,7 +39,7 @@ public class TestMergame {
  
     /*---PRUEBAS DEL DECORATOR---*/
     
-   @Test
+  /* @Test
     public void quePuedoAgregarAmbosItems() {
  
         Personaje sigmund = new Humano();
@@ -106,7 +107,7 @@ public class TestMergame {
     
     /*---FIN PRUEBAS DEL DECORATOR---*/
     
-    @Test
+ /*   @Test
     public void hechizo(){
     	Personaje elPibe = new Humano();
     	
@@ -163,5 +164,23 @@ public class TestMergame {
     	elPibe.lanzarSkill(ferra, Habilidad.FUEGO);
     	System.out.println(ferra.getSalud());
     	//Assert.assertEquals(elPibe, usuario.getPersonaje("fede"));
+    }
+    */
+    @Test
+    public void poderDobleOrco(){
+    	Orco brian = new Orco();
+    	brian.setCasta(new Mago());
+    	
+    	Enano maxi = new Enano();
+    	maxi.setCasta(new Mago());
+    	
+    	System.out.println(brian.obtenerPuntosDeAtaqueMagico());
+    	
+    	System.out.println(maxi.getSalud());
+    	for (int i=0; i<10;i++){
+    	brian.lanzarSkill(maxi, Habilidad.FUEGO);
+    	maxi.lanzarSkill(brian, Habilidad.FUEGO);
+    	System.out.println(maxi.getSalud());
+    	}
     }
 }

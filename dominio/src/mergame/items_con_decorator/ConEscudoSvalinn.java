@@ -11,8 +11,12 @@ public class ConEscudoSvalinn extends PersonajeEquipado {
 		return personajeEquipado.obtenerPuntosDeDefensa() + 10;
 	}
 	
-	public int obtenerPuntosDeAtaque(){
-		return personajeEquipado.obtenerPuntosDeAtaque();
+	public int obtenerPuntosDeAtaqueFisico() {
+		return personajeEquipado.obtenerPuntosDeAtaqueFisico() * 2;
+	}
+	
+	public int obtenerPuntosDeAtaqueMagico() {
+		return personajeEquipado.obtenerPuntosDeAtaqueMagico() *2;
 	}
 	@Override
 	public void consumoElixir(int puntos) {
@@ -22,6 +26,11 @@ public class ConEscudoSvalinn extends PersonajeEquipado {
 
 	@Override
 	public void serHechizado(int vidaCurada, int vidaQuitada, int turnosCongelado) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void serAtacado(int danio) {
 		// TODO Auto-generated method stub
 		
 	}
