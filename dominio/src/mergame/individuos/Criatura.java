@@ -25,4 +25,16 @@ public class Criatura extends Individuo {
 		skill.realizarHabilidad(this, atacado);
 	}
 
+	@Override
+	public void serHechizado(int vidaCurada, int vidaQuitada, int turnosCongelado) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void serAtacado(int danio) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -16,14 +16,21 @@ public class Humano extends Personaje {
 	protected boolean puedeAtacar() {
 		return energia >= 10;
 	}
-
-	@Override
-	public int obtenerPuntosDeAtaque() {
-		return this.puntosDeAtaque;
-	}
 	
 	public int obtenerPuntosDeDefensa(){
 		return this.puntosDeDefensa;
+	}
+
+	@Override
+	public void serHechizado(int vidaCurada, int vidaQuitada, int turnosCongelado) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void serAtacado(int danio) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
