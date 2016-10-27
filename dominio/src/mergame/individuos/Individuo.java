@@ -2,7 +2,7 @@ package mergame.individuos;
 
 public abstract class Individuo implements Hechizable, Atacable {
 	protected int salud = 100;
-	protected int poderMagico;
+	protected int poderMagico = 1;
 	protected int poderFisico;
 	
 	public abstract void lanzarSkill(Individuo atacado, String skill);
