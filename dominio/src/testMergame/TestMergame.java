@@ -36,6 +36,7 @@ public class TestMergame {
         Assert.assertEquals(5 + 1, sigmund.obtenerPuntosDeAtaque());
     }
  
+    /*---PRUEBAS DEL DECORATOR---*/
     
    @Test
     public void quePuedoAgregarAmbosItems() {
@@ -103,18 +104,7 @@ public class TestMergame {
         Assert.assertEquals((10 + 0) * 2, sigmund.obtenerPuntosDeDefensa());
     }
     
-    @Test //suponiendo que consumiendo un elixir incrementa los puntos de ataques netos del humano.
-    public void conElixir(){
-    	Personaje elPibe = new Humano();
-    	elPibe = new ConEspadaSkofnung(elPibe);
-    	Assert.assertEquals((5 + 1), elPibe.obtenerPuntosDeAtaque());
-    	
-    	elPibe.consumoElixir(3);
-    	
-    	Assert.assertEquals((5 + (1 + 3)), elPibe.obtenerPuntosDeAtaque());
-    	
-    	
-    }
+    /*---FIN PRUEBAS DEL DECORATOR---*/
     
     @Test
     public void hechizo(){
@@ -125,9 +115,10 @@ public class TestMergame {
     	criatura.lanzarSkill(elPibe, Habilidad.FUEGO);
     	
     	//elPibe curado con 50 de vitalidad
-    	Assert.assertEquals((100 - 1), elPibe.getSalud());
+    	Assert.assertEquals((100 - 3), elPibe.getSalud());
     }
-    //? Dado un usuario cuando �ste selecciona "crear personaje" entonces el personaje es creado.
+    
+    //? Dado un usuario cuando este selecciona "crear personaje" entonces el personaje es creado.
     @Test
     public void creacionPersonaje(){
     	Usuario usuario = new Usuario("ferra", "pass1234");
@@ -137,6 +128,7 @@ public class TestMergame {
     	
     	Assert.assertEquals(elPibe, usuario.getPersonaje("fede"));
     }
+    
     //? Dado un usuario con 3 personajes creados cuando crea un cuarto personaje entonces este no se crea.
     @Test
     public void cantidadPersonajes(){
@@ -156,6 +148,7 @@ public class TestMergame {
     	
     	Assert.assertNotEquals(elPibe4, usuario.getPersonaje("bri"));
     }
+    
     @Test
     public void mago(){
     	Personaje elPibe = new Humano();
