@@ -19,22 +19,22 @@ import mergame.skill.Habilidad;
 public class TestMergame {
    
     /*
-     * Especificaci�n de Items
+     * Especificacion de Items
      * ~~~~~~~~~~~~~~~~~~~~~~~
      * ConEspadaSkofnung: Esta espada aumenta en 5 pts el ataque
      * ConEscudoSvalinn: Este escudo otorga 10 pts de defensa
      * ConAnilloDraupnir: Este anillo multiplica el ataque x2
      */
    
-   /* @Test
+   @Test
     public void quePuedoAgregarItemDeAtaque() {
  
         Personaje sigmund = new Humano();
-        Assert.assertEquals(1, sigmund.obtenerPuntosDeAtaque());
+        Assert.assertEquals(10, sigmund.getPuntosDeAtaqueFisico());
  
         // agrego item de ataque
         sigmund = new ConEspadaSkofnung(sigmund);
-        Assert.assertEquals(5 + 1, sigmund.obtenerPuntosDeAtaque());
+        Assert.assertEquals(10 * 2, sigmund.getPuntosDeAtaqueFisico());
     }
  
     /*---PRUEBAS DEL DECORATOR---*/
@@ -174,7 +174,7 @@ public class TestMergame {
     	Enano maxi = new Enano();
     	maxi.setCasta(new Mago());
     	
-    	System.out.println(brian.obtenerPuntosDeAtaqueMagico());
+    	System.out.println(brian.getPuntosDeAtaqueMagico());
     	
     	System.out.println(maxi.getSalud());
     	for (int i=0; i<10;i++){

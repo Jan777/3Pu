@@ -16,11 +16,6 @@ public class Enano extends Personaje {
 	}
 
 	@Override
-	protected boolean puedeAtacar() {
-		return energia >= calcularPuntosDeAtaque();
-	}
-
-	@Override
 	public void serHechizado(int vidaCurada, int vidaQuitada, int turnosCongelado) {
 		//Hago el calculo de probabilidad de esquibar un golpe.
 		if(vidaQuitada != 0 || turnosCongelado != 0){

@@ -8,17 +8,17 @@ public class ConAnilloDraupnir extends PersonajeEquipado {
 		super(pj);
 	}
 
-	public int obtenerPuntosDeAtaqueFisico() {
-		return personajeEquipado.obtenerPuntosDeAtaqueFisico() * 2;
+	public int getPuntosDeAtaqueFisico() {
+		return personajeEquipado.getPuntosDeAtaqueFisico() * 2;
 	}
 	
-	public int obtenerPuntosDeAtaqueMagico() {
-		return personajeEquipado.obtenerPuntosDeAtaqueMagico() *2;
+	public int getPuntosDeAtaqueMagico() {
+		return personajeEquipado.getPuntosDeAtaqueMagico() *2;
 	}
 
 	@Override
-	public int obtenerPuntosDeDefensa() {
-		return personajeEquipado.obtenerPuntosDeDefensa() * 2;
+	public int getPuntosDeDefensa() {
+		return personajeEquipado.getPuntosDeDefensa() * 2;
 	}
 
 	@Override

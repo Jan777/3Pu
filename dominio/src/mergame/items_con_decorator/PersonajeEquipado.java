@@ -11,12 +11,6 @@ public abstract class PersonajeEquipado extends Personaje{
 	}
 	
 	@Override
-	protected boolean puedeAtacar() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	protected int calcularPuntosDeAtaque() {
 		// TODO Auto-generated method stub
 		return 0;
