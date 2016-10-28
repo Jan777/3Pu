@@ -12,9 +12,11 @@ public class Enano extends PersonajeImpl {
 	@Override
 	public void serHechizado(int vidaCurada, int vidaQuitada, int turnosCongelado) {
 		//Hago el calculo de probabilidad de esquibar un golpe.
-		if(vidaQuitada != 0 || turnosCongelado != 0){
-			if(!this.ProbabilidadEsquivar()){
-				this.salud -= vidaQuitada;
+		if(!this.ProbabilidadEsquivar()){
+			if(vidaQuitada != 0)
+				this.salud -= vidaQuitada - (this.getPuntosDeDefensa() * 20) /100;
+			if( turnosCongelado != 0){
+				this.congelado = true;
 			}
 		}else{
 			this.salud += vidaCurada;
@@ -28,14 +30,8 @@ public class Enano extends PersonajeImpl {
 	@Override
 	public void serAtacado(int danio) {
 		if (!this.ProbabilidadEsquivar()){
-			this.salud -= danio;
+			this.salud -= danio - (this.getPuntosDeDefensa() * 30) /100;
 		}
-	}
-
-	@Override
-	protected int calcularPuntosDeAtaque() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	public boolean ProbabilidadEsquivar() {

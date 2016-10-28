@@ -167,25 +167,25 @@ public class TestMergame {
     	//Assert.assertEquals(elPibe, usuario.getPersonaje("fede"));
     }
     */
-    /*@Test
+    @Test
     public void poderDobleOrco(){
     	Orco brian = new Orco();
     	brian.setCasta(new Mago());
     	
-    	Enano maxi = new Enano();
+    	Humano maxi = new Humano();
     	maxi.setCasta(new Mago());
     	
     	System.out.println(brian.getPuntosDeAtaqueMagico());
     	
     	System.out.println(maxi.getSalud());
-    	for (int i=0; i<10;i++){
-    	brian.lanzarSkill(maxi, Habilidad.FUEGO);
+    	for (int i=0; i<150;i++){
+    	brian.atacar(maxi);
     	maxi.lanzarSkill(brian, Habilidad.FUEGO);
     	System.out.println(maxi.getSalud());
     	}
-    }*/
+    }
 	
-	@Test
+	/*@Test
     public void personajeEquipadoLanzandoSkill(){
     	Personaje brian = new Orco();
     	brian.setCasta(new Mago());
@@ -207,5 +207,5 @@ public class TestMergame {
 	    	maxi.lanzarSkill(brian, Habilidad.FUEGO);
 	    	System.out.println(maxi.getSalud());
     	}
-    }
+    }*/
 }

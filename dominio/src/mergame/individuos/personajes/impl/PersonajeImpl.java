@@ -6,6 +6,7 @@ import mergame.individuos.personajes.Personaje;
 import mergame.skill.Habilidad;
 
 public abstract class PersonajeImpl implements Personaje {
+	protected String tipo;
 	protected int salud;
 	protected int estamina;	
 	protected int nivel;
@@ -16,6 +17,7 @@ public abstract class PersonajeImpl implements Personaje {
 	protected boolean congelado;
 	protected String nombre;
 	public EsDeCasta casta;
+	protected int cantidadAtaquesRecibidos;
 	
 	public PersonajeImpl(){
 		this.salud = 100;
@@ -28,7 +30,6 @@ public abstract class PersonajeImpl implements Personaje {
 		this.experiencia = 0;
 	}
 
-	protected abstract int calcularPuntosDeAtaque();
 	
 	/* METODOS INTERFAZ PERSONAJE */
 	@Override
@@ -82,8 +83,7 @@ public abstract class PersonajeImpl implements Personaje {
 	
 	@Override
 	public int getPuntosDeDefensa() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.defensa;
 	}
 	/* FIN METODOS INTERFAZ INDIVIDUO */
 	
@@ -92,9 +92,21 @@ public abstract class PersonajeImpl implements Personaje {
 
 	public void atacar(Individuo victima) {
 		if (puedeAtacar()) {
+			if(this.tipo == "ORCO" && this.cantidadAtaquesRecibidos >3){
+				victima.serAtacado(this.getPuntosDeAtaqueFisico()*2);
+				this.cantidadAtaquesRecibidos = 0;
+			}
 			victima.serAtacado(this.getPuntosDeAtaqueFisico());
 			this.estamina--;
 		}
+	}
+
+	public int getCantidadAtaquesRecibidos() {
+		return cantidadAtaquesRecibidos;
+	}
+
+	public void setCantidadAtaquesRecibidos(int cantidadAtaquesRecibidos) {
+		this.cantidadAtaquesRecibidos = cantidadAtaquesRecibidos;
 	}
 
 	public void setDefensa(int defensa) {

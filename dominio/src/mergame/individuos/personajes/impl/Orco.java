@@ -1,22 +1,22 @@
 package mergame.individuos.personajes.impl;
 
 public class Orco extends PersonajeImpl {
-	int cantidadDeAtaquesRecibidos;
+	
+	public Orco(){
+		this.tipo = "ORCO";
+	}
+	
 	
 	@Override
 	protected void despuesDeAtacar() {
-		cantidadDeAtaquesRecibidos++;
+		this.cantidadAtaquesRecibidos++;
 	}
 	
-	@Override
-	protected int calcularPuntosDeAtaque() {
-		return 10 + cantidadDeAtaquesRecibidos;
-	}
 
 	@Override
 	public void serHechizado(int vidaCurada, int vidaQuitada, int turnosCongelado) {
 		
-		this.cantidadDeAtaquesRecibidos ++;
+		this.cantidadAtaquesRecibidos ++;
 		if(turnosCongelado != 0){
 			this.congelado = true;
 		}
@@ -26,6 +26,10 @@ public class Orco extends PersonajeImpl {
 
 	@Override
 	public void serAtacado(int danio) {
-		this.salud -=danio;
+		if((danio - (this.getPuntosDeDefensa() * 30 / 100)) < 0)
+			this.salud -= 1;
+		else
+			this.salud -=danio - (this.getPuntosDeDefensa() * 30 / 100);
+		this.cantidadAtaquesRecibidos ++;
 	}
 }
