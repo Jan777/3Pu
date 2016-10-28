@@ -26,7 +26,7 @@ public class TestMergame {
      * ConAnilloDraupnir: Este anillo multiplica el ataque x2
      */
    
-   @Test
+  /* @Test
     public void quePuedoAgregarItemDeAtaque() {
  
         Personaje sigmund = new Humano();
@@ -35,7 +35,7 @@ public class TestMergame {
         // agrego item de ataque
         sigmund = new ConEspadaSkofnung(sigmund);
         Assert.assertEquals(10 * 2, sigmund.getPuntosDeAtaqueFisico());
-    }
+    }*/
  
     /*---PRUEBAS DEL DECORATOR---*/
     
@@ -166,7 +166,7 @@ public class TestMergame {
     	//Assert.assertEquals(elPibe, usuario.getPersonaje("fede"));
     }
     */
-    @Test
+    /*@Test
     public void poderDobleOrco(){
     	Orco brian = new Orco();
     	brian.setCasta(new Mago());
@@ -181,6 +181,31 @@ public class TestMergame {
     	brian.lanzarSkill(maxi, Habilidad.FUEGO);
     	maxi.lanzarSkill(brian, Habilidad.FUEGO);
     	System.out.println(maxi.getSalud());
+    	}
+    }*/
+	
+	@Test
+    public void personajeEquipadoLanzandoSkill(){
+    	Personaje brian = new Orco();
+    	brian.setCasta(new Mago());
+    	
+    	Personaje maxi = new Enano();
+    	maxi.setCasta(new Mago());
+    	
+    	System.out.println(brian.getPuntosDeAtaqueMagico());
+    	System.out.println("poder magico con espada");
+    	brian = new ConEspadaSkofnung(brian);
+    	brian = new ConEspadaSkofnung(brian);
+    	System.out.println(brian.getPuntosDeAtaqueMagico());
+    	
+    	System.out.println(maxi.getSalud());
+    	for (int i=0; i<10;i++){
+    	//deberia lanzar el skill con los poderes magigos todos sumados	
+    	brian.lanzarSkill(maxi, Habilidad.FUEGO);
+    	maxi.lanzarSkill(brian, Habilidad.FUEGO);
+    	System.out.println(maxi.getSalud());
+    	
+    	
     	}
     }
 }

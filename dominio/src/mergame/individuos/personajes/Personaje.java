@@ -7,7 +7,7 @@ import mergame.skill.Habilidad;
 public abstract class Personaje extends Individuo {
 	protected double experiencia = 0;
 	protected String nombre;
-	protected EsDeCasta casta;
+	public EsDeCasta casta;
 
 	/* GETTERs */
 

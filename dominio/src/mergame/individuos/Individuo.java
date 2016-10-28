@@ -30,6 +30,7 @@ public abstract class Individuo implements Hechizable, Atacable {
 	public int getPoderMagico() {
 		return poderMagico;
 	}
+	
 
 	public int getPoderFisico() {
 		return poderFisico;
