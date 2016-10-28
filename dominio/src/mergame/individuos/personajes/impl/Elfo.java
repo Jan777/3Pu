@@ -1,8 +1,6 @@
 package mergame.individuos.personajes.impl;
 
-import mergame.individuos.personajes.Personaje;
-
-public class Elfo extends Personaje{
+public class Elfo extends PersonajeImpl{
 
 	@Override
 	protected int calcularPuntosDeAtaque() {

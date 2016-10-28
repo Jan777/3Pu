@@ -1,40 +1,19 @@
 package mergame.individuos;
 
-public abstract class Individuo implements Hechizable, Atacable {
-	protected int salud = 100;
-	protected int estamina = 100;	
-	protected int nivel = 1;
-	protected int experiencia = 0;
-	protected int defensa = 10;
-	protected int poderMagico = 10;
-	protected int poderFisico = 10;
-	protected boolean congelado;
+public interface Individuo extends Hechizable, Atacable {
 	
+	int getPuntosDeAtaqueFisico();
 	
-	public abstract void lanzarSkill(Individuo atacado, String skill);
+	int getPuntosDeAtaqueMagico();
 	
-	public abstract void serHechizado(int vidaCurada, int vidaQuitada, int turnosCongelado);
+	int getPuntosDeDefensa();
 	
-	public abstract void serAtacado(int danio);
+	void serHechizado(int vidaCurada, int vidaQuitada, int turnosCongelado);
 	
-	public abstract void atacar(Individuo victima);
+	void serAtacado(int danio);
 	
+	void atacar(Individuo victima);
 	
-	
-	
-
-	public boolean estaVivo() {
-		return this.salud > 0;
-	}
-	
-	public int getPoderMagico() {
-		return poderMagico;
-	}
-	
-
-	public int getPoderFisico() {
-		return poderFisico;
-	}
-	
+	boolean estaVivo();
 	
 }

@@ -11,7 +11,7 @@ public class HechizoCurar extends Hechizo{
 	
 	@Override
 	public void hechizar(Individuo hechicero, Individuo hechizado){
-		int danio = hechicero.getPoderMagico() * this.valorBase;
+		int danio = hechicero.getPuntosDeAtaqueMagico() * this.valorBase;
 		
 		hechizado.serHechizado(danio, 0, 0);
 	}

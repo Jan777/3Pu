@@ -10,7 +10,7 @@ public class HechizoFuego extends Hechizo{
 	
 	@Override
 	public void hechizar(Individuo hechicero, Individuo hechizado) {
-		int danio = hechicero.getPoderMagico() * this.valorBase;
+		int danio = hechicero.getPuntosDeAtaqueMagico() * this.valorBase;
 		
 		hechizado.serHechizado(0, danio, 0);
 	}

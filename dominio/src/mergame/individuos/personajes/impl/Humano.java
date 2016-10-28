@@ -1,8 +1,6 @@
 package mergame.individuos.personajes.impl;
 
-import mergame.individuos.personajes.Personaje;
-
-public class Humano extends Personaje {
+public class Humano extends PersonajeImpl {
 	
 	private int puntosDeAtaque = 1;
 	private int puntosDeDefensa = 0;

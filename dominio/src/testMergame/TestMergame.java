@@ -11,9 +11,10 @@ import mergame.individuos.personajes.Usuario;
 import mergame.individuos.personajes.impl.Enano;
 import mergame.individuos.personajes.impl.Humano;
 import mergame.individuos.personajes.impl.Orco;
-import mergame.items_con_decorator.ConAnilloDraupnir;
-import mergame.items_con_decorator.ConEscudoSvalinn;
-import mergame.items_con_decorator.ConEspadaSkofnung;
+import mergame.individuos.personajes.impl.PersonajeImpl;
+import mergame.items_con_decorator.impl.ConAnilloDraupnir;
+import mergame.items_con_decorator.impl.ConEscudoSvalinn;
+import mergame.items_con_decorator.impl.ConEspadaSkofnung;
 import mergame.skill.Habilidad;
 
 public class TestMergame {
@@ -196,16 +197,15 @@ public class TestMergame {
     	System.out.println("poder magico con espada");
     	brian = new ConEspadaSkofnung(brian);
     	brian = new ConEspadaSkofnung(brian);
+    	brian = new ConEspadaSkofnung(brian);
     	System.out.println(brian.getPuntosDeAtaqueMagico());
     	
     	System.out.println(maxi.getSalud());
     	for (int i=0; i<10;i++){
-    	//deberia lanzar el skill con los poderes magigos todos sumados	
-    	brian.lanzarSkill(maxi, Habilidad.FUEGO);
-    	maxi.lanzarSkill(brian, Habilidad.FUEGO);
-    	System.out.println(maxi.getSalud());
-    	
-    	
+	    	//deberia lanzar el skill con los poderes magigos todos sumados	
+	    	brian.lanzarSkill(maxi, Habilidad.FUEGO);
+	    	maxi.lanzarSkill(brian, Habilidad.FUEGO);
+	    	System.out.println(maxi.getSalud());
     	}
     }
 }

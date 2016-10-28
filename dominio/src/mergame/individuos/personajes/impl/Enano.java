@@ -2,14 +2,8 @@ package mergame.individuos.personajes.impl;
 
 import java.util.Random;
 
-import mergame.individuos.personajes.Personaje;
+public class Enano extends PersonajeImpl {
 
-public class Enano extends Personaje {
-
-	public Enano(){
-		this.poderFisico = 6;
-		this.poderMagico = 6;
-	}
 	@Override
 	protected void despuesDeAtacar() {
 		salud++;

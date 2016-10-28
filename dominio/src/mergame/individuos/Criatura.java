@@ -7,8 +7,16 @@ import mergame.skill.Habilidad;
 import mergame.skill.hechizo.Hechizo;
 import mergame.skill.hechizo.HechizoFuego;
 
-public class Criatura extends Individuo {
+public class Criatura implements Individuo {
 	private Map <String, Hechizo> libro;
+	protected int salud;
+	protected int estamina;	
+	protected int nivel;
+	protected int experiencia;
+	protected int defensa;
+	protected int poderMagico;
+	protected int poderFisico;
+	protected boolean congelado;
 	
 	public Criatura(){
 		this.libro = new HashMap<String, Hechizo>();
@@ -18,7 +26,6 @@ public class Criatura extends Individuo {
 		this.poderMagico = 3;
 	}
 	
-	@Override
 	public void lanzarSkill(Individuo atacado, String nombreSkill){
 		Habilidad skill = this.libro.get(nombreSkill);
 		
@@ -41,6 +48,26 @@ public class Criatura extends Individuo {
 	public void atacar(Individuo victima) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean estaVivo() {
+		return this.salud > 0 ? true : false;
+	}
+
+	@Override
+	public int getPuntosDeAtaqueFisico() {
+		return this.poderFisico;
+	}
+
+	@Override
+	public int getPuntosDeAtaqueMagico() {
+		return this.poderMagico;
+	}
+
+	@Override
+	public int getPuntosDeDefensa() {
+		return 0;
 	}
 
 }
