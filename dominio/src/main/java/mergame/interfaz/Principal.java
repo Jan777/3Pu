@@ -17,9 +17,11 @@ import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.Color;
+
 
 public class Principal extends JFrame {
 
@@ -62,7 +64,7 @@ public class Principal extends JFrame {
 		lblMergame.setBounds(35, 47, 270, 58);
 		contentPane.add(lblMergame);
 		
-		JLabel lblInsertTuUsuario = new JLabel("Insertá tu usuario:");
+		JLabel lblInsertTuUsuario = new JLabel("Ingresá tu usuario:");
 		lblInsertTuUsuario.setBounds(95, 135, 190, 15);
 		contentPane.add(lblInsertTuUsuario);
 		
@@ -78,13 +80,7 @@ public class Principal extends JFrame {
 		JButton btnSalvAClaudia = new JButton("Salvá a Claudia");
 		btnSalvAClaudia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (textFieldUsuario.getText().equals("test") && passwordField.getText().equals("test")) {
-					PantallaUsuario pantallaUsuario = new PantallaUsuario();
-					pantallaUsuario.setVisible(true);
-					dispose();
-				}else{
-					labelError.setVisible(true);
-				}
+				comprobarConexion();
 			}
 		});
 		btnSalvAClaudia.setBounds(153, 327, 151, 25);
@@ -114,5 +110,19 @@ public class Principal extends JFrame {
 		labelError.setBounds(95, 108, 270, 15);
 		contentPane.add(labelError);
 		labelError.setVisible(false);
+	}
+	
+	public void comprobarConexion(){
+		if (textFieldUsuario.getText().equals("test") && passwordField.getText().equals("test")) {
+			PantallaUsuario pantallaUsuario = new PantallaUsuario(this);
+			pantallaUsuario.setVisible(true);
+			dispose();
+		}else{
+			labelError.setVisible(true);
+		}
+	}
+	
+	public String getTextFieldUsuario(){
+		return textFieldUsuario.getText();
 	}
 }
