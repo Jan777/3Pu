@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class PantallaUsuario extends JFrame {
@@ -49,11 +50,13 @@ public class PantallaUsuario extends JFrame {
 		
 		
 		JLabel labelNombreUsuario = new JLabel(pantallaPrincipal.getTextFieldUsuario());
-		labelNombreUsuario.setBounds(362, 48, 70, 38);
+		labelNombreUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+		labelNombreUsuario.setBounds(308, 26, 70, 38);
 		contentPane.add(labelNombreUsuario);
 		
-		JLabel lblBienvenido = new JLabel("Bienvenido ");
-		lblBienvenido.setBounds(262, 61, 217, 15);
+		JLabel lblBienvenido = new JLabel("Bienvenido");
+		lblBienvenido.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBienvenido.setBounds(308, 11, 70, 15);
 		contentPane.add(lblBienvenido);
 		
 		JButton btnCrearNuevoPersonaje = new JButton("Ingresá a tu mundo, a luchar!");

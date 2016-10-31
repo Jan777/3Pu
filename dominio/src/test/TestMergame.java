@@ -174,30 +174,30 @@ public class TestMergame {
 	@Test
 	public void quePuedoAgregarDosTiposDeItem() {
 		Personaje sigmund = new Humano();
-		Assert.assertEquals(1, sigmund.getPuntosDeAtaqueFisico());
+		Assert.assertEquals(10, sigmund.getPuntosDeAtaqueFisico());
 
 		// agrego item de ataque
 		sigmund = new ConEspadaSkofnung(sigmund);
-		Assert.assertEquals(5 + 1, sigmund.getPuntosDeAtaqueFisico());
+		Assert.assertEquals(10 * 2, sigmund.getPuntosDeAtaqueFisico());
 
 		// agrego anillo multiplicador (x2)
 		sigmund = new ConAnilloDraupnir(sigmund);
-		Assert.assertEquals((5 + 1) * 2, sigmund.getPuntosDeAtaqueFisico());
+		Assert.assertEquals((10 * 2) * 2, sigmund.getPuntosDeAtaqueFisico());
 	}
 
 	@Test
 	public void quePuedoAgregarDosTiposDeItem2() {
 		Personaje sigmund = new Humano();
-		Assert.assertEquals(1, sigmund.getPuntosDeAtaqueFisico());
+		Assert.assertEquals(10, sigmund.getPuntosDeAtaqueFisico());
 
 		// agrego item de ataque
 		sigmund = new ConEscudoSvalinn(sigmund);
 		// agrego defensa
-		Assert.assertEquals(10 + 0, sigmund.getPuntosDeAtaqueFisico());
+		Assert.assertEquals(10 * 2, sigmund.getPuntosDeAtaqueFisico());
 
 		// agrego anillo multiplicador (x2)
 		sigmund = new ConAnilloDraupnir(sigmund);
-		Assert.assertEquals((10 + 0) * 2, sigmund.getPuntosDeAtaqueFisico());
+		Assert.assertEquals((10 * 2) * 2, sigmund.getPuntosDeAtaqueFisico());
 	}
 
 	/*---FIN PRUEBAS DEL DECORATOR---*/

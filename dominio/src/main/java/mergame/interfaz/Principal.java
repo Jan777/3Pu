@@ -21,6 +21,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
 
 
 public class Principal extends JFrame {
@@ -78,6 +79,12 @@ public class Principal extends JFrame {
 		contentPane.add(lblYAcTu);
 		
 		JButton btnSalvAClaudia = new JButton("Salvá a Claudia");
+		btnSalvAClaudia.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+								
+			}
+		});
 		btnSalvAClaudia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				comprobarConexion();
