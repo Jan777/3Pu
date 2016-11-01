@@ -63,10 +63,10 @@ public class PantallaUsuario extends JFrame {
 		btnCrearNuevoPersonaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(textField.getText().equals("")){
-				comprobarTipeo();
+					comprobarTipeo();
 				}
 				else
-				dispose();
+					dispose();
 			}
 		});
 		

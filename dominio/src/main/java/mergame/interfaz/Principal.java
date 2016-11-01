@@ -23,7 +23,6 @@ import javax.swing.JPasswordField;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 
-
 public class Principal extends JFrame {
 
 	private JPanel contentPane;
@@ -58,31 +57,41 @@ public class Principal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblMergame = new JLabel("MerGame");
 		lblMergame.setFont(new Font("Khmer OS", Font.BOLD, 50));
 		lblMergame.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMergame.setBounds(35, 47, 270, 58);
 		contentPane.add(lblMergame);
-		
+
 		JLabel lblInsertTuUsuario = new JLabel("Ingresá tu usuario:");
 		lblInsertTuUsuario.setBounds(95, 135, 190, 15);
 		contentPane.add(lblInsertTuUsuario);
-		
+
 		textFieldUsuario = new JTextField();
 		textFieldUsuario.setBounds(95, 162, 270, 19);
 		contentPane.add(textFieldUsuario);
 		textFieldUsuario.setColumns(10);
-		
+		textFieldUsuario.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			    	comprobarConexion();
+			    }
+			}
+		});
+
 		JLabel lblYAcTu = new JLabel("Y acá tu contraseña:");
 		lblYAcTu.setBounds(95, 193, 270, 15);
 		contentPane.add(lblYAcTu);
-		
+
 		JButton btnSalvAClaudia = new JButton("Salvá a Claudia");
 		btnSalvAClaudia.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-								
+				if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			    	comprobarConexion();
+			    }
 			}
 		});
 		btnSalvAClaudia.addActionListener(new ActionListener() {
@@ -92,44 +101,53 @@ public class Principal extends JFrame {
 		});
 		btnSalvAClaudia.setBounds(153, 327, 151, 25);
 		contentPane.add(btnSalvAClaudia);
-		
+
 		listaMundos = new ArrayList<Mundo>();
 		Mundo mundoEjemplo = new Mundo();
 		listaMundos.add(mundoEjemplo);
-		
+
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(234, 259, 133, 24);
 		contentPane.add(comboBox);
 		comboBox.addItem("Mundo 1");
 		comboBox.addItem("Mundo 2");
 		comboBox.addItem("Mundo 3");
-		
+
 		JLabel lblNewLabel = new JLabel("Elegí el mundo:");
 		lblNewLabel.setBounds(95, 264, 123, 15);
 		contentPane.add(lblNewLabel);
-		
+
 		passwordField = new JPasswordField();
 		passwordField.setBounds(95, 213, 270, 19);
 		contentPane.add(passwordField);
-		
+		passwordField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			    	comprobarConexion();
+			    }
+			}
+		});
+
 		labelError = new JLabel("Error de usuario o contraseña");
 		labelError.setForeground(Color.RED);
 		labelError.setBounds(95, 108, 270, 15);
 		contentPane.add(labelError);
 		labelError.setVisible(false);
 	}
-	
-	public void comprobarConexion(){
+
+	public void comprobarConexion() {
 		if (textFieldUsuario.getText().equals("test") && passwordField.getText().equals("test")) {
 			PantallaUsuario pantallaUsuario = new PantallaUsuario(this);
 			pantallaUsuario.setVisible(true);
 			dispose();
-		}else{
+		} else {
 			labelError.setVisible(true);
 		}
 	}
-	
-	public String getTextFieldUsuario(){
+
+	public String getTextFieldUsuario() {
 		return textFieldUsuario.getText();
 	}
+
 }
