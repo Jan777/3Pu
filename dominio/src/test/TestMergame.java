@@ -12,6 +12,7 @@ import main.java.mergame.individuos.personajes.impl.Enano;
 import main.java.mergame.individuos.personajes.impl.Humano;
 import main.java.mergame.individuos.personajes.impl.Orco;
 import main.java.mergame.individuos.personajes.impl.PersonajeImpl;
+import main.java.mergame.interfaz.Mundo;
 import main.java.mergame.items_con_decorator.impl.ConAnilloDraupnir;
 import main.java.mergame.items_con_decorator.impl.ConEscudoSvalinn;
 import main.java.mergame.items_con_decorator.impl.ConEspadaSkofnung;
@@ -25,15 +26,15 @@ public class TestMergame {
 	 * pts de defensa ConAnilloDraupnir: Este anillo multiplica el ataque x2
 	 */
 
-	/*
-	 * @Test public void quePuedoAgregarItemDeAtaque() {
-	 * 
-	 * Personaje sigmund = new Humano(); Assert.assertEquals(10,
-	 * sigmund.getPuntosDeAtaqueFisico());
-	 * 
-	 * // agrego item de ataque sigmund = new ConEspadaSkofnung(sigmund);
-	 * Assert.assertEquals(10 * 2, sigmund.getPuntosDeAtaqueFisico()); }
-	 */
+	@Test
+	public void quePuedoAgregarItemDeAtaque() {
+
+		Personaje sigmund = new Humano();
+		Assert.assertEquals(10, sigmund.getPuntosDeAtaqueFisico());
+
+		// agrego item de ataque sigmund = new ConEspadaSkofnung(sigmund);
+		Assert.assertEquals(10 + 10, sigmund.getPuntosDeAtaqueFisico());
+	}
 
 	/*---PRUEBAS DEL DECORATOR---*/
 
@@ -282,5 +283,12 @@ public class TestMergame {
 		 * brian.lanzarSkill(maxi, Habilidad.FUEGO); maxi.lanzarSkill(brian,
 		 * Habilidad.FUEGO); System.out.println(maxi.getSalud()); } }
 		 */
+	}
+	
+	//Dado un personaje en instancia de juego cuando quiere ingresar a un mundo entonces se verifica que este cumpla con el nivel requerido.
+	@Test
+	public void nivelRequeridoParaEntrarAlMundo(){
+		Mundo mundo = new Mundo("Los grosos", 40);
+		
 	}
 }

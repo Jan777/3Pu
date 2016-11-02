@@ -27,7 +27,16 @@ public abstract class PersonajeImpl implements Personaje {
 		this.defensa = 10;
 		this.poderMagico = 10;
 		this.poderFisico = 10;
-		this.experiencia = 0;
+	}
+	
+	public PersonajeImpl(int experiencia, int nivel){
+		this.salud = 100;
+		this.estamina = 100;	
+		this.nivel = nivel;
+		this.experiencia = experiencia;
+		this.defensa = 10;
+		this.poderMagico = 10;
+		this.poderFisico = 10;
 	}
 
 	

@@ -15,12 +15,12 @@ public class ConEscudoSvalinn extends PersonajeDecorator {
 	
 	@Override
 	public int getPuntosDeAtaqueFisico() {
-		return this.getPersonaje().getPuntosDeAtaqueFisico() * 2;
+		return this.getPersonaje().getPuntosDeAtaqueFisico();
 	}
 	
 	@Override
 	public int getPuntosDeAtaqueMagico() {
-		return this.getPersonaje().getPuntosDeAtaqueMagico() *2;
+		return this.getPersonaje().getPuntosDeAtaqueMagico();
 	}
 	
 }
