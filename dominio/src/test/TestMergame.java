@@ -8,6 +8,7 @@ import main.java.mergame.casta.impl.Mago;
 import main.java.mergame.individuos.Criatura;
 import main.java.mergame.individuos.personajes.Personaje;
 import main.java.mergame.individuos.personajes.Usuario;
+import main.java.mergame.individuos.personajes.impl.Elfo;
 import main.java.mergame.individuos.personajes.impl.Enano;
 import main.java.mergame.individuos.personajes.impl.Humano;
 import main.java.mergame.individuos.personajes.impl.Orco;
@@ -32,7 +33,8 @@ public class TestMergame {
 		Personaje sigmund = new Humano();
 		Assert.assertEquals(10, sigmund.getPuntosDeAtaqueFisico());
 
-		// agrego item de ataque sigmund = new ConEspadaSkofnung(sigmund);
+		// agrego item de ataque 
+		sigmund = new ConEspadaSkofnung(sigmund);
 		Assert.assertEquals(10 + 10, sigmund.getPuntosDeAtaqueFisico());
 	}
 
@@ -289,6 +291,30 @@ public class TestMergame {
 	@Test
 	public void nivelRequeridoParaEntrarAlMundo(){
 		Mundo mundo = new Mundo("Los grosos", 40);
+		Elfo juan = new Elfo(3,  15);
+		Humano javier = new Humano(40,  0);
+		Orco clara = new Orco(65,  56);
 		
+		Assert.assertEquals(false, juan.entrarAlMundo(mundo));
+		Assert.assertEquals(true, javier.entrarAlMundo(mundo));
+		Assert.assertEquals(true, clara.entrarAlMundo(mundo));
+		
+	}
+	
+	//Dado un personaje y una criatura cuando el personaje sale vencedor entonces adquiere la posibilidad de elegir o no un item aleatorio.
+	@Test
+	public void meEquipoONoElDrop(){
+		Criatura bicho = new Criatura(10);
+		Personaje eduardo = new Enano();
+		
+		//sin haberse equipado el drop de la criatura
+		Assert.assertEquals(10, eduardo.getPuntosDeAtaqueFisico());
+		
+		eduardo.atacar(bicho);
+		//criatura muerta
+		if(!bicho.estaVivo())
+			eduardo = bicho.droppeo(eduardo);
+		//luego de haberse equipado el drop
+		Assert.assertEquals(20, eduardo.getPuntosDeAtaqueFisico());
 	}
 }

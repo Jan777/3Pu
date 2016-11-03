@@ -6,6 +6,9 @@ import main.java.mergame.individuos.personajes.Personaje;
 import main.java.mergame.skill.Habilidad;
 
 public abstract class PersonajeDecorator implements Personaje{
+	
+	protected String tipoDelItemEquipado;
+	
 	private Personaje personajeEquipado;
 	
 	public PersonajeDecorator(Personaje pj) {

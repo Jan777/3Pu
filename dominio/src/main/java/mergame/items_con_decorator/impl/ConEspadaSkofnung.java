@@ -4,8 +4,10 @@ import main.java.mergame.individuos.personajes.Personaje;
 import main.java.mergame.items_con_decorator.PersonajeDecorator;
 
 public class ConEspadaSkofnung extends PersonajeDecorator {
+	
 	public ConEspadaSkofnung(Personaje pj){
 		super(pj);
+		this.tipoDelItemEquipado = "ESPADA";
 	}
 	
 	@Override

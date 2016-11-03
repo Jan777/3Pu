@@ -3,26 +3,29 @@ package main.java.mergame.items_con_decorator.impl;
 import main.java.mergame.individuos.personajes.Personaje;
 import main.java.mergame.items_con_decorator.PersonajeDecorator;
 
-public class ConAnilloDraupnir extends PersonajeDecorator {
-	
-	public ConAnilloDraupnir(Personaje pj) {
+public class ConItemGenerico extends PersonajeDecorator{
+
+	public ConItemGenerico(Personaje pj) {
 		super(pj);
-		this.tipoDelItemEquipado = "ANILLO";
+		
 	}
 
 	@Override
 	public int getPuntosDeAtaqueFisico() {
-		return this.getPersonaje().getPuntosDeAtaqueFisico() * 2;
+		// TODO Auto-generated method stub
+		return 0;
 	}
-	
+
 	@Override
 	public int getPuntosDeAtaqueMagico() {
-		return this.getPersonaje().getPuntosDeAtaqueMagico() *2;
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
 	public int getPuntosDeDefensa() {
-		return this.getPersonaje().getPuntosDeDefensa() * 2;
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

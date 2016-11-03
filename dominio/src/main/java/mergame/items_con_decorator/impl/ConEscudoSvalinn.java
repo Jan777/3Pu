@@ -6,6 +6,7 @@ import main.java.mergame.items_con_decorator.PersonajeDecorator;
 public class ConEscudoSvalinn extends PersonajeDecorator {
 	public ConEscudoSvalinn(Personaje pj) {
 		super(pj);
+		this.tipoDelItemEquipado = "ESCUDO";
 	}
 	
 	@Override

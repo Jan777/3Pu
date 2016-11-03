@@ -15,7 +15,9 @@ public class Mundo {
 	}
 	
 	public boolean verificarAccesoPersonaje(PersonajeImpl personaje){
-		return false;
+		if(personaje.getNivel() < this.nivelRequerido)
+			return false;
+		return true;
 	}
 
 }

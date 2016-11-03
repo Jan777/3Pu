@@ -2,11 +2,28 @@ package main.java.mergame.individuos.personajes.impl;
 
 public class Orco extends PersonajeImpl {
 	
-	public Orco(){
+	//Duda de si implementar un constructor propio por defecto o usar los valores preseteados de PersonajeImpl
+//	public Orco(){
+//		this.salud = 100;
+//		this.estamina = 100;	
+//		this.nivel = 1;
+//		this.experiencia = 0;
+//		this.defensa = 10;
+//		this.poderMagico = 10;
+//		this.poderFisico = 10;
+//		this.tipo = "ORCO";
+//	}
+	
+	public Orco() {
 		this.tipo = "ORCO";
 	}
 	
-	
+	public Orco(int nivel, int experiencia){
+		this.nivel = nivel;
+		this.experiencia = experiencia;
+		this.tipo = "ORCO";
+	}
+		
 	@Override
 	protected void despuesDeAtacar() {
 		this.cantidadAtaquesRecibidos++;

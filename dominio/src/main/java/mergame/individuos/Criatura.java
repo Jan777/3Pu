@@ -3,6 +3,10 @@ package main.java.mergame.individuos;
 import java.util.HashMap;
 import java.util.Map;
 
+import main.java.mergame.individuos.personajes.Personaje;
+import main.java.mergame.individuos.personajes.impl.PersonajeImpl;
+import main.java.mergame.items_con_decorator.PersonajeDecorator;
+import main.java.mergame.items_con_decorator.impl.ConEspadaSkofnung;
 import main.java.mergame.skill.Habilidad;
 import main.java.mergame.skill.hechizo.Hechizo;
 import main.java.mergame.skill.hechizo.HechizoFuego;
@@ -26,6 +30,22 @@ public class Criatura implements Individuo {
 		this.poderMagico = 3;
 	}
 	
+	public Criatura(int salud){
+		this.libro = new HashMap<String, Hechizo>();
+		libro.put("Fuego", new HechizoFuego());
+		//VER VALORES
+		this.poderFisico = 2;
+		this.poderMagico = 3;
+	}
+	
+	public int getSalud() {
+		return salud;
+	}
+
+	public void setSalud(int salud) {
+		this.salud = salud;
+	}
+
 	public void lanzarSkill(Individuo atacado, String nombreSkill){
 		Habilidad skill = this.libro.get(nombreSkill);
 		
@@ -53,6 +73,11 @@ public class Criatura implements Individuo {
 	@Override
 	public boolean estaVivo() {
 		return this.salud > 0 ? true : false;
+	}
+
+	public PersonajeDecorator droppeo(Personaje asesino) {
+		//como prueba solo devuelve un tipo de arma
+		return new ConEspadaSkofnung(asesino);
 	}
 
 	@Override

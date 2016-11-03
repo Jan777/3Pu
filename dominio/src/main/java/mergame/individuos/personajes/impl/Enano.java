@@ -3,7 +3,28 @@ package main.java.mergame.individuos.personajes.impl;
 import java.util.Random;
 
 public class Enano extends PersonajeImpl {
-
+	//Duda de si implementar un constructor propio por defecto o usar los valores preseteados de PersonajeImpl
+//	public Enano(int experiencia, int nivel){
+//		this.salud = 100;
+//		this.estamina = 100;	
+//		this.nivel = nivel;
+//		this.experiencia = experiencia;
+//		this.defensa = 10;
+//		this.poderMagico = 10;
+//		this.poderFisico = 10;
+//	}
+//	
+	
+	public Enano() {
+		this.tipo = "ENANO";
+	}
+	
+	public Enano(int nivel, int experiencia){
+		this.nivel = nivel;
+		this.experiencia = experiencia;
+		this.tipo = "ENANO";
+	}
+	
 	@Override
 	protected void despuesDeAtacar() {
 		salud++;

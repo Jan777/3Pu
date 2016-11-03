@@ -3,40 +3,31 @@ package main.java.mergame.individuos.personajes.impl;
 import main.java.mergame.casta.EsDeCasta;
 import main.java.mergame.individuos.Individuo;
 import main.java.mergame.individuos.personajes.Personaje;
+import main.java.mergame.interfaz.Mundo;
+import main.java.mergame.items_con_decorator.PersonajeDecorator;
 import main.java.mergame.skill.Habilidad;
 
 public abstract class PersonajeImpl implements Personaje {
 	protected String tipo;
-	protected int salud;
-	protected int estamina;	
-	protected int nivel;
-	protected int experiencia;
-	protected int defensa;
-	protected int poderMagico;
-	protected int poderFisico;
+	protected int salud = 100;
+	protected int estamina = 100;	
+	protected int nivel = 1;	
+	protected int experiencia = 0;
+	protected int defensa = 0;
+	protected int poderMagico = 10;
+	protected int poderFisico = 10;
 	protected boolean congelado;
 	protected String nombre;
 	public EsDeCasta casta;
 	protected int cantidadAtaquesRecibidos;
 	
 	public PersonajeImpl(){
-		this.salud = 100;
-		this.estamina = 100;	
-		this.nivel = 1;
-		this.experiencia = 0;
-		this.defensa = 10;
-		this.poderMagico = 10;
-		this.poderFisico = 10;
+		
 	}
 	
-	public PersonajeImpl(int experiencia, int nivel){
-		this.salud = 100;
-		this.estamina = 100;	
+	public PersonajeImpl(int nivel, int experiencia){
 		this.nivel = nivel;
 		this.experiencia = experiencia;
-		this.defensa = 10;
-		this.poderMagico = 10;
-		this.poderFisico = 10;
 	}
 
 	
@@ -109,7 +100,20 @@ public abstract class PersonajeImpl implements Personaje {
 			this.estamina--;
 		}
 	}
-
+	
+	public void serHechizado(int vidaCurada, int vidaQuitada, int turnosCongelado) {
+		// TODO Auto-generated method stub		
+	}
+	
+	public void serAtacado(int danio) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public boolean entrarAlMundo(Mundo mundo){
+		return mundo.verificarAccesoPersonaje(this);
+	}
+	
 	public int getCantidadAtaquesRecibidos() {
 		return cantidadAtaquesRecibidos;
 	}
@@ -149,4 +153,13 @@ public abstract class PersonajeImpl implements Personaje {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public int getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(int nivel) {
+		this.nivel = nivel;
+	}
+
 }
