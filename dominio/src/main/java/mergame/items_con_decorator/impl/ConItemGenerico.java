@@ -1,6 +1,7 @@
 package main.java.mergame.items_con_decorator.impl;
 
 import main.java.mergame.individuos.personajes.Personaje;
+import main.java.mergame.individuos.personajes.impl.PersonajeImpl;
 import main.java.mergame.items_con_decorator.PersonajeDecorator;
 
 public class ConItemGenerico extends PersonajeDecorator{

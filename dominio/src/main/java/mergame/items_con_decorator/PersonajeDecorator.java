@@ -3,6 +3,7 @@ package main.java.mergame.items_con_decorator;
 import main.java.mergame.casta.EsDeCasta;
 import main.java.mergame.individuos.Individuo;
 import main.java.mergame.individuos.personajes.Personaje;
+import main.java.mergame.individuos.personajes.impl.PersonajeImpl;
 import main.java.mergame.skill.Habilidad;
 
 public abstract class PersonajeDecorator implements Personaje{

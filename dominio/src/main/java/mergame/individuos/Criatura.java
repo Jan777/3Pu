@@ -75,9 +75,17 @@ public class Criatura implements Individuo {
 		return this.salud > 0 ? true : false;
 	}
 
-	public PersonajeDecorator droppeo(Personaje asesino) {
+	public PersonajeDecorator droppeo(PersonajeImpl asesino) {
 		//como prueba solo devuelve un tipo de arma
 		return new ConEspadaSkofnung(asesino);
+	}
+
+	public int getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(int nivel) {
+		this.nivel = nivel;
 	}
 
 	@Override

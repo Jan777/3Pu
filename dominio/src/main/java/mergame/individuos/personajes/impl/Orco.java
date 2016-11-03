@@ -1,6 +1,8 @@
 package main.java.mergame.individuos.personajes.impl;
 
-public class Orco extends PersonajeImpl {
+import main.java.mergame.individuos.personajes.Personaje;
+
+public class Orco extends PersonajeImpl implements Personaje {
 	
 	//Duda de si implementar un constructor propio por defecto o usar los valores preseteados de PersonajeImpl
 //	public Orco(){

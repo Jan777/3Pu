@@ -101,6 +101,10 @@ public abstract class PersonajeImpl implements Personaje {
 		}
 	}
 	
+	public void reestablecerEstamina(){
+		estamina = 100;
+	}
+	
 	public void serHechizado(int vidaCurada, int vidaQuitada, int turnosCongelado) {
 		// TODO Auto-generated method stub		
 	}
@@ -156,6 +160,38 @@ public abstract class PersonajeImpl implements Personaje {
 	
 	public int getNivel() {
 		return nivel;
+	}
+
+	public int getEstamina() {
+		return estamina;
+	}
+
+	public void setEstamina(int estamina) {
+		this.estamina = estamina;
+	}
+
+	public int getExperiencia() {
+		return experiencia;
+	}
+
+	public void setExperiencia(int experiencia) {
+		this.experiencia = experiencia;
+	}
+
+	public int getDefensa() {
+		return defensa;
+	}
+
+	public int getPoderMagico() {
+		return poderMagico;
+	}
+
+	public int getPoderFisico() {
+		return poderFisico;
+	}
+
+	public void setSalud(int salud) {
+		this.salud = salud;
 	}
 
 	public void setNivel(int nivel) {

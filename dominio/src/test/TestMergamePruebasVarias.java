@@ -19,7 +19,7 @@ import main.java.mergame.items_con_decorator.impl.ConEscudoSvalinn;
 import main.java.mergame.items_con_decorator.impl.ConEspadaSkofnung;
 import main.java.mergame.skill.Habilidad;
 
-public class TestMergame {
+public class TestMergamePruebasVarias {
 
 	/*
 	 * Especificacion de Items ~~~~~~~~~~~~~~~~~~~~~~~ ConEspadaSkofnung: Esta
@@ -104,28 +104,7 @@ public class TestMergame {
 	 * //elPibe curado con 50 de vitalidad Assert.assertEquals((100 - 3),
 	 * elPibe.getSalud()); }
 	 * 
-	 * //? Dado un usuario cuando este selecciona "crear personaje" entonces el
-	 * personaje es creado.
-	 * 
-	 * @Test public void creacionPersonaje(){ Usuario usuario = new
-	 * Usuario("ferra", "pass1234"); Personaje elPibe = new Humano();
-	 * elPibe.setNombre("fede"); usuario.agregarPesonaje(elPibe);
-	 * 
-	 * Assert.assertEquals(elPibe, usuario.getPersonaje("fede")); }
-	 * 
-	 * //? Dado un usuario con 3 personajes creados cuando crea un cuarto
-	 * personaje entonces este no se crea.
-	 * 
-	 * @Test public void cantidadPersonajes(){ Usuario usuario = new
-	 * Usuario("ferra", "pass1234"); Personaje elPibe = new Humano(); Personaje
-	 * elPibe2 = new Orco(); Personaje elPibe3 = new Enano(); Personaje elPibe4
-	 * = new Humano(); elPibe.setNombre("ferra");
-	 * usuario.agregarPesonaje(elPibe); elPibe2.setNombre("fede");
-	 * usuario.agregarPesonaje(elPibe2); elPibe3.setNombre("doni");
-	 * usuario.agregarPesonaje(elPibe3); elPibe4.setNombre("bri");
-	 * usuario.agregarPesonaje(elPibe4);
-	 * 
-	 * Assert.assertNotEquals(elPibe4, usuario.getPersonaje("bri")); }
+	 
 	 * 
 	 * @Test public void mago(){ Personaje elPibe = new Humano();
 	 * elPibe.setCasta(new Mago());
@@ -224,19 +203,7 @@ public class TestMergame {
 	 * 
 	 * Assert.assertEquals(elPibe, usuario.getPersonaje("fede")); }
 	 * 
-	 * //? Dado un usuario con 3 personajes creados cuando crea un cuarto
-	 * personaje entonces este no se crea.
-	 * 
-	 * @Test public void cantidadPersonajes(){ Usuario usuario = new
-	 * Usuario("ferra", "pass1234"); Personaje elPibe = new Humano(); Personaje
-	 * elPibe2 = new Orco(); Personaje elPibe3 = new Enano(); Personaje elPibe4
-	 * = new Humano(); elPibe.setNombre("ferra");
-	 * usuario.agregarPesonaje(elPibe); elPibe2.setNombre("fede");
-	 * usuario.agregarPesonaje(elPibe2); elPibe3.setNombre("doni");
-	 * usuario.agregarPesonaje(elPibe3); elPibe4.setNombre("bri");
-	 * usuario.agregarPesonaje(elPibe4);
-	 * 
-	 * Assert.assertNotEquals(elPibe4, usuario.getPersonaje("bri")); }
+	 
 	 * 
 	 * @Test public void mago(){ Personaje elPibe = new Humano();
 	 * elPibe.setCasta(new Mago());
@@ -287,34 +254,5 @@ public class TestMergame {
 		 */
 	}
 	
-	//Dado un personaje en instancia de juego cuando quiere ingresar a un mundo entonces se verifica que este cumpla con el nivel requerido.
-	@Test
-	public void nivelRequeridoParaEntrarAlMundo(){
-		Mundo mundo = new Mundo("Los grosos", 40);
-		Elfo juan = new Elfo(3,  15);
-		Humano javier = new Humano(40,  0);
-		Orco clara = new Orco(65,  56);
-		
-		Assert.assertEquals(false, juan.entrarAlMundo(mundo));
-		Assert.assertEquals(true, javier.entrarAlMundo(mundo));
-		Assert.assertEquals(true, clara.entrarAlMundo(mundo));
-		
-	}
 	
-	//Dado un personaje y una criatura cuando el personaje sale vencedor entonces adquiere la posibilidad de elegir o no un item aleatorio.
-	@Test
-	public void meEquipoONoElDrop(){
-		Criatura bicho = new Criatura(10);
-		Personaje eduardo = new Enano();
-		
-		//sin haberse equipado el drop de la criatura
-		Assert.assertEquals(10, eduardo.getPuntosDeAtaqueFisico());
-		
-		eduardo.atacar(bicho);
-		//criatura muerta
-		if(!bicho.estaVivo())
-			eduardo = bicho.droppeo(eduardo);
-		//luego de haberse equipado el drop
-		Assert.assertEquals(20, eduardo.getPuntosDeAtaqueFisico());
-	}
 }

@@ -1,6 +1,8 @@
 package main.java.mergame.individuos.personajes.impl;
 
-public class Elfo extends PersonajeImpl{
+import main.java.mergame.individuos.personajes.Personaje;
+
+public class Elfo extends PersonajeImpl implements Personaje{
 	
 	//Duda de si implementar un constructor propio por defecto o usar los valores preseteados de PersonajeImpl
 //	public Elfo(int experiencia, int nivel){
