@@ -85,6 +85,7 @@ public class TestHistoriasUsuarios {
 		maxiElfo.setCasta(new Mago());
 		while (maxiElfo.estaVivo()) {
 			brian.atacar(maxiElfo);
+			brian.reestablecerEstamina();
 		}
 		brian.reestablecerEstamina();
 
@@ -92,6 +93,7 @@ public class TestHistoriasUsuarios {
 		maxiEnano.setCasta(new Mago());
 		while (maxiEnano.estaVivo()) {
 			brian.atacar(maxiEnano);
+			brian.reestablecerEstamina();
 		}
 		brian.reestablecerEstamina();
 
@@ -103,7 +105,7 @@ public class TestHistoriasUsuarios {
 	// ESTADISTICA
 	@Test
 	public void aumentarEstadisticasAlSubirNivelTest() {
-		Personaje brian = new Orco();
+		PersonajeImpl brian = new Orco();
 		brian.setCasta(new Mago());
 
 		Personaje maxiHumano = new Humano();
@@ -149,7 +151,7 @@ public class TestHistoriasUsuarios {
 		// sigmund = new ConEscudoSvalinn(sigmund);
 
 		System.out.println("Ataque con espada: " + sigmund.getPuntosDeAtaqueFisico());
-		sigmund = sigmund.desequipar(ConEspadaSkofnung.class);
+//		sigmund = sigmund.desequipar(ConEspadaSkofnung.class);
 		System.out.println("Ataque sin espada: " + sigmund.getPuntosDeAtaqueFisico());
 		// Assert.assertTrue(sigmund.tiene(ConAnilloDraupnir.class));
 		// sigmund = sigmund.desequipar(ConAnilloDraupnir.class);
@@ -221,9 +223,20 @@ public class TestHistoriasUsuarios {
 		eduardo.atacar(bicho);
 		// criatura muerta
 		if (!bicho.estaVivo())
-			eduardo = bicho.droppeo(eduardo);
+//			eduardo = bicho.droppeo(eduardo);
 		// luego de haberse equipado el drop
 		Assert.assertEquals(20, eduardo.getPuntosDeAtaqueFisico());
 	}
-
+	
+	@Test
+	public void decoratorLanzandoSkilll() {
+		Personaje decorado = new Humano();
+		//decorado.setCasta(new Mago());
+		
+		System.out.println("*-*-*-*--*/-*/-*/-*/-*/-*/-*/-*/-*/-*/-*/-*/");
+		//System.out.println(decorado.getPoderMagico());
+		
+		decorado = new ConEspadaSkofnung(decorado);
+		decorado.getPuntosDeAtaqueMagico();
+	}
 }

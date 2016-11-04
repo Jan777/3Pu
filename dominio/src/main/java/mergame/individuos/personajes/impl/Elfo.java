@@ -15,6 +15,8 @@ public class Elfo extends PersonajeImpl implements Personaje{
 //		this.poderFisico = 10;
 //	}
 	
+	private int flag = 0;
+	
 	public Elfo() {
 		this.tipo = "ELFO";
 	}
@@ -32,22 +34,29 @@ public class Elfo extends PersonajeImpl implements Personaje{
 		if(turnosCongelado!=0)
 			this.congelado = true;
 		//me cura 10 en caso de seguir vivo
-		this.sanar();
-		
+		if (this.flag == 0 && !this.sanar()){
+			this.flag = 1;
+		}
 	}
 
 	@Override
 	public void serAtacado(int danio) {
 		
 		this.salud -= danio - (this.getPuntosDeDefensa() * 20) /100;
-		this.sanar();
+		if (this.flag == 0 && !this.sanar()){
+			this.flag = 1;
+		}
+		
 	}
 	
 	//Ver si siempre va a ser 10, o hacer algun otro c�lculo
-	public void sanar(){
+	public boolean sanar(){
+		
 		if(this.salud < 20){
-			if(this.estaVivo())
-				this.salud += 10;
+				{this.salud += 10;
+				return false;}
+		}else{
+			return true;
 		}
 	}
 

@@ -26,4 +26,9 @@ public class ConEspadaSkofnung extends PersonajeDecorator {
 		return this.getPersonaje().getPuntosDeDefensa();
 	}
 
+	public int getPoderMagico() {
+		// TODO Auto-generated method stub
+		return this.getPersonaje().getPuntosDeAtaqueMagico();
+	}
+
 }
