@@ -22,12 +22,18 @@ public class Criatura implements Individuo {
 	protected int poderFisico;
 	protected boolean congelado;
 	
+	protected final int expBaseOtorgada = 40;
+	
 	public Criatura(){
 		this.libro = new HashMap<String, Hechizo>();
 		libro.put("Fuego", new HechizoFuego());
 		//VER VALORES
 		this.poderFisico = 2;
 		this.poderMagico = 3;
+		salud = 100;
+		estamina = 100;
+		defensa = 150;
+		nivel = 1;
 	}
 	
 	public Criatura(int salud){
@@ -107,5 +113,18 @@ public class Criatura implements Individuo {
 	public int getPuntosDeDefensa() {
 		return 0;
 	}
+	
+	@Override
+	public int getExpOtorgada() {
+		return this.nivel*this.expBaseOtorgada;
+	}
+
+	
+	@Override
+	public int getExperiencia() {
+		return experiencia;
+	}
+	
+	
 
 }

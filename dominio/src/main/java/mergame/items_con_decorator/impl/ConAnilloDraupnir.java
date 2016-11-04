@@ -26,5 +26,9 @@ public class ConAnilloDraupnir extends PersonajeDecorator {
 		return this.getPersonaje().getPuntosDeDefensa() * 2;
 	}
 
+	
+
+	
+
 
 }

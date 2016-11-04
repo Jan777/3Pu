@@ -20,20 +20,20 @@ public class TestHistoriasUsuarios {
 	// DADO UN PERSONAJE Y UNA CRIATURA, CUANDO EL PERSONAJE SALE VENCEDOR
 	// ENTONCES ADQUIERE EXPERIENCIA
 	@Test
-	public void aumentarExperienciaPorAtacarOtroPersonajeTest() {
+	public void aumentarExperienciaPorAtacarOtroPersonajeTest() {//ANDA
 		PersonajeImpl brian = new Orco();
 		brian.setCasta(new Mago());
 
 		PersonajeImpl maxi = new Humano();
 		maxi.setCasta(new Mago());
-
-		System.out.println("Exp Inicial Brian: " + brian.getExperiencia());
-
+		
+		Assert.assertEquals(0, brian.getExperiencia());
 		while (maxi.estaVivo()) {
 			brian.atacar(maxi);
 		}
-		System.out.println("Salud maxi: " + maxi.getSalud());
-		System.out.println("Exp Final Brian: " + brian.getExperiencia());
+		
+		Assert.assertEquals(50, brian.getExperiencia());
+		
 	}
 
 	// DADO DOS PERSONAJES, CUANDO UNO VENCE A OTRO, EL GANADOR ADQUIERE PUNTOS
@@ -46,14 +46,13 @@ public class TestHistoriasUsuarios {
 		Criatura maxi = new Criatura();
 		maxi.setNivel(1);
 
-		System.out.println("Exp Inicial Brian: " + brian.getExperiencia());
-
+		Assert.assertEquals(0, brian.getExperiencia());
 		while (maxi.estaVivo()) {
 			brian.atacar(maxi);
 			brian.reestablecerEstamina();
 		}
-		System.out.println("Salud maxi: " + maxi.getSalud());
-		System.out.println("Exp Final Brian: " + brian.getExperiencia());
+		
+		Assert.assertEquals(40, brian.getExperiencia());
 	}
 
 	// DADO UN PERSONAJE CUANDO CONSIGUE UNA DETERMINANDA CANTIDAD DE PUNTOS DE
@@ -65,9 +64,9 @@ public class TestHistoriasUsuarios {
 
 		PersonajeImpl maxiHumano = new Humano();
 		maxiHumano.setCasta(new Mago());
-
-		System.out.println("Exp Inicial Brian: " + brian.getExperiencia());
-		System.out.println("Nivel Inicial Brian: " + brian.getNivel());
+		
+		Assert.assertEquals(0, brian.getExperiencia());
+		Assert.assertEquals(1, brian.getNivel());
 
 		while (maxiHumano.estaVivo()) {// PRIMER ENEMIGO QUE DA 50EXP
 			brian.atacar(maxiHumano);
@@ -96,9 +95,9 @@ public class TestHistoriasUsuarios {
 			brian.reestablecerEstamina();
 		}
 		brian.reestablecerEstamina();
-
-		System.out.println("Nivel Final Brian: " + brian.getNivel());
-		System.out.println("Exp Final Brian: " + brian.getExperiencia());
+		
+		Assert.assertEquals(100, brian.getExperiencia());
+		Assert.assertEquals(2, brian.getNivel());
 	}
 
 	// DADO UN PERSONAJE CUANDO SUBE DE NIVEL ENTONCES ADQUIERE PUNTOS DE
@@ -110,15 +109,14 @@ public class TestHistoriasUsuarios {
 
 		Personaje maxiHumano = new Humano();
 		maxiHumano.setCasta(new Mago());
-
-		System.out.println("Estadisticas nivel 1");
-		System.out.println("nivel: " + brian.getNivel());
-		System.out.println("salud: " + brian.getSalud());
-		System.out.println("estamina: " + brian.getEstamina());
-		System.out.println("defensa: " + brian.getDefensa());
-		System.out.println("Poder fisico: " + brian.getPoderFisico());
-		System.out.println("poder magico: " + brian.getPoderMagico());
-		System.out.println("-----------------------------");
+		
+		Assert.assertEquals(1, brian.getNivel());
+		Assert.assertEquals(100, brian.getSalud());
+		Assert.assertEquals(100, brian.getEstamina());
+		Assert.assertEquals(10, brian.getDefensa());
+		Assert.assertEquals(1, brian.getPoderFisico());
+		Assert.assertEquals(5, brian.getPoderMagico());
+		
 
 		while (maxiHumano.estaVivo()) {// PRIMER ENEMIGO QUE DA 50EXP
 			brian.atacar(maxiHumano);
@@ -131,35 +129,34 @@ public class TestHistoriasUsuarios {
 		while (maxiOrco.estaVivo()) {
 			brian.atacar(maxiOrco);
 		}
-
-		System.out.println("Estadisticas nivel 2");
-		System.out.println("nivel: " + brian.getNivel());
-		System.out.println("salud: " + brian.getSalud());
-		System.out.println("estamina: " + brian.getEstamina());
-		System.out.println("defensa: " + brian.getDefensa());
-		System.out.println("Poder fisico: " + brian.getPoderFisico());
-		System.out.println("poder magico: " + brian.getPoderMagico());
+		
+		Assert.assertEquals(2, brian.getNivel());
+		Assert.assertEquals(200, brian.getSalud());
+		Assert.assertEquals(200, brian.getEstamina());
+		Assert.assertEquals(20, brian.getDefensa());
+		Assert.assertEquals(21, brian.getPoderFisico());
+		Assert.assertEquals(25, brian.getPoderMagico());
+		
 	}
 
 	@Test
 	public void quePuedoQuitarUnItem() { // NO LO BORREN QUE ES EL DE DESEQUIPAR
 		Personaje sigmund = new Humano();
-
-		System.out.println("Ataque inicial: " + sigmund.getPuntosDeAtaqueFisico());
+		
+		Assert.assertEquals(10, sigmund.getPuntosDeAtaqueFisico());
+		
 		sigmund = new ConEspadaSkofnung(sigmund);
-		// sigmund = new ConAnilloDraupnir(sigmund);
-		// sigmund = new ConEscudoSvalinn(sigmund);
+		sigmund = new ConEspadaSkofnung(sigmund);
+		
+		//con dos espadas
+		Assert.assertEquals(30, sigmund.getPuntosDeAtaqueFisico());
+		
+		sigmund = sigmund.desequipar(ConEspadaSkofnung.class);
+		
+		//con una espada menos
+		Assert.assertEquals(20, sigmund.getPuntosDeAtaqueFisico());
 
-		System.out.println("Ataque con espada: " + sigmund.getPuntosDeAtaqueFisico());
-//		sigmund = sigmund.desequipar(ConEspadaSkofnung.class);
-		System.out.println("Ataque sin espada: " + sigmund.getPuntosDeAtaqueFisico());
-		// Assert.assertTrue(sigmund.tiene(ConAnilloDraupnir.class));
-		// sigmund = sigmund.desequipar(ConAnilloDraupnir.class);
-		// Assert.assertFalse(sigmund.tiene(ConAnilloDraupnir.class));
-		//
-		// Assert.assertTrue(sigmund.tiene(ConEspadaSkofnung.class));
-		// sigmund = sigmund.desequipar(ConEspadaSkofnung.class);
-		// Assert.assertFalse(sigmund.tiene(ConEspadaSkofnung.class));
+
 	}
 
 	// DADO UN USUARIO CUANDO ESTE SELECCIONA "CREAR PERSONAJE" ENTONCES EL
@@ -224,24 +221,19 @@ public class TestHistoriasUsuarios {
 		// criatura muerta
 		if (!bicho.estaVivo()){
 			eduardo = bicho.droppeo(eduardo);
-			System.out.println("entro al if");
 		}
 		// luego de haberse equipado el drop
-		System.out.println("/////////////////////////////////////////////////////////////////////7");
-		System.out.println(eduardo.getPuntosDeAtaqueFisico());
 		Assert.assertEquals(20, eduardo.getPuntosDeAtaqueFisico());
 	}
 	
 	@Test
 	public void decoratorLanzandoSkilll() {
 		Personaje decorado = new Humano();
-		//decorado.setCasta(new Mago());
+		decorado.setCasta(new Mago());
 		
-		System.out.println("*-*-*-*--*/-*/-*/-*/-*/-*/-*/-*/-*/-*/-*/-*/");
-		//System.out.println(decorado.getPoderMagico());
-		System.out.println("poder magico sin espada"+decorado.getPoderMagico());
+		Assert.assertEquals(5, decorado.getPuntosDeAtaqueMagico());
+		
 		decorado = new ConEspadaSkofnung(decorado);
-		decorado.getPuntosDeAtaqueMagico();
-		System.out.println("poder magico con espada"+decorado.getPuntosDeAtaqueMagico());
+		Assert.assertEquals(15, decorado.getPuntosDeAtaqueMagico());
 	}
 }

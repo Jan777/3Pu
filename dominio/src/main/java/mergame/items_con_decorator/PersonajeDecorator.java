@@ -81,4 +81,41 @@ public abstract class PersonajeDecorator implements Personaje{
 	public boolean entrarAlMundo(Mundo mundo){
 		return personajeEquipado.entrarAlMundo(mundo);
 	}
+	
+	
+	
+	@Override
+	public int getExpOtorgada() {
+		return personajeEquipado.getExpOtorgada();
+	}
+
+	@Override
+	public int getNivel() {
+		return personajeEquipado.getNivel();
+	}
+	
+	@Override
+	public int getExperiencia() {
+		return personajeEquipado.getExperiencia();
+	}
+	
+	
+	// desequipaaaaaaaaaaaaaaaaaaaar
+	@Override
+ 	public boolean tiene(Class decorado) {
+ 		return this.getClass() == decorado || this.personajeEquipado.tiene(decorado);
+ 	}
+ 
+ 	@Override
+ 	public Personaje desequipar(Class decorado) {
+ 		return this.desequiparEste(decorado);
+ 	}
+ 
+ 	private Personaje desequiparEste(Class decorado) {
+ 		if (this.getClass() == decorado)
+ 			return this.personajeEquipado;
+ 		return this.personajeEquipado.desequipar(decorado);
+ 	}
+	
+	
 }

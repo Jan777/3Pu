@@ -16,4 +16,10 @@ public interface Individuo extends Hechizable, Atacable {
 	
 	boolean estaVivo();
 	
+	int getExpOtorgada();
+	
+	int getNivel();
+	
+	int getExperiencia();
+	
 }

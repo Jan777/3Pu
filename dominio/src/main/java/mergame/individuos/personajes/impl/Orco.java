@@ -51,4 +51,6 @@ public class Orco extends PersonajeImpl implements Personaje {
 			this.salud -=danio - (this.getPuntosDeDefensa() * 30 / 100);
 		this.cantidadAtaquesRecibidos ++;
 	}
+
+	
 }

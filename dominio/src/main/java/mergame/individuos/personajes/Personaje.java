@@ -17,4 +17,8 @@ public interface Personaje extends Individuo{
 	void lanzarSkill(Individuo atacado, String nombreSkill);
 	int getPoderMagico();
 	boolean entrarAlMundo(Mundo mundo);
+	Personaje desequipar(Class decorado);
+	boolean tiene(Class decorado);
+	
+	
 }

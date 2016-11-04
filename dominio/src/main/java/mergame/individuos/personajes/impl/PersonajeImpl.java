@@ -13,13 +13,17 @@ public abstract class PersonajeImpl implements Personaje {
 	protected int estamina = 100;	
 	protected int nivel = 1;	
 	protected int experiencia = 0;
-	protected int defensa = 0;
-	protected int poderMagico = 10;
+	protected int defensa = 10;
+	protected int poderMagico = 5;
 	protected int poderFisico = 10;
 	protected boolean congelado;
 	protected String nombre;
 	public EsDeCasta casta;
 	protected int cantidadAtaquesRecibidos;
+	
+	//AGREGADO POR JAVIER
+	protected final int []expMaxPorNivel = {100,200,300,400,500,600,700,800,900,1000};
+	protected final int expBaseOtorgada = 50;
 	
 	public PersonajeImpl(){
 		
@@ -98,6 +102,9 @@ public abstract class PersonajeImpl implements Personaje {
 			}
 			victima.serAtacado(this.getPuntosDeAtaqueFisico());
 			this.estamina--;
+		}
+		if(!victima.estaVivo()){
+			this.aumentarExperiencia(victima.getExpOtorgada());
 		}
 	}
 	
@@ -197,5 +204,43 @@ public abstract class PersonajeImpl implements Personaje {
 	public void setNivel(int nivel) {
 		this.nivel = nivel;
 	}
+	
+	public void aumentarNivel(){
+		nivel++;
+		salud=(100*this.nivel);
+		estamina=(100*this.nivel);
+		defensa+=(this.nivel*5);
+		poderMagico+=(this.nivel*10);
+		poderFisico+=(this.nivel*10);
+	}
+	
+	public void aumentarExperiencia(int expGanada){
+		int expTotal = expGanada + this.experiencia;
+		while((this.nivel<=10) && expTotal >= expMaxPorNivel[this.nivel-1]){
+			expTotal-=expMaxPorNivel[this.nivel-1];
+			this.aumentarNivel();
+		}
+		if(this.nivel!=10){
+			this.experiencia = expTotal;
+		}
+		else{
+			this.experiencia = 0;
+		}
+	}
+	
+	
+	@Override
+	public int getExpOtorgada() {
+		return this.nivel*this.expBaseOtorgada;
+	}
+	
+	//desequipaaaaaaaaaaaaaaaaaaar
+	public boolean tiene(Class decorado) {
+ 		return false;
+ 	}
+		 
+ 	public Personaje desequipar(Class decorado) {
+ 		return this;
+ 	}
 
 }
