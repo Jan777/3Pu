@@ -200,9 +200,9 @@ public class TestHistoriasUsuarios {
 	@Test
 	public void nivelRequeridoParaEntrarAlMundo() {
 		Mundo mundo = new Mundo("Los grosos", 40);
-		Elfo juan = new Elfo(3, 15);
-		Humano javier = new Humano(40, 0);
-		Orco clara = new Orco(65, 56);
+		Personaje juan = new Elfo(3, 15);
+		Personaje javier = new Humano(40, 0);
+		Personaje clara = new Orco(65, 56);
 
 		Assert.assertEquals(false, juan.entrarAlMundo(mundo));
 		Assert.assertEquals(true, javier.entrarAlMundo(mundo));
@@ -214,17 +214,21 @@ public class TestHistoriasUsuarios {
 	// entonces adquiere la posibilidad de elegir o no un item aleatorio.
 	@Test
 	public void meEquipoONoElDrop() {
-		Criatura bicho = new Criatura(10);
-		PersonajeImpl eduardo = new Enano();
+		Criatura bicho = new Criatura(1);
+		Personaje eduardo = new Enano();
 
 		// sin haberse equipado el drop de la criatura
 		Assert.assertEquals(10, eduardo.getPuntosDeAtaqueFisico());
 
 		eduardo.atacar(bicho);
 		// criatura muerta
-		if (!bicho.estaVivo())
-//			eduardo = bicho.droppeo(eduardo);
+		if (!bicho.estaVivo()){
+			eduardo = bicho.droppeo(eduardo);
+			System.out.println("entro al if");
+		}
 		// luego de haberse equipado el drop
+		System.out.println("/////////////////////////////////////////////////////////////////////7");
+		System.out.println(eduardo.getPuntosDeAtaqueFisico());
 		Assert.assertEquals(20, eduardo.getPuntosDeAtaqueFisico());
 	}
 	
@@ -235,8 +239,9 @@ public class TestHistoriasUsuarios {
 		
 		System.out.println("*-*-*-*--*/-*/-*/-*/-*/-*/-*/-*/-*/-*/-*/-*/");
 		//System.out.println(decorado.getPoderMagico());
-		
+		System.out.println("poder magico sin espada"+decorado.getPoderMagico());
 		decorado = new ConEspadaSkofnung(decorado);
 		decorado.getPuntosDeAtaqueMagico();
+		System.out.println("poder magico con espada"+decorado.getPuntosDeAtaqueMagico());
 	}
 }

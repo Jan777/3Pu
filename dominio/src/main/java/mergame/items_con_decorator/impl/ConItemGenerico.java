@@ -29,4 +29,6 @@ public class ConItemGenerico extends PersonajeDecorator{
 		return 0;
 	}
 
+	
+
 }

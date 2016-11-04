@@ -24,5 +24,6 @@ public class ConEscudoSvalinn extends PersonajeDecorator {
 	public int getPuntosDeAtaqueMagico() {
 		return this.getPersonaje().getPuntosDeAtaqueMagico();
 	}
+
 	
 }

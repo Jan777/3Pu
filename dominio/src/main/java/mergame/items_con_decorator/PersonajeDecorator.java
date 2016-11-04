@@ -4,6 +4,7 @@ import main.java.mergame.casta.EsDeCasta;
 import main.java.mergame.individuos.Individuo;
 import main.java.mergame.individuos.personajes.Personaje;
 import main.java.mergame.individuos.personajes.impl.PersonajeImpl;
+import main.java.mergame.interfaz.Mundo;
 import main.java.mergame.skill.Habilidad;
 
 public abstract class PersonajeDecorator implements Personaje{
@@ -71,5 +72,13 @@ public abstract class PersonajeDecorator implements Personaje{
 	public boolean estaVivo() {
 		return this.personajeEquipado.estaVivo();
 	}
-
+	
+	@Override
+	public int getPoderMagico() {
+		return personajeEquipado.getPuntosDeAtaqueMagico();
+	}
+	
+	public boolean entrarAlMundo(Mundo mundo){
+		return personajeEquipado.entrarAlMundo(mundo);
+	}
 }

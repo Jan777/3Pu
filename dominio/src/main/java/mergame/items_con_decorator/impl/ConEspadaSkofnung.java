@@ -18,7 +18,7 @@ public class ConEspadaSkofnung extends PersonajeDecorator {
 	
 	@Override
 	public int getPuntosDeAtaqueMagico() {
-		return this.getPersonaje().getPuntosDeAtaqueMagico();
+		return this.getPersonaje().getPuntosDeAtaqueMagico() + 10;
 	}
 	
 	@Override
@@ -26,9 +26,6 @@ public class ConEspadaSkofnung extends PersonajeDecorator {
 		return this.getPersonaje().getPuntosDeDefensa();
 	}
 
-	public int getPoderMagico() {
-		// TODO Auto-generated method stub
-		return this.getPersonaje().getPuntosDeAtaqueMagico();
-	}
+
 
 }

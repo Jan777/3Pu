@@ -36,6 +36,7 @@ public class Criatura implements Individuo {
 		//VER VALORES
 		this.poderFisico = 2;
 		this.poderMagico = 3;
+		this.salud = salud;
 	}
 	
 	public int getSalud() {
@@ -60,7 +61,10 @@ public class Criatura implements Individuo {
 
 	@Override
 	public void serAtacado(int danio) {
-		// TODO Auto-generated method stub
+		if((danio - (this.getPuntosDeDefensa() * 30 / 100)) < 0)
+			this.salud -= 1;
+		else
+			this.salud -= danio - (this.getPuntosDeDefensa() * 30 / 100);	
 		
 	}
 
@@ -75,9 +79,10 @@ public class Criatura implements Individuo {
 		return this.salud > 0 ? true : false;
 	}
 
-	public PersonajeDecorator droppeo(PersonajeImpl asesino) {
+	public Personaje droppeo(Personaje asesino) {
 		//como prueba solo devuelve un tipo de arma
-		return new ConEspadaSkofnung(asesino);
+		asesino = new ConEspadaSkofnung(asesino);
+		return asesino;
 	}
 
 	public int getNivel() {
