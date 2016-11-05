@@ -4,7 +4,7 @@ import main.java.mergame.casta.EsDeCasta;
 import main.java.mergame.individuos.Individuo;
 import main.java.mergame.individuos.personajes.Personaje;
 import main.java.mergame.interfaz.Mundo;
-import main.java.mergame.items_con_decorator.PersonajeDecorator;
+import main.java.mergame.itemsConDecorator.PersonajeDecorator;
 import main.java.mergame.skill.Habilidad;
 
 public abstract class PersonajeImpl implements Personaje {
@@ -21,7 +21,6 @@ public abstract class PersonajeImpl implements Personaje {
 	public EsDeCasta casta;
 	protected int cantidadAtaquesRecibidos;
 	
-	//AGREGADO POR JAVIER
 	protected final int []expMaxPorNivel = {100,200,300,400,500,600,700,800,900,1000};
 	protected final int expBaseOtorgada = 50;
 	
@@ -113,11 +112,9 @@ public abstract class PersonajeImpl implements Personaje {
 	}
 	
 	public void serHechizado(int vidaCurada, int vidaQuitada, int turnosCongelado) {
-		// TODO Auto-generated method stub		
 	}
 	
 	public void serAtacado(int danio) {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -234,7 +231,6 @@ public abstract class PersonajeImpl implements Personaje {
 		return this.nivel*this.expBaseOtorgada;
 	}
 	
-	//desequipaaaaaaaaaaaaaaaaaaar
 	public boolean tiene(Class decorado) {
  		return false;
  	}

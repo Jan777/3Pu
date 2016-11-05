@@ -1,8 +1,8 @@
-package main.java.mergame.items_con_decorator.impl;
+package main.java.mergame.itemsConDecorator.impl;
 
 import main.java.mergame.individuos.personajes.Personaje;
 import main.java.mergame.individuos.personajes.impl.PersonajeImpl;
-import main.java.mergame.items_con_decorator.PersonajeDecorator;
+import main.java.mergame.itemsConDecorator.PersonajeDecorator;
 
 public class ConItemGenerico extends PersonajeDecorator{
 
@@ -13,19 +13,16 @@ public class ConItemGenerico extends PersonajeDecorator{
 
 	@Override
 	public int getPuntosDeAtaqueFisico() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int getPuntosDeAtaqueMagico() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int getPuntosDeDefensa() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

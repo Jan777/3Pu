@@ -4,17 +4,6 @@ import main.java.mergame.individuos.personajes.Personaje;
 
 public class Elfo extends PersonajeImpl implements Personaje{
 	
-	//Duda de si implementar un constructor propio por defecto o usar los valores preseteados de PersonajeImpl
-//	public Elfo(int experiencia, int nivel){
-//		this.salud = 100;
-//		this.estamina = 100;	
-//		this.nivel = nivel;
-//		this.experiencia = experiencia;
-//		this.defensa = 10;
-//		this.poderMagico = 10;
-//		this.poderFisico = 10;
-//	}
-	
 	private int flag = 0;
 	
 	public Elfo() {

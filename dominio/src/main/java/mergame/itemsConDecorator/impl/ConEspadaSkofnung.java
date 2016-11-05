@@ -1,8 +1,8 @@
-package main.java.mergame.items_con_decorator.impl;
+package main.java.mergame.itemsConDecorator.impl;
 
 import main.java.mergame.individuos.personajes.Personaje;
 import main.java.mergame.individuos.personajes.impl.PersonajeImpl;
-import main.java.mergame.items_con_decorator.PersonajeDecorator;
+import main.java.mergame.itemsConDecorator.PersonajeDecorator;
 
 public class ConEspadaSkofnung extends PersonajeDecorator {
 	

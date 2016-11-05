@@ -1,4 +1,4 @@
-package main.java.mergame.items_con_decorator;
+package main.java.mergame.itemsConDecorator;
 
 import main.java.mergame.casta.EsDeCasta;
 import main.java.mergame.individuos.Individuo;
@@ -100,7 +100,6 @@ public abstract class PersonajeDecorator implements Personaje{
 	}
 	
 	
-	// desequipaaaaaaaaaaaaaaaaaaaar
 	@Override
  	public boolean tiene(Class decorado) {
  		return this.getClass() == decorado || this.personajeEquipado.tiene(decorado);

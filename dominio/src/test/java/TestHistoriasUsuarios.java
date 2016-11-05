@@ -1,4 +1,4 @@
-package test;
+package test.java;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,7 +13,7 @@ import main.java.mergame.individuos.personajes.impl.Humano;
 import main.java.mergame.individuos.personajes.impl.Orco;
 import main.java.mergame.individuos.personajes.impl.PersonajeImpl;
 import main.java.mergame.interfaz.Mundo;
-import main.java.mergame.items_con_decorator.impl.ConEspadaSkofnung;
+import main.java.mergame.itemsConDecorator.impl.ConEspadaSkofnung;
 
 public class TestHistoriasUsuarios {
 
