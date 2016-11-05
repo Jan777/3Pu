@@ -4,18 +4,6 @@ import main.java.mergame.individuos.personajes.Personaje;
 
 public class Humano extends PersonajeImpl implements Personaje{
 	
-	
-	//Duda de si implementar un constructor propio por defecto o usar los valores preseteados de PersonajeImpl
-//	public Humano(){
-//		this.salud = 100;
-//		this.estamina = 100;	
-//		this.nivel = 1;
-//		this.experiencia = 0;
-//		this.defensa = 10;
-//		this.poderMagico = 10;
-//		this.poderFisico = 10;
-//	}
-	
 	public Humano() {
 		this.tipo = "HUMANO";
 	}

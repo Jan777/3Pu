@@ -20,25 +20,7 @@ public class PantallaUsuario extends JFrame {
 	private Principal pantallaPrincipal;
 	private JTextField textField;
 	private JLabel labelErrorTipeo;
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					PantallaUsuario frame = new PantallaUsuario();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public PantallaUsuario(Principal pantallaPrincipal) {
 		this.pantallaPrincipal = pantallaPrincipal;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

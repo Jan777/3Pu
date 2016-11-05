@@ -5,8 +5,8 @@ import java.util.Map;
 
 import main.java.mergame.individuos.personajes.Personaje;
 import main.java.mergame.individuos.personajes.impl.PersonajeImpl;
-import main.java.mergame.items_con_decorator.PersonajeDecorator;
-import main.java.mergame.items_con_decorator.impl.ConEspadaSkofnung;
+import main.java.mergame.itemsConDecorator.PersonajeDecorator;
+import main.java.mergame.itemsConDecorator.impl.ConEspadaSkofnung;
 import main.java.mergame.skill.Habilidad;
 import main.java.mergame.skill.hechizo.Hechizo;
 import main.java.mergame.skill.hechizo.HechizoFuego;
@@ -61,7 +61,6 @@ public class Criatura implements Individuo {
 
 	@Override
 	public void serHechizado(int vidaCurada, int vidaQuitada, int turnosCongelado) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -76,7 +75,6 @@ public class Criatura implements Individuo {
 
 	@Override
 	public void atacar(Individuo victima) {
-		// TODO Auto-generated method stub
 		
 	}
 
