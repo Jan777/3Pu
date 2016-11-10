@@ -3,6 +3,7 @@
 	<name>cliente</name>
 	<comment></comment>
 	<projects>
+		<project>Mergame</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

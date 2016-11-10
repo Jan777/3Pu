@@ -3,6 +3,8 @@
 	<name>servidor</name>
 	<comment></comment>
 	<projects>
+		<project>cliente</project>
+		<project>Mergame</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

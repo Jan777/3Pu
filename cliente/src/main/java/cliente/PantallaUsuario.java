@@ -1,13 +1,24 @@
-package main.java.mergame.interfaz;
+package cliente;
 
 import java.awt.Color;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import org.codehaus.jackson.map.ObjectMapper;
+
+import main.java.mergame.casta.EsDeCasta;
+import main.java.mergame.individuos.personajes.Personaje;
+import main.java.mergame.skill.Habilidad;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.util.Map;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -20,6 +31,8 @@ public class PantallaUsuario extends JFrame {
 	private Principal pantallaPrincipal;
 	private JTextField textField;
 	private JLabel labelErrorTipeo;
+	private Map <String, Personaje> personajes;
+	private Map <String, EsDeCasta> casta;
 	
 	public PantallaUsuario(Principal pantallaPrincipal) {
 		this.pantallaPrincipal = pantallaPrincipal;
@@ -44,11 +57,12 @@ public class PantallaUsuario extends JFrame {
 		JButton btnCrearNuevoPersonaje = new JButton("Ingresá a tu mundo, a luchar!");
 		btnCrearNuevoPersonaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(textField.getText().equals("")){
+				if(!textField.getText().equals("")){
 					comprobarTipeo();
 				}
-				else
-					dispose();
+				else{
+					labelErrorTipeo.setVisible(true);
+				}
 			}
 		});
 		
@@ -100,8 +114,56 @@ public class PantallaUsuario extends JFrame {
 	
 	// compruebo que el usuario complete el nombre del personaje.
 	public void comprobarTipeo(){
-		if (!textField.getText().equals("")) {
-			dispose();
+		if (!this.textField.getText().equals("")) {
+			
+			String server = "127.0.0.1";
+	        ObjectMapper mapper = new ObjectMapper();
+	        
+	        try {
+	            final int PORT = 5553;
+	            Socket socket = new Socket(server, PORT);
+	            
+	            System.out.println("Te conectaste a: " + server);
+	            System.out.println("Hablá todo lo que quieras");
+	            
+	            
+	            /*PROBANDO INTERFAZ*/
+	            
+	            int mundo = Integer.valueOf((String) pantallaPrincipal.getComboBox().getSelectedItem());
+	            
+	            User user = new User(mundo, this.textField.getText() );
+	            
+	            String jsonInString = mapper.writeValueAsString(user);
+
+	            PrintWriter out = new PrintWriter(socket.getOutputStream()); //OBTENGO EL CANAL DE SALIDA DEL SOCKET HACIA EL SERVIDOR
+	            out.println(jsonInString); // LE ENVIO EL MENSAJE DE SALA Y NICKNAME
+
+	            out.flush();
+	            
+	            
+
+	            ClientThread newClient = new ClientThread(socket);
+	            Thread thread = new Thread(newClient);
+	            thread.start();
+
+	            String textoTeclado = "";
+	            while (!textoTeclado.equals("fin")) { //MIENTRAS NO ESCRIBA FIN PODRE ENVIAR LOS MENSAJES QUE QUIERA
+	                Scanner bufferDeTeclado = new Scanner(System.in);
+	                textoTeclado = bufferDeTeclado.nextLine();
+
+	                if (textoTeclado.equals("fin")) { // SI ESCRIBO FIN DESCONECTA TODO
+	                    newClient.desconectar();
+	                    bufferDeTeclado.close();
+	                } else {
+	                    newClient.enviarDatos(textoTeclado);
+	                }
+	            }
+
+	        } catch (Exception e) {
+	        	System.out.println(e.getMessage());
+	        }
+	    
+			//dispose();
 		}else{
 			labelErrorTipeo.setVisible(true);
 		}

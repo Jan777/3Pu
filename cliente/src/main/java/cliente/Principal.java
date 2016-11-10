@@ -1,4 +1,4 @@
-package main.java.mergame.interfaz;
+package cliente;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import main.java.mergame.interfaz.Mundo;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -30,6 +33,10 @@ public class Principal extends JFrame {
 	private List<Mundo> listaMundos;
 	private JPasswordField passwordField;
 	private JLabel labelError;
+	private JComboBox comboBox ;
+	public JComboBox getComboBox() {
+		return comboBox;
+	}
 
 	/**
 	 * Launch the application.
@@ -106,12 +113,12 @@ public class Principal extends JFrame {
 		Mundo mundoEjemplo = new Mundo();
 		listaMundos.add(mundoEjemplo);
 
-		JComboBox comboBox = new JComboBox();
+		 comboBox = new JComboBox();
 		comboBox.setBounds(234, 259, 133, 24);
 		contentPane.add(comboBox);
-		comboBox.addItem("Mundo 1");
-		comboBox.addItem("Mundo 2");
-		comboBox.addItem("Mundo 3");
+		comboBox.addItem("1");
+		comboBox.addItem("2");
+		comboBox.addItem("3");
 
 		JLabel lblNewLabel = new JLabel("Elegí el mundo:");
 		lblNewLabel.setBounds(95, 264, 123, 15);
