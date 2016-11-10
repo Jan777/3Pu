@@ -9,14 +9,24 @@ import javax.swing.border.EmptyBorder;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import main.java.mergame.casta.EsDeCasta;
+import main.java.mergame.casta.impl.Guerrero;
+import main.java.mergame.casta.impl.Mago;
 import main.java.mergame.individuos.personajes.Personaje;
+import main.java.mergame.individuos.personajes.impl.Elfo;
+import main.java.mergame.individuos.personajes.impl.Enano;
+import main.java.mergame.individuos.personajes.impl.Humano;
+import main.java.mergame.individuos.personajes.impl.Orco;
 import main.java.mergame.skill.Habilidad;
+import main.java.mergame.skill.hechizo.HechizoCongelar;
+import main.java.mergame.skill.hechizo.HechizoCurar;
+import main.java.mergame.skill.hechizo.HechizoFuego;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
@@ -31,10 +41,27 @@ public class PantallaUsuario extends JFrame {
 	private Principal pantallaPrincipal;
 	private JTextField textField;
 	private JLabel labelErrorTipeo;
+	private JComboBox comboBoxCastas;
+	private JComboBox comboBoxPersonajes;
 	private Map <String, Personaje> personajes;
 	private Map <String, EsDeCasta> casta;
 	
 	public PantallaUsuario(Principal pantallaPrincipal) {
+		
+		//INSTANCIAS DE LOS MAPAS, QUE CONTIENE TODOS LOS PERSONAJES Y LAS CASTAS
+		personajes = new HashMap<>();
+		personajes.put("Humano", new Humano());
+		personajes.put("Elfo", new Elfo());
+		personajes.put("Enano", new Enano());
+		personajes.put("Orco", new Orco());
+		
+		casta = new HashMap<>();
+		casta.put("Mago", new Mago());
+		casta.put("Guerrero", new Guerrero());
+		
+		//////////////////////////////////////////////////////////////////////////
+		
+		
 		this.pantallaPrincipal = pantallaPrincipal;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 699, 396);
@@ -58,7 +85,7 @@ public class PantallaUsuario extends JFrame {
 		btnCrearNuevoPersonaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(!textField.getText().equals("")){
-					comprobarTipeo();
+					conectarConServidor();
 				}
 				else{
 					labelErrorTipeo.setVisible(true);
@@ -75,23 +102,23 @@ public class PantallaUsuario extends JFrame {
 		lblSeleccionPersonaje.setBounds(71, 87, 234, 15);
 		contentPane.add(lblSeleccionPersonaje);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(71, 108, 146, 24);
-		contentPane.add(comboBox);
-		comboBox.addItem("Elfo");
-		comboBox.addItem("Enano");
-		comboBox.addItem("Humano");
-		comboBox.addItem("Orco");
+		comboBoxPersonajes = new JComboBox();
+		comboBoxPersonajes.setBounds(71, 108, 146, 24);
+		contentPane.add(comboBoxPersonajes);
+		comboBoxPersonajes.addItem("Elfo");
+		comboBoxPersonajes.addItem("Enano");
+		comboBoxPersonajes.addItem("Humano");
+		comboBoxPersonajes.addItem("Orco");
 		
 		JLabel lblAhoraSeleccionUna = new JLabel("Ahora seleccioná una casta:");
 		lblAhoraSeleccionUna.setBounds(71, 144, 232, 15);
 		contentPane.add(lblAhoraSeleccionUna);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(71, 163, 156, 24);
-		contentPane.add(comboBox_1);
-		comboBox_1.addItem("Guerrero");
-		comboBox_1.addItem("Mago");
+		comboBoxCastas = new JComboBox();
+		comboBoxCastas.setBounds(71, 163, 156, 24);
+		contentPane.add(comboBoxCastas);
+		comboBoxCastas.addItem("Guerrero");
+		comboBoxCastas.addItem("Mago");
 		
 		JLabel lblyQueTal = new JLabel("¿Y que tal si le agregas un nombre?");
 		lblyQueTal.setBounds(71, 220, 259, 15);
@@ -113,7 +140,7 @@ public class PantallaUsuario extends JFrame {
 	}
 	
 	// compruebo que el usuario complete el nombre del personaje.
-	public void comprobarTipeo(){
+	public void conectarConServidor(){
 		if (!this.textField.getText().equals("")) {
 			
 			String server = "127.0.0.1";
@@ -140,24 +167,46 @@ public class PantallaUsuario extends JFrame {
 
 	            out.flush();
 	            
+	            //INSTANCEANDO UN PERSONAJE DENTRO DE MI CLIENTE Y MANDARLO AL SERVIDOR
 	            
+	            Personaje elFerra = this.personajes.get((String)this.comboBoxPersonajes.getSelectedItem());
+	            
+	            ///FIN INSTANCIA PERSONAJE////////////////////////////////////////////////////////////////////
 
+	            //INSTANCIA DEL CLIENTE, DONDE SE MANDA MSJ CON EL SERVIDOR
 	            ClientThread newClient = new ClientThread(socket);
 	            Thread thread = new Thread(newClient);
 	            thread.start();
-
-	            String textoTeclado = "";
+	            
+	           
+	            //SE CREA ESTE BOTON DESPUES DE INSTANCEAR EL PERSONAJE, Y LO QUE HACE ES MANDAR AL SERVIDOR LA SALUD DE ELFERRA
+                JButton btnGetSalud = new JButton("mostra tu salud!");
+                btnGetSalud.addActionListener(new ActionListener() {
+        			public void actionPerformed(ActionEvent arg0) {
+        				String mensaje = "";
+        					mensaje = String.valueOf(elFerra.getSalud());
+        					newClient.enviarDatos(mensaje);
+        			}
+        		});
+                btnGetSalud.setBounds(300, 250, 200, 25);
+        		contentPane.add(btnGetSalud);
+        		
+        		//// FIN DE BOTON DE MANDAR SALUD ///
+                
+        		
+        		/* ESTE WHILE ES PARA MANDAR VARIOS MENSAJES, ES DECIR QUE PERTENECIA AL CHAT, NO LO BORRÉ PORQUE SEGURO SIRVE
+                 String textoTeclado = "";
 	            while (!textoTeclado.equals("fin")) { //MIENTRAS NO ESCRIBA FIN PODRE ENVIAR LOS MENSAJES QUE QUIERA
 	                Scanner bufferDeTeclado = new Scanner(System.in);
 	                textoTeclado = bufferDeTeclado.nextLine();
-
+	                
 	                if (textoTeclado.equals("fin")) { // SI ESCRIBO FIN DESCONECTA TODO
 	                    newClient.desconectar();
 	                    bufferDeTeclado.close();
 	                } else {
 	                    newClient.enviarDatos(textoTeclado);
 	                }
-	            }
+	            }*/
 
 	        } catch (Exception e) {
 	        	System.out.println(e.getMessage());
