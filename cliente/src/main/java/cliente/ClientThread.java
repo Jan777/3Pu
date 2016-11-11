@@ -1,5 +1,7 @@
 package cliente;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -10,12 +12,21 @@ public class ClientThread implements Runnable {
     private Socket socket;
     private Scanner sc;
     private PrintWriter out;
+    private PantallaJuego mapa;
+    private PantallaCreacionPersonaje interfazCreacion;
+    private DataOutputStream outStream;
+    private DataInputStream inStream;
 
-    public ClientThread(Socket socket) {
+    public ClientThread(Socket socket, PantallaCreacionPersonaje interfazCreacion) throws IOException {
         this.socket = socket;
+        //this.mapa = mapa;
+        inStream = new DataInputStream(socket.getInputStream());
+        outStream = new DataOutputStream(socket.getOutputStream());
+        this.interfazCreacion = interfazCreacion;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public void run() {
         try {
             this.sc = new Scanner(this.socket.getInputStream());
@@ -23,6 +34,10 @@ public class ClientThread implements Runnable {
             this.out.flush();
 
             while (true) {
+            	String mensaje =  inStream.readUTF();
+                String split[] = mensaje.split(";");
+                for(int i=0; i < mensaje.length(); i++)
+                	interfazCreacion.getComboBox().addItem(split[i]);
                 recibirDatos();
             }
         } catch (Exception e) {
@@ -37,10 +52,19 @@ public class ClientThread implements Runnable {
     }
 
 
-    private void recibirDatos() {
+    public PantallaJuego getMapa() {
+		return mapa;
+	}
+
+	public void setMapa(PantallaJuego mapa) {
+		this.mapa = mapa;
+	}
+
+	private void recibirDatos() {
         if (this.sc.hasNext()) {
             String mensajeEntrante = this.sc.nextLine();
             System.out.println(mensajeEntrante);
+//            interfazCreacion.getComboBox().addItem(mensajeEntrante);
         }
     }
 

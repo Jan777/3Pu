@@ -35,18 +35,22 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class PantallaUsuario extends JFrame {
+public class PantallaCreacionPersonaje extends JFrame {
 
 	private JPanel contentPane;
 	private Principal pantallaPrincipal;
-	private JTextField textField;
+	private JTextField nombrePersonaje;
 	private JLabel labelErrorTipeo;
 	private JComboBox comboBoxCastas;
-	private JComboBox comboBoxPersonajes;
+	private JComboBox comboBoxRazaPersonajes;
 	private Map <String, Personaje> personajes;
 	private Map <String, EsDeCasta> casta;
+	private Personaje personajeActivo;
+	private PantallaJuego hijo;
+	private ClientThread newClient;
+	private JComboBox comboBox;
 	
-	public PantallaUsuario(Principal pantallaPrincipal) {
+	public PantallaCreacionPersonaje(Principal pantallaPrincipal) {
 		
 		//INSTANCIAS DE LOS MAPAS, QUE CONTIENE TODOS LOS PERSONAJES Y LAS CASTAS
 		personajes = new HashMap<>();
@@ -81,11 +85,12 @@ public class PantallaUsuario extends JFrame {
 		lblBienvenido.setBounds(308, 11, 70, 15);
 		contentPane.add(lblBienvenido);
 		
-		JButton btnCrearNuevoPersonaje = new JButton("Ingresá a tu mundo, a luchar!");
+		JButton btnCrearNuevoPersonaje = new JButton("IngresÃ¡ a tu mundo, a luchar!");
 		btnCrearNuevoPersonaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(!textField.getText().equals("")){
-					conectarConServidor();
+				if(!nombrePersonaje.getText().equals("")){
+					conectarConServidor();	
+					//abrirVentanaJuego();
 				}
 				else{
 					labelErrorTipeo.setVisible(true);
@@ -98,19 +103,19 @@ public class PantallaUsuario extends JFrame {
 		btnCrearNuevoPersonaje.setBounds(389, 304, 259, 25);
 		contentPane.add(btnCrearNuevoPersonaje);
 		
-		JLabel lblSeleccionPersonaje = new JLabel("Seleccioná personaje:");
+		JLabel lblSeleccionPersonaje = new JLabel("SeleccionÃ¡ personaje:");
 		lblSeleccionPersonaje.setBounds(71, 87, 234, 15);
 		contentPane.add(lblSeleccionPersonaje);
 		
-		comboBoxPersonajes = new JComboBox();
-		comboBoxPersonajes.setBounds(71, 108, 146, 24);
-		contentPane.add(comboBoxPersonajes);
-		comboBoxPersonajes.addItem("Elfo");
-		comboBoxPersonajes.addItem("Enano");
-		comboBoxPersonajes.addItem("Humano");
-		comboBoxPersonajes.addItem("Orco");
+		comboBoxRazaPersonajes = new JComboBox();
+		comboBoxRazaPersonajes.setBounds(71, 108, 146, 24);
+		contentPane.add(comboBoxRazaPersonajes);
+		comboBoxRazaPersonajes.addItem("Elfo");
+		comboBoxRazaPersonajes.addItem("Enano");
+		comboBoxRazaPersonajes.addItem("Humano");
+		comboBoxRazaPersonajes.addItem("Orco");
 		
-		JLabel lblAhoraSeleccionUna = new JLabel("Ahora seleccioná una casta:");
+		JLabel lblAhoraSeleccionUna = new JLabel("Ahora seleccionÃ¡ una casta:");
 		lblAhoraSeleccionUna.setBounds(71, 144, 232, 15);
 		contentPane.add(lblAhoraSeleccionUna);
 		
@@ -120,20 +125,24 @@ public class PantallaUsuario extends JFrame {
 		comboBoxCastas.addItem("Guerrero");
 		comboBoxCastas.addItem("Mago");
 		
-		JLabel lblyQueTal = new JLabel("¿Y que tal si le agregas un nombre?");
+		JLabel lblyQueTal = new JLabel("Â¿Y que tal si le agregas un nombre?");
 		lblyQueTal.setBounds(71, 220, 259, 15);
 		contentPane.add(lblyQueTal);
 		
 		
-		textField = new JTextField(); //acá va el nombre del personaje
-		textField.setBounds(73, 247, 217, 19);
+		nombrePersonaje = new JTextField(); //acÃ¡ va el nombre del personaje
+		nombrePersonaje.setBounds(73, 247, 217, 19);
 		
-		contentPane.add(textField);
+		contentPane.add(nombrePersonaje);
 		
-		labelErrorTipeo = new JLabel("Completá el nombre loco!");
+		labelErrorTipeo = new JLabel("CompletÃ¡ el nombre loco!");
 		labelErrorTipeo.setBounds(320, 249, 203, 15);
 		labelErrorTipeo.setForeground(Color.RED);
 		contentPane.add(labelErrorTipeo);
+		
+		comboBox = new JComboBox();
+		comboBox.setBounds(432, 94, 165, 20);
+		contentPane.add(comboBox);
 		labelErrorTipeo.setVisible(false);
 		
 		
@@ -141,7 +150,7 @@ public class PantallaUsuario extends JFrame {
 	
 	// compruebo que el usuario complete el nombre del personaje.
 	public void conectarConServidor(){
-		if (!this.textField.getText().equals("")) {
+		if (!this.nombrePersonaje.getText().equals("")) {
 			
 			String server = "127.0.0.1";
 	        ObjectMapper mapper = new ObjectMapper();
@@ -151,14 +160,14 @@ public class PantallaUsuario extends JFrame {
 	            Socket socket = new Socket(server, PORT);
 	            
 	            System.out.println("Te conectaste a: " + server);
-	            System.out.println("Hablá todo lo que quieras");
+	            System.out.println("HablÃ¡ todo lo que quieras");
 	            
 	            
 	            /*PROBANDO INTERFAZ*/
 	            
 	            int mundo = Integer.valueOf((String) pantallaPrincipal.getComboBox().getSelectedItem());
 	            
-	            User user = new User(mundo, this.textField.getText() );
+	            User user = new User(mundo, this.nombrePersonaje.getText() );
 	            
 	            String jsonInString = mapper.writeValueAsString(user);
 
@@ -169,12 +178,12 @@ public class PantallaUsuario extends JFrame {
 	            
 	            //INSTANCEANDO UN PERSONAJE DENTRO DE MI CLIENTE Y MANDARLO AL SERVIDOR
 	            
-	            Personaje elFerra = this.personajes.get((String)this.comboBoxPersonajes.getSelectedItem());
+	            personajeActivo = this.personajes.get((String)this.comboBoxRazaPersonajes.getSelectedItem());
 	            
 	            ///FIN INSTANCIA PERSONAJE////////////////////////////////////////////////////////////////////
 
 	            //INSTANCIA DEL CLIENTE, DONDE SE MANDA MSJ CON EL SERVIDOR
-	            ClientThread newClient = new ClientThread(socket);
+	            newClient = new ClientThread(socket, this);
 	            Thread thread = new Thread(newClient);
 	            thread.start();
 	            
@@ -184,7 +193,7 @@ public class PantallaUsuario extends JFrame {
                 btnGetSalud.addActionListener(new ActionListener() {
         			public void actionPerformed(ActionEvent arg0) {
         				String mensaje = "";
-        					mensaje = String.valueOf(elFerra.getSalud());
+        					mensaje = String.valueOf(personajeActivo.getSalud());
         					newClient.enviarDatos(mensaje);
         			}
         		});
@@ -194,7 +203,7 @@ public class PantallaUsuario extends JFrame {
         		//// FIN DE BOTON DE MANDAR SALUD ///
                 
         		
-        		/* ESTE WHILE ES PARA MANDAR VARIOS MENSAJES, ES DECIR QUE PERTENECIA AL CHAT, NO LO BORRÉ PORQUE SEGURO SIRVE
+        		/* ESTE WHILE ES PARA MANDAR VARIOS MENSAJES, ES DECIR QUE PERTENECIA AL CHAT, NO LO BORRÃ‰ PORQUE SEGURO SIRVE
                  String textoTeclado = "";
 	            while (!textoTeclado.equals("fin")) { //MIENTRAS NO ESCRIBA FIN PODRE ENVIAR LOS MENSAJES QUE QUIERA
 	                Scanner bufferDeTeclado = new Scanner(System.in);
@@ -216,5 +225,24 @@ public class PantallaUsuario extends JFrame {
 		}else{
 			labelErrorTipeo.setVisible(true);
 		}
+	}
+	
+	public JComboBox getComboBox() {
+		return comboBox;
+	}
+
+	public void setComboBox(JComboBox comboBox) {
+		this.comboBox = comboBox;
+	}
+
+	public void abrirVentanaJuego(){
+		hijo =  new PantallaJuego(this, personajeActivo);
+		newClient.setMapa(hijo);
+		hijo.setVisible(true);
+		//dispose();
+	}
+	
+	public String getNombrePersonaje(){
+		return nombrePersonaje.getText();
 	}
 }

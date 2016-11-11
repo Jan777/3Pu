@@ -145,7 +145,7 @@ public class Principal extends JFrame {
 
 	public void comprobarConexion() {
 		if (textFieldUsuario.getText().equals("test") && passwordField.getText().equals("test")) {
-			PantallaUsuario pantallaUsuario = new PantallaUsuario(this);
+			PantallaCreacionPersonaje pantallaUsuario = new PantallaCreacionPersonaje(this);
 			pantallaUsuario.setVisible(true);
 			dispose();
 		} else {
