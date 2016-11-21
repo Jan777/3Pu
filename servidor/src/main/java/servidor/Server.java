@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Server {
 	// SALAS DE CHAT DISPONIBLES
-	public static ArrayList<UsuarioEnServidor> listaDeConexionesSala1 = new ArrayList<>();
+	public static ArrayList<UsuarioEnServidor> listaDeConexiones = new ArrayList<>();
 	public static ArrayList<UsuarioEnServidor> listaDeConexionesSala2 = new ArrayList<>();
 	public static ArrayList<UsuarioEnServidor> listaDeConexionesSala3 = new ArrayList<>();
 
@@ -44,12 +44,17 @@ public class Server {
 					tempOut.println("Datos Correctos");
 					tempOut.flush();
 
-					ServerThread chat;
-					listaDeConexionesSala1.add(nuevoUsuario);
-					chat = new ServerThread(listaDeConexionesSala1, nuevoUsuario, login.getUsuario());
-					Thread nuevoProcesoParalelo1 = new Thread(chat);
+					// Este hilo es "como un método" que va a ser llamado cuando
+					// podamos crear un hilo "general" que escuche y sepa
+					// determinar distintas peticiones. Por ahora obligamos al
+					// usuario a crear un personaje
+					CrearPersonajeThread hiloCrearPersonaje;
+					listaDeConexiones.add(nuevoUsuario);
+					hiloCrearPersonaje = new CrearPersonajeThread(listaDeConexiones, nuevoUsuario,
+							login.getUsuario());
+					Thread nuevoProcesoParalelo1 = new Thread(hiloCrearPersonaje);
 					nuevoProcesoParalelo1.start();
-
+					
 					// switch (login.getMundo()) {
 					// case 1:
 					// listaDeConexionesSala1.add(nuevoUsuario);

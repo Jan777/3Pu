@@ -61,7 +61,7 @@ public class PantallaUsuario extends JFrame {
 		
 		this.pantallaPrincipal = pantallaPrincipal;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 699, 396);
+		setBounds(100, 100, 502, 396);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -105,7 +105,7 @@ public class PantallaUsuario extends JFrame {
 		
 		JLabel lblBienvenido = new JLabel("Bienvenido");
 		lblBienvenido.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBienvenido.setBounds(308, 11, 70, 15);
+		lblBienvenido.setBounds(220, 11, 70, 15);
 		contentPane.add(lblBienvenido);
 		
 		//////////////////////////////////////////////////////////////////////////				
@@ -115,13 +115,14 @@ public class PantallaUsuario extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if(!textField.getText().equals("")){
 					crearPersonaje();
+					abrirVentanaJuego();
 				}
 				else{
 					labelErrorTipeo.setVisible(true);
 				}
-			}
+			}			
 		});
-		btnCrearNuevoPersonaje.setBounds(389, 304, 259, 25);
+		btnCrearNuevoPersonaje.setBounds(126, 298, 217, 25);
 		contentPane.add(btnCrearNuevoPersonaje);
 
 		comboBoxPersonajes = new JComboBox();
@@ -184,4 +185,11 @@ public class PantallaUsuario extends JFrame {
 			labelErrorTipeo.setVisible(true);
 		}
 	}
+	
+	private void abrirVentanaJuego() {
+		PantallaJuego pantallaJuego = new PantallaJuego(usuario);	
+		pantallaJuego.setVisible(true);
+		dispose();
+	}
+	
 }
