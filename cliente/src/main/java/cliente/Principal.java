@@ -7,13 +7,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.codehaus.jackson.map.ObjectMapper;
+
 import main.java.mergame.interfaz.Mundo;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import javax.swing.JTextField;
 import javax.swing.ComboBoxModel;
@@ -21,6 +23,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.Color;
@@ -28,12 +32,19 @@ import java.awt.event.KeyAdapter;
 
 public class Principal extends JFrame {
 
+	//ATRIBUTOS PARA LA PANTALLA//
 	private JPanel contentPane;
 	private JTextField textFieldUsuario;
 	private List<Mundo> listaMundos;
 	private JPasswordField passwordField;
 	private JLabel labelError;
 	private JComboBox comboBox ;
+	
+	//ATRIBUTOS PARA LA CONEXION//
+		private Socket socket;
+		private Scanner entradaDatos;
+		private PrintWriter salidaDatos;
+		
 	public JComboBox getComboBox() {
 		return comboBox;
 	}
@@ -65,6 +76,7 @@ public class Principal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		//COMPONENTES SIN USO//
 		JLabel lblMergame = new JLabel("MerGame");
 		lblMergame.setFont(new Font("Khmer OS", Font.BOLD, 50));
 		lblMergame.setHorizontalAlignment(SwingConstants.CENTER);
@@ -74,7 +86,22 @@ public class Principal extends JFrame {
 		JLabel lblInsertTuUsuario = new JLabel("Ingresá tu usuario:");
 		lblInsertTuUsuario.setBounds(95, 135, 190, 15);
 		contentPane.add(lblInsertTuUsuario);
+		
+		JLabel lblYAcTu = new JLabel("Y acá tu contraseña:");
+		lblYAcTu.setBounds(95, 193, 270, 15);
+		contentPane.add(lblYAcTu);
+		
+		JLabel lblNewLabel = new JLabel("Elegí el mundo:");
+		lblNewLabel.setBounds(95, 264, 123, 15);
+		contentPane.add(lblNewLabel);
+		
+		labelError = new JLabel("Error de usuario o contraseña");
+		labelError.setForeground(Color.RED);
+		labelError.setBounds(95, 108, 270, 15);
+		contentPane.add(labelError);
+		labelError.setVisible(false);
 
+		//COMPONENTES QUE VOY A USAR//
 		textFieldUsuario = new JTextField();
 		textFieldUsuario.setBounds(95, 162, 270, 19);
 		contentPane.add(textFieldUsuario);
@@ -83,27 +110,23 @@ public class Principal extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode()==KeyEvent.VK_ENTER){
-			    	comprobarConexion();
+					conectarConServidor();
 			    }
 			}
 		});
-
-		JLabel lblYAcTu = new JLabel("Y acá tu contraseña:");
-		lblYAcTu.setBounds(95, 193, 270, 15);
-		contentPane.add(lblYAcTu);
 
 		JButton btnSalvAClaudia = new JButton("Salvá a Claudia");
 		btnSalvAClaudia.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode()==KeyEvent.VK_ENTER){
-			    	comprobarConexion();
+					conectarConServidor();
 			    }
 			}
 		});
 		btnSalvAClaudia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				comprobarConexion();
+				conectarConServidor();
 			}
 		});
 		btnSalvAClaudia.setBounds(153, 327, 151, 25);
@@ -120,10 +143,6 @@ public class Principal extends JFrame {
 		comboBox.addItem("2");
 		comboBox.addItem("3");
 
-		JLabel lblNewLabel = new JLabel("Elegí el mundo:");
-		lblNewLabel.setBounds(95, 264, 123, 15);
-		contentPane.add(lblNewLabel);
-
 		passwordField = new JPasswordField();
 		passwordField.setBounds(95, 213, 270, 19);
 		contentPane.add(passwordField);
@@ -131,18 +150,15 @@ public class Principal extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode()==KeyEvent.VK_ENTER){
-			    	comprobarConexion();
+					conectarConServidor();
 			    }
 			}
 		});
 
-		labelError = new JLabel("Error de usuario o contraseña");
-		labelError.setForeground(Color.RED);
-		labelError.setBounds(95, 108, 270, 15);
-		contentPane.add(labelError);
-		labelError.setVisible(false);
+		
 	}
 
+<<<<<<< HEAD
 	public void comprobarConexion() {
 		if (textFieldUsuario.getText().equals("test") && passwordField.getText().equals("test")) {
 			PantallaCreacionPersonaje pantallaUsuario = new PantallaCreacionPersonaje(this);
@@ -152,9 +168,70 @@ public class Principal extends JFrame {
 			labelError.setVisible(true);
 		}
 	}
+=======
+>>>>>>> 02cadf39c5892dd09c7c7894a5fe543840c9ed0f
 
-	public String getTextFieldUsuario() {
-		return textFieldUsuario.getText();
-	}
+	// compruebo que el usuario complete el nombre del personaje.
+		public void conectarConServidor(){
+			if (!this.textFieldUsuario.getText().equals("")) {
+				
+				String server = "127.0.0.1";
+		        ObjectMapper mapper = new ObjectMapper();
+		        
+		        try {
+		            final int PORT = 5553;
+		            socket = new Socket(server, PORT);
+		            entradaDatos = new Scanner(socket.getInputStream());
+		            salidaDatos = new PrintWriter(socket.getOutputStream());
+		            
+		            System.out.println("Te conectaste a: " + server);		            
+		            
+		            /*PROBANDO INTERFAZ*/
+		            String numMundo = (String) comboBox.getSelectedItem();
+		            String nombreUsuario = textFieldUsuario.getText();
+		            String passUsuario = passwordField.getText();
+		            
+		            salidaDatos.println(numMundo+" "+nombreUsuario+" "+passUsuario);
+		            salidaDatos.flush();
+		            
+		            //LO HICE DE ESTA FORMA PARA PODER ACTIVAR EL ERROR DE USUARIO INCORRECTO//
+		            leer();
+		            //////////////////////////////////////////////////////////////
+		        } catch (Exception e) {
+		        	System.out.println(e.getMessage());
+		        }
+			}else{
+				labelError.setVisible(true);
+			}
+		}
+			
+		public void leer(){
+			Thread leer_hilo = new Thread(new Runnable(){
+				public void run(){
+					try{
+						while(true){
+							if (entradaDatos.hasNext()) {
+					            String mensajeEntrante = entradaDatos.nextLine();
+					            System.out.println(mensajeEntrante);
+					            if(mensajeEntrante.equals("Datos Incorrectos")){
+					            	labelError.setVisible(true);
+					            	socket.close();
+					            }	
+					            
+					            if(mensajeEntrante.equals("Datos Correctos")){
+					            	PantallaUsuario pantallaUsuario = new PantallaUsuario(socket);
+					    			pantallaUsuario.setVisible(true);
+					    			dispose();
+					            }
+					        }
+						}
+					}
+					catch(Exception e){
+						e.printStackTrace();
+					}
+				}
+			});
+			leer_hilo.start();
+		}
 
 }
