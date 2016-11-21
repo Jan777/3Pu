@@ -5,7 +5,7 @@ import java.util.Map;
 
 import main.java.mergame.individuos.personajes.impl.PersonajeImpl;
 
-public class Usuario {
+public class UsuarioEnServidor {
 	private String nombre;
 	private String password;
 	private Map<String,PersonajeImpl> personajes = new HashMap<String, PersonajeImpl>();
@@ -26,7 +26,7 @@ public class Usuario {
 		this.password = password;
 	}
 
-	public Usuario(String nombre, String password) {
+	public UsuarioEnServidor(String nombre, String password) {
 		super();
 		this.nombre = nombre;
 		this.password = password;

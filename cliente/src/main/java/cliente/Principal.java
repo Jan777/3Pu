@@ -40,6 +40,8 @@ public class Principal extends JFrame {
 	private JLabel labelError;
 	private JComboBox comboBox ;
 	
+	private Usuario usuario;
+	
 	//ATRIBUTOS PARA LA CONEXION//
 		private Socket socket;
 		private Scanner entradaDatos;
@@ -94,6 +96,7 @@ public class Principal extends JFrame {
 		JLabel lblNewLabel = new JLabel("Elegí el mundo:");
 		lblNewLabel.setBounds(95, 264, 123, 15);
 		contentPane.add(lblNewLabel);
+		lblNewLabel.setVisible(false);
 		
 		labelError = new JLabel("Error de usuario o contraseña");
 		labelError.setForeground(Color.RED);
@@ -136,12 +139,13 @@ public class Principal extends JFrame {
 		Mundo mundoEjemplo = new Mundo();
 		listaMundos.add(mundoEjemplo);
 
-		 comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.setBounds(234, 259, 133, 24);
 		contentPane.add(comboBox);
 		comboBox.addItem("1");
 		comboBox.addItem("2");
 		comboBox.addItem("3");
+		comboBox.setVisible(false);
 
 		passwordField = new JPasswordField();
 		passwordField.setBounds(95, 213, 270, 19);
@@ -163,23 +167,26 @@ public class Principal extends JFrame {
 		public void conectarConServidor(){
 			if (!this.textFieldUsuario.getText().equals("")) {
 				
-				String server = "127.0.0.1";
-		        ObjectMapper mapper = new ObjectMapper();
-		        
+				String server = "localhost";
 		        try {
 		            final int PORT = 5553;
 		            socket = new Socket(server, PORT);
 		            entradaDatos = new Scanner(socket.getInputStream());
 		            salidaDatos = new PrintWriter(socket.getOutputStream());
-		            
+		            usuario = new Usuario(socket);
+		            ObjectMapper mapper = new ObjectMapper();
 		            System.out.println("Te conectaste a: " + server);		            
 		            
 		            /*PROBANDO INTERFAZ*/
-		            String numMundo = (String) comboBox.getSelectedItem();
+		            
+		            int numMundo = Integer.valueOf((String) comboBox.getSelectedItem());
 		            String nombreUsuario = textFieldUsuario.getText();
 		            String passUsuario = passwordField.getText();
 		            
-		            salidaDatos.println(numMundo+" "+nombreUsuario+" "+passUsuario);
+		            MensajeLogin login = new MensajeLogin(numMundo, nombreUsuario, passUsuario);
+		            String jsonInString = mapper.writeValueAsString(login);
+		            
+		            salidaDatos.println(jsonInString);
 		            salidaDatos.flush();
 		            
 		            //LO HICE DE ESTA FORMA PARA PODER ACTIVAR EL ERROR DE USUARIO INCORRECTO//
@@ -207,7 +214,7 @@ public class Principal extends JFrame {
 					            }	
 					            
 					            if(mensajeEntrante.equals("Datos Correctos")){
-					            	PantallaUsuario pantallaUsuario = new PantallaUsuario(socket);
+					            	PantallaUsuario pantallaUsuario = new PantallaUsuario(usuario);
 					    			pantallaUsuario.setVisible(true);
 					    			dispose();
 					            }

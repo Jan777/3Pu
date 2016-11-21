@@ -99,6 +99,14 @@ public abstract class PersonajeDecorator implements Personaje{
 		return personajeEquipado.getExperiencia();
 	}
 	
+	@Override
+	public String getNombre() {
+		return personajeEquipado.getNombre();
+	}
+	
+	public void setNombre(String nombre){
+		personajeEquipado.setNombre(nombre);
+	}
 	
 	@Override
  	public boolean tiene(Class decorado) {

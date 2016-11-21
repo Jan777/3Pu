@@ -19,6 +19,7 @@ public interface Personaje extends Individuo{
 	boolean entrarAlMundo(Mundo mundo);
 	Personaje desequipar(Class decorado);
 	boolean tiene(Class decorado);
-	
+	String getNombre();
+	void setNombre(String nombre);
 	
 }

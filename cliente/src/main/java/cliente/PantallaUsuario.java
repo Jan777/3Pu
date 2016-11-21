@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
+import com.google.gson.Gson;
+
 import main.java.mergame.casta.EsDeCasta;
 import main.java.mergame.casta.impl.Guerrero;
 import main.java.mergame.casta.impl.Mago;
@@ -16,6 +18,7 @@ import main.java.mergame.individuos.personajes.impl.Elfo;
 import main.java.mergame.individuos.personajes.impl.Enano;
 import main.java.mergame.individuos.personajes.impl.Humano;
 import main.java.mergame.individuos.personajes.impl.Orco;
+import main.java.mergame.individuos.personajes.impl.PersonajeImpl;
 import main.java.mergame.skill.Habilidad;
 import main.java.mergame.skill.hechizo.HechizoCongelar;
 import main.java.mergame.skill.hechizo.HechizoCurar;
@@ -47,12 +50,14 @@ public class PantallaUsuario extends JFrame {
 	private Map <String, Personaje> personajes;
 	private Map <String, EsDeCasta> casta;
 	
+	private Usuario usuario;
+	
 	//ATRIBUTOS PARA LA CONEXION//
 	private Socket socket;
 	private Scanner entradaDatos;
 	private PrintWriter salidaDatos;
 		
-	public PantallaUsuario(Socket socket) throws IOException {
+	public PantallaUsuario(Usuario usuarioIn) throws IOException {
 		
 		this.pantallaPrincipal = pantallaPrincipal;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,7 +67,9 @@ public class PantallaUsuario extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		this.socket = socket;
+		this.usuario = usuarioIn;
+		
+		this.socket = usuarioIn.getSocket();
 		entradaDatos = new Scanner(socket.getInputStream());
 		salidaDatos = new PrintWriter(socket.getOutputStream());
 		
@@ -107,7 +114,7 @@ public class PantallaUsuario extends JFrame {
 		btnCrearNuevoPersonaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(!textField.getText().equals("")){
-					enviarPersonaje();
+					crearPersonaje();
 				}
 				else{
 					labelErrorTipeo.setVisible(true);
@@ -137,16 +144,24 @@ public class PantallaUsuario extends JFrame {
 	}
 	
 	// compruebo que el usuario complete el nombre del personaje.
-	public void enviarPersonaje(){
+	public void crearPersonaje(){
 		if (!this.textField.getText().equals("")) {
-	        ObjectMapper mapper = new ObjectMapper();
-	        Personaje personaje = this.personajes.get((String)this.comboBoxPersonajes.getSelectedItem());
+			Personaje personaje = this.personajes.get((String)this.comboBoxPersonajes.getSelectedItem());
+			personaje.setCasta(this.casta.get((String)this.comboBoxCastas.getSelectedItem()));
+			personaje.setNombre(textField.getText());
+	        usuario.setPersonaje(personaje);
 	        
 	        try {
-	        	String jsonInString = mapper.writeValueAsString(personaje);
-	            salidaDatos.println("Nuevo Personaje|"+jsonInString); // LE ENVIO EL MENSAJE DE SALA Y NICKNAME
+	        	ObjectMapper mapper = new ObjectMapper();
+	        	//Mensaje nuevoMensaje = new MensajeCrear(usuario.getPersonaje());
+	        	MensajeCrearPersonaje mensajeCrear = new MensajeCrearPersonaje((String)this.comboBoxPersonajes.getSelectedItem(), (String)this.comboBoxCastas.getSelectedItem(), textField.getText() );
+	        	
+	        	String jsonInString = mapper.writeValueAsString(mensajeCrear);
+	        	//Gson gson = new Gson();
+	        	//String jsonInString = gson.toJson(nuevoMensaje);
+	            salidaDatos.println(jsonInString); // LE ENVIO EL MENSAJE DE SALA Y NICKNAME
 	            salidaDatos.flush();
-
+	            
 //	            //SE CREA ESTE BOTON DESPUES DE INSTANCEAR EL PERSONAJE, Y LO QUE HACE ES MANDAR AL SERVIDOR LA SALUD DE ELFERRA
 //                JButton btnGetSalud = new JButton("mostra tu salud!");
 //                btnGetSalud.addActionListener(new ActionListener() {
