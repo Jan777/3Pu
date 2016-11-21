@@ -5,6 +5,8 @@
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="C:/Users/Martín Ferrarese/Downloads/eclipse-jee-neon-1-win32-x86_64/eclipse/jackson-all-1.9.0.jar/jackson-all-1.9.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/javier/Desktop/jackson-all-1.9.0.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Mergame"/>
+	<classpathentry kind="lib" path="C:/Users/javier/Desktop/gson-2.2.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

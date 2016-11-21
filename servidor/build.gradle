@@ -14,11 +14,11 @@ test.ignoreFailures = true
 defaultTasks 'clean', 'compileJava', 'test', 'checkstyleMain', 'pmd', 'findbugsMain', 'jacocoTestReport'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 configurations {
-	pmdConf
+    pmdConf
 }
 
 dependencies {
@@ -48,8 +48,8 @@ test {
 }
 
 checkstyle {
-	configFile = new File(rootDir, "src/test/resources/sun_checks.xml")
-	ignoreFailures = true
+    configFile = new File(rootDir, "src/test/resources/sun_checks.xml")
+    ignoreFailures = true
 }
 
 /*cobertura {
@@ -57,7 +57,7 @@ checkstyle {
 }*/
 
 
-task pmd (dependsOn: compileJava) << {
+task pmd(dependsOn: compileJava) << {
     println 'Running PMD/CPD static code analysis'
     ant {
         if (!buildDir.isDirectory()) {
@@ -65,23 +65,23 @@ task pmd (dependsOn: compileJava) << {
         }
         reportFolder = new File(rootDir, "build/reports/pmd-cpd")
         if (!reportFolder.isDirectory()) {
-        	reportFolder.mkdirs()
+            reportFolder.mkdirs()
         }
         taskdef(name: 'pmd', classname: 'net.sourceforge.pmd.ant.PMDTask', classpath: configurations.pmdConf.asPath)
         taskdef(name: 'cpd', classname: 'net.sourceforge.pmd.cpd.CPDTask', classpath: configurations.pmdConf.asPath)
 
         pmd(shortFilenames: 'true',
-            failonruleviolation: 'false',
-            rulesetfiles: 'rulesets/basic.xml, rulesets/braces.xml, rulesets/clone.xml, rulesets/coupling.xml, rulesets/codesize.xml, rulesets/design.xml, rulesets/migrating.xml, rulesets/naming.xml, rulesets/strictexception.xml, rulesets/strings.xml, rulesets/unusedcode.xml') {
-                formatter(type: 'xml', toFile: 'build/reports/pmd-cpd/pmd.xml')
-                fileset(dir: "src/main/java") {
-                    include(name: '**/*.java')
-                }
+                failonruleviolation: 'false',
+                rulesetfiles: 'rulesets/basic.xml, rulesets/braces.xml, rulesets/clone.xml, rulesets/coupling.xml, rulesets/codesize.xml, rulesets/design.xml, rulesets/migrating.xml, rulesets/naming.xml, rulesets/strictexception.xml, rulesets/strings.xml, rulesets/unusedcode.xml') {
+            formatter(type: 'xml', toFile: 'build/reports/pmd-cpd/pmd.xml')
+            fileset(dir: "src/main/java") {
+                include(name: '**/*.java')
+            }
         }
         cpd(minimumTokenCount: 10, format: 'xml',
-        	ignoreLiterals: 'true',
-        	ignoreIdentifiers: 'true',
-        	outputFile: 'build/reports/pmd-cpd/cpd.xml') {
+                ignoreLiterals: 'true',
+                ignoreIdentifiers: 'true',
+                outputFile: 'build/reports/pmd-cpd/cpd.xml') {
             fileSet(dir: "src/main/java") {
                 include(name: '**/*.java')
             }
