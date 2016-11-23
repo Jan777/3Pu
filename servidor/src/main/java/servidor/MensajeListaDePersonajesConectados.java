@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Observable;
 
-public class MensajeListaDePersonajesConectados extends Observable implements Serializable {
+public class MensajeListaDePersonajesConectados implements Serializable {
 	List<String> listaPersonajes;
 
 	public MensajeListaDePersonajesConectados() {
@@ -23,8 +23,5 @@ public class MensajeListaDePersonajesConectados extends Observable implements Se
 		this.listaPersonajes = listaPersonajes;
 	}
 
-	public void avisar() {
-		this.notifyObservers();
-	}
 	
 }

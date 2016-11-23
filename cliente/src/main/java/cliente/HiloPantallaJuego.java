@@ -12,7 +12,7 @@ import javax.swing.JList;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-public class HiloPantallaJuego implements Runnable, Observer {
+public class HiloPantallaJuego implements Runnable {
 
 	private Usuario usuario;
 	private Socket socket;
@@ -23,6 +23,7 @@ public class HiloPantallaJuego implements Runnable, Observer {
 	private String inputString = "";
 	private MensajeListaDePersonajesConectados mensaje;
 
+	private int verCuantasVecesEntra = 0;
 	public HiloPantallaJuego() {
 
 	}
@@ -35,11 +36,38 @@ public class HiloPantallaJuego implements Runnable, Observer {
 
 	@Override
 	public void run() {
-		mensaje.addObserver(this);
+		//mensaje.addObserver(this);
+		mapper = new ObjectMapper();
+		int banderaBoba = 1;
+		try {
+			while (banderaBoba == 1) {
+				banderaBoba=0;
+				this.input = new Scanner(this.socket.getInputStream());
+				inputString = input.nextLine();
+				
+				MensajeListaDePersonajesConectados listaRecibida = mapper.readValue(inputString,
+						MensajeListaDePersonajesConectados.class);
+
+				DefaultListModel modeloLista = new DefaultListModel();
+
+				for (String nombrePersonajes : listaRecibida.getListaPersonajes()) {
+					modeloLista.addElement(nombrePersonajes);
+				}
+				listaPersonajesConectados.setModel(modeloLista);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+//	@Override
+//	public void update(Observable o, Object arg) {
 //		mapper = new ObjectMapper();
 //		int banderaBoba = 1;
 //		try {
-//			while (banderaBoba == 1) {
+//			//while (banderaBoba == 1) {
+//				banderaBoba=0;
 //				this.input = new Scanner(this.socket.getInputStream());
 //				inputString = input.nextLine();
 //
@@ -54,39 +82,13 @@ public class HiloPantallaJuego implements Runnable, Observer {
 //				}
 //				listaPersonajesConectados.setModel(modeloLista);
 //				System.out.println("LA CONCHA DE LA LORA");
-//			}
+//				
+//			//}
 //		} catch (IOException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-	}
-
-	@Override
-	public void update(Observable o, Object arg) {
-		mapper = new ObjectMapper();
-		int banderaBoba = 1;
-		try {
-			while (banderaBoba == 1) {
-				this.input = new Scanner(this.socket.getInputStream());
-				inputString = input.nextLine();
-
-				MensajeListaDePersonajesConectados listaRecibida = mapper.readValue(inputString,
-						MensajeListaDePersonajesConectados.class);
-
-				DefaultListModel modeloLista = new DefaultListModel();
-
-				for (String nombrePersonajes : listaRecibida.getListaPersonajes()) {
-					modeloLista.addElement(nombrePersonajes);
-					System.out.println("re loopea");
-				}
-				listaPersonajesConectados.setModel(modeloLista);
-				System.out.println("LA CONCHA DE LA LORA");
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
+//		
+//	}
 
 }

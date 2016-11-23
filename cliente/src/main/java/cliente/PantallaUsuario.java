@@ -8,7 +8,6 @@ import javax.swing.border.EmptyBorder;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-import com.google.gson.Gson;
 
 import main.java.mergame.casta.EsDeCasta;
 import main.java.mergame.casta.impl.Guerrero;

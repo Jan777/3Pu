@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
+import cliente.comunicacion.Login;
 import main.java.mergame.interfaz.Mundo;
 
 import javax.swing.JLabel;
@@ -72,7 +73,7 @@ public class Principal extends JFrame {
 	 */
 	public Principal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 442, 408);
+		setBounds(100, 100, 525, 375);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -82,7 +83,7 @@ public class Principal extends JFrame {
 		JLabel lblMergame = new JLabel("MerGame");
 		lblMergame.setFont(new Font("Khmer OS", Font.BOLD, 50));
 		lblMergame.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMergame.setBounds(35, 47, 270, 58);
+		lblMergame.setBounds(43, 50, 270, 58);
 		contentPane.add(lblMergame);
 
 		JLabel lblInsertTuUsuario = new JLabel("Ingresá tu usuario:");
@@ -92,11 +93,6 @@ public class Principal extends JFrame {
 		JLabel lblYAcTu = new JLabel("Y acá tu contraseña:");
 		lblYAcTu.setBounds(95, 193, 270, 15);
 		contentPane.add(lblYAcTu);
-		
-		JLabel lblNewLabel = new JLabel("Elegí el mundo:");
-		lblNewLabel.setBounds(95, 264, 123, 15);
-		contentPane.add(lblNewLabel);
-		lblNewLabel.setVisible(false);
 		
 		labelError = new JLabel("Error de usuario o contraseña");
 		labelError.setForeground(Color.RED);
@@ -123,7 +119,7 @@ public class Principal extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode()==KeyEvent.VK_ENTER){
-					conectarConServidor();
+					//conectarConServidor();
 			    }
 			}
 		});
@@ -132,15 +128,25 @@ public class Principal extends JFrame {
 				conectarConServidor();
 			}
 		});
-		btnSalvAClaudia.setBounds(153, 327, 151, 25);
+		btnSalvAClaudia.setBounds(312, 273, 151, 25);
 		contentPane.add(btnSalvAClaudia);
-
+		
+		JButton btnCrearUsuario = new JButton("¿No tenés cuenta?");
+        btnCrearUsuario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mostrarPantallaCrearUsuario();
+            }
+        });
+        btnCrearUsuario.setBounds(43, 273, 200, 25);
+        this.contentPane.add(btnCrearUsuario);
+		
 		listaMundos = new ArrayList<Mundo>();
 		Mundo mundoEjemplo = new Mundo();
 		listaMundos.add(mundoEjemplo);
 
 		comboBox = new JComboBox();
-		comboBox.setBounds(234, 259, 133, 24);
+		comboBox.setBounds(330, 57, 133, 24);
 		contentPane.add(comboBox);
 		comboBox.addItem("1");
 		comboBox.addItem("2");
@@ -162,7 +168,10 @@ public class Principal extends JFrame {
 		
 	}
 
-
+	private void mostrarPantallaCrearUsuario() {
+        ViewCrearUsuario frame = new ViewCrearUsuario();
+        frame.setVisible(true);
+    }
 	// compruebo que el usuario complete el nombre del personaje.
 		public void conectarConServidor(){
 			if (!this.textFieldUsuario.getText().equals("")) {
@@ -175,18 +184,20 @@ public class Principal extends JFrame {
 		            salidaDatos = new PrintWriter(socket.getOutputStream());
 		            usuario = new Usuario(socket);
 		            ObjectMapper mapper = new ObjectMapper();
-		            System.out.println("Te conectaste a: " + server);		            
+		            //System.out.println("Te conectaste a: " + server);		            
 		            
 		            /*PROBANDO INTERFAZ*/
 		            
-		            int numMundo = Integer.valueOf((String) comboBox.getSelectedItem());
+		            String numMundo = (String) comboBox.getSelectedItem();
 		            String nombreUsuario = textFieldUsuario.getText();
 		            String passUsuario = passwordField.getText();
 		            
-		            MensajeLogin login = new MensajeLogin(numMundo, nombreUsuario, passUsuario);
-		            String jsonInString = mapper.writeValueAsString(login);
+		            Login login = new Login(nombreUsuario, numMundo);
+	                login.setPassword(passUsuario);
+
+	                String loginMensaje = mapper.writeValueAsString(login);
 		            
-		            salidaDatos.println(jsonInString);
+		            salidaDatos.println("LOGI" + loginMensaje);
 		            salidaDatos.flush();
 		            
 		            //LO HICE DE ESTA FORMA PARA PODER ACTIVAR EL ERROR DE USUARIO INCORRECTO//
@@ -207,22 +218,23 @@ public class Principal extends JFrame {
 						while(true){
 							if (entradaDatos.hasNext()) {
 					            String mensajeEntrante = entradaDatos.nextLine();
-					            System.out.println(mensajeEntrante);
 					            if(mensajeEntrante.equals("Datos Incorrectos")){
 					            	labelError.setVisible(true);
+					            	//System.out.println("Datos incorrectos");
 					            	socket.close();
 					            }	
 					            
 					            if(mensajeEntrante.equals("Datos Correctos")){
 					            	PantallaUsuario pantallaUsuario = new PantallaUsuario(usuario);
 					    			pantallaUsuario.setVisible(true);
+					    			//System.out.println("Conectado con éxito");
 					    			dispose();
 					            }
 					        }
 						}
 					}
 					catch(Exception e){
-						e.printStackTrace();
+						//e.printStackTrace();
 					}
 				}
 			});

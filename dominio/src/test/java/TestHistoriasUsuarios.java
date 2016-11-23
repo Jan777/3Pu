@@ -6,7 +6,7 @@ import org.junit.Test;
 import main.java.mergame.casta.impl.Mago;
 import main.java.mergame.individuos.Criatura;
 import main.java.mergame.individuos.personajes.Personaje;
-import main.java.mergame.individuos.personajes.UsuarioEnServidor;
+import main.java.mergame.individuos.personajes.Usuario;
 import main.java.mergame.individuos.personajes.impl.Elfo;
 import main.java.mergame.individuos.personajes.impl.Enano;
 import main.java.mergame.individuos.personajes.impl.Humano;
@@ -163,7 +163,7 @@ public class TestHistoriasUsuarios {
 	// PERSONAJE ES CREADO
 	@Test
 	public void creacionPersonaje() {
-		UsuarioEnServidor usuario = new UsuarioEnServidor("ferra", "pass1234");
+		Usuario usuario = new Usuario("ferra", "pass1234");
 		PersonajeImpl elPibe = new Humano();
 		elPibe.setNombre("fede");
 		usuario.agregarPesonaje(elPibe);
@@ -175,7 +175,7 @@ public class TestHistoriasUsuarios {
 	// ENTONCES ESTE NO SE CREA
 	@Test
 	public void cantidadPersonajes() {
-		UsuarioEnServidor usuario = new UsuarioEnServidor("ferra", "pass1234");
+		Usuario usuario = new Usuario("ferra", "pass1234");
 		PersonajeImpl elPibe = new Humano();
 		PersonajeImpl elPibe2 = new Orco();
 		PersonajeImpl elPibe3 = new Enano();

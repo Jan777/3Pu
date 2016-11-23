@@ -4,9 +4,9 @@
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="src" path="src/main/java"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="C:/Users/Martín Ferrarese/Downloads/jackson-all-1.9.0.jar/jackson-all-1.9.0.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Mergame"/>
-	<classpathentry kind="lib" path="C:/Users/Martín Ferrarese/Downloads/gson-2.2.2.jar/gson-2.2.2.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="/home/bgerez/stage/Programación Avanzada/Ultimo - git/jrpg/servidor/src/main/resources/jackson-all-1.9.0.jar"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Mergame"/>
+	<classpathentry kind="lib" path="/home/bgerez/stage/Programación Avanzada/Ultimo - git/jrpg/servidor/src/main/resources/sqlite-jdbc-3.15.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

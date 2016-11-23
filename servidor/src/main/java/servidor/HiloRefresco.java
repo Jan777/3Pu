@@ -11,10 +11,10 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 public class HiloRefresco implements Runnable {
 
-	private UsuarioEnServidor usuario;
+	private Usuario usuario;
 	private Scanner input;
 	private String mensaje = "";
-	private ArrayList<UsuarioEnServidor> listaDeConexiones = new ArrayList<>();
+	private ArrayList<Usuario> listaDeConexiones = new ArrayList<>();
 	private String nickName;
 	private ObjectMapper mapper;
 	private PrintWriter out;
@@ -23,7 +23,7 @@ public class HiloRefresco implements Runnable {
 
 	}
 
-	public HiloRefresco(ArrayList<UsuarioEnServidor> listaDeConexiones, UsuarioEnServidor nuevoUsuario)
+	public HiloRefresco(ArrayList<Usuario> listaDeConexiones, Usuario nuevoUsuario)
 			throws IOException {
 		this.listaDeConexiones = listaDeConexiones;
 		this.usuario = nuevoUsuario;
@@ -34,9 +34,10 @@ public class HiloRefresco implements Runnable {
 	public void run() {
 		mapper = new ObjectMapper();
 		List<String> nombresPersonajesConectados = new ArrayList<>();
-
-		while (true) {
-			for (UsuarioEnServidor personajesConectados : this.listaDeConexiones) {
+		int bandera=0;
+		while (bandera < this.listaDeConexiones.size()) {
+			bandera ++;
+			for (Usuario personajesConectados : this.listaDeConexiones) {
 				nombresPersonajesConectados.add(personajesConectados.getPersonaje().getNombre());
 			}
 
@@ -45,12 +46,11 @@ public class HiloRefresco implements Runnable {
 
 			try {
 				String jsonInString = mapper.writeValueAsString(listaDeConectados);
-				for (UsuarioEnServidor personajesConectados : this.listaDeConexiones) {
+				for (Usuario personajesConectados : this.listaDeConexiones) {
 					this.out = new PrintWriter(personajesConectados.getSocket().getOutputStream());
 					out.println(jsonInString);
 					out.flush();
 				}
-				listaDeConectados.avisar();
 
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

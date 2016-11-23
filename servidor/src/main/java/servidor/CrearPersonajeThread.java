@@ -13,7 +13,6 @@ import javax.swing.text.GapContent;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-import com.google.gson.Gson;
 
 import main.java.mergame.casta.EsDeCasta;
 import main.java.mergame.casta.impl.Guerrero;
@@ -29,17 +28,17 @@ public class CrearPersonajeThread implements Runnable {// The Runnable interface
 	// be implemented by any class
 	// whose instances are intended
 	// to be executed by a thread.
-	UsuarioEnServidor usuario;
+	Usuario usuario;
 	Scanner input;
 	String mensaje = "";
-	ArrayList<UsuarioEnServidor> listaDeConexiones = new ArrayList<>();
+	ArrayList<Usuario> listaDeConexiones = new ArrayList<>();
 	String nickName;
 	PrintWriter actualizaLista;
 	private Map<String, Personaje> personajes;
 	private Map<String, EsDeCasta> casta;
 
 	// CONSTRUCTOR DEL CHAT
-	public CrearPersonajeThread(ArrayList<UsuarioEnServidor> listaDeSala, UsuarioEnServidor usuario, String alias) {
+	public CrearPersonajeThread(ArrayList<Usuario> listaDeSala, Usuario usuario, String alias) {
 		this.usuario = usuario;
 		this.listaDeConexiones = listaDeSala;
 		this.nickName = alias;
@@ -76,7 +75,7 @@ public class CrearPersonajeThread implements Runnable {// The Runnable interface
 			
 			ObjectMapper mapper = new ObjectMapper();
 
-			// Este mapa ayuda en la instanciación del personaje ya que, según
+			// Este mapa ayuda en la instanciaciï¿½n del personaje ya que, segï¿½n
 			// la raza recibida en el jackson, crea el personaje de la raza
 			// correspondiente
 			// Lo mismo hace con la casta
@@ -120,7 +119,7 @@ public class CrearPersonajeThread implements Runnable {// The Runnable interface
 				Thread nuevoProcesoParalelo = new Thread(creacionHiloRefresco);
 				nuevoProcesoParalelo.start();
 				
-				// Esta parte del código se va a utilizar porque es la que
+				// Esta parte del cï¿½digo se va a utilizar porque es la que
 				// "re manda" un mismo mensaje a todos los clientes
 				// conectados:
 				// for (int x = 0; x < this.listaDeConexiones.size(); x++) {
