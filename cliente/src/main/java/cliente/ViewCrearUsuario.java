@@ -27,13 +27,6 @@ public class ViewCrearUsuario extends JFrame {
     private ObjectMapper mapper;
     private Usuario usuario;
 
-//    public JComboBox getComboBox() {
-//        return this.comboBox;
-//    }
-
-    /**
-     * Create the frame.
-     */
     public ViewCrearUsuario() {
         this.setAlwaysOnTop(true);
         this.mapper = new ObjectMapper();
@@ -62,14 +55,6 @@ public class ViewCrearUsuario extends JFrame {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
-                }
-            }
-        });
-        this.passwordField.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                	cancelarNuevoUsuario();                   
                 }
             }
         });
@@ -166,32 +151,5 @@ public class ViewCrearUsuario extends JFrame {
         salidaDatos.flush();
     }
 
-//    public void leer() {
-//        Thread leer_hilo = new Thread(new Runnable() {
-//            public void run() {
-//                try {
-//                    while (true) {
-//                        if (Principal.this.entradaDatos.hasNext()) {
-//                            String mensajeEntrante = Principal.this.entradaDatos.nextLine();
-//                            System.out.println(mensajeEntrante);
-//                            if (mensajeEntrante.equals("Datos Incorrectos")) {
-//                                Principal.this.labelError.setVisible(true);
-//                                Principal.this.socket.close();
-//                            }
-//
-//                            if (mensajeEntrante.equals("Datos Correctos")) {
-//                                PantallaUsuario pantallaUsuario = new PantallaUsuario(Principal.this.usuario);
-//                                pantallaUsuario.setVisible(true);
-//                                dispose();
-//                            }
-//                        }
-//                    }
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//        leer_hilo.start();
-//    }
 }
 
