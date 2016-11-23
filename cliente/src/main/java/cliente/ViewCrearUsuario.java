@@ -17,9 +17,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by gustavo on 20/11/2016.
- */
 public class ViewCrearUsuario extends JFrame {
 
     //ATRIBUTOS PARA LA PANTALLA//
@@ -151,8 +148,8 @@ public class ViewCrearUsuario extends JFrame {
     }
 
     public void crearUsuario() throws IOException {
-        String server = "127.0.0.1";
-        final int PORT = 5553;
+        String server = "localhost";
+        final int PORT = 4999;
         Socket socket = new Socket(server, PORT);
         PrintWriter salidaDatos = new PrintWriter(socket.getOutputStream());
 

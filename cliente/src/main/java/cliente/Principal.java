@@ -178,7 +178,7 @@ public class Principal extends JFrame {
 				
 				String server = "localhost";
 		        try {
-		            final int PORT = 5553;
+		            final int PORT = 4999;
 		            socket = new Socket(server, PORT);
 		            entradaDatos = new Scanner(socket.getInputStream());
 		            salidaDatos = new PrintWriter(socket.getOutputStream());

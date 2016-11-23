@@ -22,7 +22,7 @@ public class Server {
 		 ConexionSQLite conexionSQLite = null;
 		try {
 			conexionSQLite = ConexionSQLite.getInstancia();
-			final int PORT = 5553;
+			final int PORT = 4999;
 			ServerSocket server = new ServerSocket(PORT);
 			ObjectMapper mapper = new ObjectMapper();
 			IniciarBD iniciarBD = new IniciarBD();
