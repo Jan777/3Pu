@@ -2,59 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="07cb0b5a-a38e-484e-8cb4-cc3be838e1f7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cliente/src/main/java/cliente/Client.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cliente/src/main/java/cliente/ClientApplication.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cliente/src/main/java/cliente/comunicacion/Logout.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cliente/src/main/java/cliente/comunicacion/MensajeCrearPersonaje.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cliente/src/main/java/cliente/comunicacion/PersonajesConectados.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cliente/src/main/java/cliente/hilos/GameThread.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cliente/src/main/java/cliente/hilos/LoginThread.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cliente/src/main/java/cliente/usuario/Usuario.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cliente/src/main/java/cliente/usuario/UsuarioPosicion.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cliente/src/main/java/cliente/vistas/ViewCrearPersonaje.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cliente/src/main/java/cliente/vistas/ViewGame.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/.classpath" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/.project" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/src/main/java/.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/src/main/java/cliente/ClientThread.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/src/main/java/cliente/HiloPantallaJuego.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/src/main/java/cliente/Mensaje.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/src/main/java/cliente/MensajeCrearPersonaje.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/src/main/java/cliente/MensajeListaDePersonajesConectados.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/src/main/java/cliente/MensajeLogin.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/src/main/java/cliente/PantallaJuego.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/src/main/java/cliente/PantallaUsuario.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/src/main/java/cliente/Principal.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/src/main/java/cliente/Usuario.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/src/main/java/cliente/comunicacion/CrearPersonaje.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/src/main/resources/.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/src/test/java/.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/src/test/resources/.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dominio/.classpath" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dominio/.project" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dominio/build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/servidor/.classpath" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/servidor/.project" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/servidor/build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/servidor/src/main/java/.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/servidor/src/main/java/servidor/CrearPersonajeThread.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/servidor/src/main/java/servidor/HiloRefresco.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/servidor/src/main/java/servidor/MensajeCrearPersonajeEnServidor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/servidor/src/main/java/servidor/MensajeListaDePersonajesConectados.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/servidor/src/main/java/servidor/MensajeLogin.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/servidor/src/main/resources/.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/servidor/src/test/java/.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/servidor/src/test/resources/.gitkeep" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/cliente/src/main/java/cliente/ViewCrearUsuario.java" afterPath="$PROJECT_DIR$/cliente/src/main/java/cliente/vistas/ViewCrearUsuario.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/servidor/src/main/java/servidor/Login.java" afterPath="$PROJECT_DIR$/servidor/src/main/java/servidor/comunicacion/Login.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/servidor/src/main/java/servidor/Usuario.java" afterPath="$PROJECT_DIR$/servidor/src/main/java/servidor/usuario/Usuario.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/servidor/src/main/java/servidor/service/LoginService.java" afterPath="$PROJECT_DIR$/servidor/src/main/java/servidor/service/ServicioLogin.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cliente/src/main/java/cliente/comunicacion/Logout.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/servidor/src/main/java/servidor/Server.java" afterPath="$PROJECT_DIR$/servidor/src/main/java/servidor/Server.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/servidor/src/main/java/servidor/db/ConexionSQLite.java" afterPath="$PROJECT_DIR$/servidor/src/main/java/servidor/db/ConexionSQLite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/servidor/src/main/java/servidor/db/IniciarBD.java" afterPath="$PROJECT_DIR$/servidor/src/main/java/servidor/db/IniciarBD.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/servidor/src/main/java/servidor/db/LoginDAO.java" afterPath="$PROJECT_DIR$/servidor/src/main/java/servidor/db/LoginDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cliente/src/main/java/cliente/ClientApplication.java" afterPath="$PROJECT_DIR$/cliente/src/main/java/cliente/ClientApplication.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cliente/src/main/java/cliente/comunicacion/Login.java" afterPath="$PROJECT_DIR$/cliente/src/main/java/cliente/comunicacion/Login.java" />
     </list>
     <ignored path="jrpg.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,11 +30,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="GameThread.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/hilos/GameThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+            <state relative-caret-position="72">
+              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginThread.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/hilos/LoginThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/Client.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClientApplication.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/ClientApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -115,7 +97,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/cliente/src/main/java/cliente/pantallas/PantallaUsuario.java" />
-        <option value="$PROJECT_DIR$/cliente/src/main/java/cliente/comunicacion/Login.java" />
         <option value="$PROJECT_DIR$/cliente/src/main/java/cliente/PantallaCrearUsuario.java" />
         <option value="$PROJECT_DIR$/servidor/src/main/java/servidor/CrearPersonajeThread.java" />
         <option value="$PROJECT_DIR$/cliente/src/main/java/cliente/ViewCrearUsuario.java" />
@@ -161,10 +142,11 @@
         <option value="$PROJECT_DIR$/servidor/src/main/java/servidor/service/ServicioUsuario.java" />
         <option value="$PROJECT_DIR$/servidor/src/main/java/servidor/usuario/UsuarioThread.java" />
         <option value="$PROJECT_DIR$/cliente/src/main/java/cliente/MensajeCrearPersonaje.java" />
-        <option value="$PROJECT_DIR$/cliente/src/main/java/cliente/ClientApplication.java" />
         <option value="$PROJECT_DIR$/cliente/src/main/java/cliente/Client.java" />
         <option value="$PROJECT_DIR$/cliente/src/main/java/cliente/comunicacion/MensajeCrearPersonaje.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/cliente/src/main/java/cliente/comunicacion/Login.java" />
+        <option value="$PROJECT_DIR$/cliente/src/main/java/cliente/ClientApplication.java" />
       </list>
     </option>
   </component>
@@ -1034,12 +1016,12 @@
       <workItem from="1479906597825" duration="1582000" />
       <workItem from="1479938558443" duration="17643000" />
       <workItem from="1479987324656" duration="22227000" />
-      <workItem from="1480025537302" duration="15825000" />
+      <workItem from="1480025537302" duration="16754000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57298000" />
+    <option name="totallyTimeSpent" value="58227000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
@@ -1057,7 +1039,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2689394" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23560606" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32673267" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1116,16 +1098,6 @@
           <folding>
             <element signature="e#70749#70750#0" expanded="false" />
             <element signature="e#70802#70803#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/comunicacion/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1309,38 +1281,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/comunicacion/PersonajesConectados.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/hilos/GameThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/hilos/LoginThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/comunicacion/Logout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/vistas/ViewGame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -1423,43 +1363,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="43" column="20" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/ClientApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/comunicacion/MensajeCrearPersonaje.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding>
-            <element signature="e#441#442#0" expanded="true" />
-            <element signature="e#468#469#0" expanded="true" />
-            <element signature="e#508#509#0" expanded="true" />
-            <element signature="e#540#541#0" expanded="true" />
-            <element signature="e#572#573#0" expanded="true" />
-            <element signature="e#600#601#0" expanded="true" />
-            <element signature="e#642#643#0" expanded="true" />
-            <element signature="e#676#677#0" expanded="true" />
-            <element signature="e#709#710#0" expanded="true" />
-            <element signature="e#738#739#0" expanded="true" />
-            <element signature="e#782#783#0" expanded="true" />
-            <element signature="e#818#819#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cliente/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1470,8 +1373,72 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        <state relative-caret-position="90">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/comunicacion/Logout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/comunicacion/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/comunicacion/MensajeCrearPersonaje.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/comunicacion/PersonajesConectados.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/hilos/GameThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/hilos/LoginThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cliente/src/main/java/cliente/ClientApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
           <folding />
         </state>
       </provider>

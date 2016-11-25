@@ -2,9 +2,6 @@ package cliente.comunicacion;
 
 import java.io.Serializable;
 
-/**
- * Created by gustavo on 20/11/2016.
- */
 public class Login implements Serializable {
     private String usuario;
     private int password;
