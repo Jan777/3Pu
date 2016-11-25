@@ -1,17 +1,14 @@
 package servidor.db;
 
-import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
  * Created by gustavo on 20/11/2016.
  */
 public class IniciarBD {
-    private ConexionSQLite conexionSQLite;
 
-    public IniciarBD() throws SQLException {
-        this.conexionSQLite = ConexionSQLite.getInstancia();
-        Statement stmt = this.conexionSQLite.getStatement();
+    public static void initDB() {
+        ConexionSQLite conexionSQLite = ConexionSQLite.getInstancia();
 
         String sql = "create table if not exists user_login " +
                 "(ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
@@ -20,6 +17,7 @@ public class IniciarBD {
                 " MUNDO        INT)";
 
         try {
+            Statement stmt = conexionSQLite.getStatement();
             stmt.executeUpdate(sql);
             stmt.close();
 

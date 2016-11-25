@@ -4,3 +4,7 @@
 **/bin
 **/build
 
+/servidor/servidor.iml
+/dominio/Mergame.iml
+/dominio/dominio.iml
+/cliente/cliente.iml

@@ -12,10 +12,6 @@ public class ConexionSQLite {
     private Connection c;
     private static ConexionSQLite instancia;
 
-    public ConexionSQLite() {
-
-    }
-
     public static ConexionSQLite getInstancia() {
         try {
             if (instancia == null) {
@@ -23,8 +19,9 @@ public class ConexionSQLite {
                 Class.forName("org.sqlite.JDBC");
                 instancia.c = DriverManager.getConnection("jdbc:sqlite:test.db");
                 System.out.println("DB conectada");
-            } else
-                return instancia;
+            }
+
+            return instancia;
 
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -34,8 +31,12 @@ public class ConexionSQLite {
         return null;
     }
 
-    public void cerrarConexion() throws SQLException {
-        this.instancia.getC().close();
+    public void cerrarConexion() {
+        try {
+            this.instancia.getC().close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public Connection getC() {

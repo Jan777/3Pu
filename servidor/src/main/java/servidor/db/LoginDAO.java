@@ -1,6 +1,6 @@
 package servidor.db;
 
-import servidor.Login;
+import servidor.comunicacion.Login;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
