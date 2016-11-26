@@ -1,8 +1,10 @@
 package cliente.mundo.partida;
 
 import cliente.mundo.ui.ControladorMouse;
+import cliente.mundo.ui.ControladorTeclado;
 import cliente.mundo.ui.UIService;
 import cliente.mundo.ui.entidades.Mapa;
+import cliente.mundo.ui.entidades.ModoBatalla;
 import cliente.mundo.ui.entidades.Relieve;
 import cliente.mundo.ui.entidades.TextInfo;
 import cliente.usuario.Usuario;
@@ -17,16 +19,20 @@ public class Partida {
 	private Jugador jugadorLocal;
 	private CoordinadorEventos coordEventos;
 	private Usuario usuario;
+	private ModoBatalla modoBatalla;
 
 	public Partida(Usuario usuario){
 		this.usuario = usuario;
+		this.modoBatalla = new ModoBatalla();
 		jugadoresPartida = new ArrayList<Jugador>();
 		coordEventos = new CoordinadorEventos(this);
 		ControladorMouse.getInstance().bindCoordinador(coordEventos);
+		ControladorTeclado.getInstance().bindCoordinador(coordEventos);
 
 		//Registra componentes visuales de la partida
         UIService.getInstance().registrarComponente(new Mapa());
         UIService.getInstance().registrarComponente(new Relieve(new Point(96,96)));
+		UIService.getInstance().registrarComponente(modoBatalla);
         //Informaci�n de texto
     	UIService.getInstance().registrarComponente(TextInfo.getInstance());
 	}
@@ -76,6 +82,15 @@ public class Partida {
 	    return null;
 	}
 
+	public Jugador ObtenerJugadorPorPosicion(Point pt){
+		for(Jugador buscado : jugadoresPartida) {
+			if(buscado.getPos().equals(pt)) {
+				return buscado;
+			}
+		}
+		return null;
+	}
+
 	/**
 	 * Devuelve si hay algun jugador en ese punto que no sea el
 	 * @param p
@@ -97,4 +112,55 @@ public class Partida {
 				buscado.setPos(point);
 		}
 	}
+
+	public void iniciarBatalla() {
+		Point posicionLocal = this.jugadorLocal.getPos();
+
+		int x = (int)posicionLocal.getX();
+		int y = (int)posicionLocal.getY();
+		if(this.HayAlgunJugadorEn(new Point(x-1,y-1),this.jugadorLocal)){
+			IniciarBatalla(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x-1,y-1)));
+			return;
+		}
+		if(this.HayAlgunJugadorEn(new Point(x,y-1),this.jugadorLocal)){
+			IniciarBatalla(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x,y-1)));
+			return;
+		}
+		if(this.HayAlgunJugadorEn(new Point(x+1,y-1),this.jugadorLocal)){
+			IniciarBatalla(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x+1,y-1)));
+			return;
+		}
+		if(this.HayAlgunJugadorEn(new Point(x-1,y),this.jugadorLocal)){
+			IniciarBatalla(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x-1,y)));
+			return;
+		}
+		if(this.HayAlgunJugadorEn(new Point(x+1,y),this.jugadorLocal)){
+			IniciarBatalla(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x+1,y)));
+			return;
+		}
+		if(this.HayAlgunJugadorEn(new Point(x-1,y+1),this.jugadorLocal)){
+			IniciarBatalla(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x-1,y+1)));
+			return;
+		}
+		if(this.HayAlgunJugadorEn(new Point(x,y+1),this.jugadorLocal)){
+			IniciarBatalla(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x,y+1)));
+			return;
+		}
+		if(this.HayAlgunJugadorEn(new Point(x+1,y+1),this.jugadorLocal)){
+			IniciarBatalla(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x+1,y+1)));
+			return;
+		}
+
+
+
+	}
+
+	private void IniciarBatalla(Jugador jugadorLocal, Jugador jugador) {
+		TextInfo.getInstance().Log("Iniciando batalla: "+jugadorLocal.getNombre()+" vs "+jugador.getNombre());
+		this.modoBatalla.setJugadorLocal(jugadorLocal.getNombre());
+		this.modoBatalla.setJugadorRemoto(jugador.getNombre());
+		this.modoBatalla.setVisible(true);
+	}
+
+
 }

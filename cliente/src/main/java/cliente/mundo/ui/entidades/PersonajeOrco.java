@@ -17,12 +17,12 @@ public class PersonajeOrco implements IDibujable {
 
 		AnimableIsometricoBuilder builder = new AnimableIsometricoBuilder();
 		builder.puntoInicial = posicion;
-		builder.rutaImagenStandBy1 = "/home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/OrcoStb1.png";
-		builder.rutaImagenStandBy2 = "/home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/OrcoStb2.png";
-		builder.rutaImagenDiagonalDerecha = "/home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/OrcoDiagDer.png";
-		builder.rutaImagenDiagonalIzquierda = "/home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/OrcoDiagIzq.png";
-		builder.rutaImagenBajaIzquierda ="/home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/OrcoBajaIzq.png";
-		builder.rutaImagenBajaDerecha ="//home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/OrcoBajaDer.png";
+		builder.rutaImagenStandBy1 = "/home/gparis/IdeaProjects/jrpg/cliente/Texturas/OrcoStb1.png";
+		builder.rutaImagenStandBy2 = "/home/gparis/IdeaProjects/jrpg/cliente/Texturas/OrcoStb2.png";
+		builder.rutaImagenDiagonalDerecha = "/home/gparis/IdeaProjects/jrpg/cliente/Texturas/OrcoDiagDer.png";
+		builder.rutaImagenDiagonalIzquierda = "/home/gparis/IdeaProjects/jrpg/cliente/Texturas/OrcoDiagIzq.png";
+		builder.rutaImagenBajaIzquierda ="/home/gparis/IdeaProjects/jrpg/cliente/Texturas/OrcoBajaIzq.png";
+		builder.rutaImagenBajaDerecha ="//home/gparis/IdeaProjects/jrpg/cliente/Texturas/OrcoBajaDer.png";
 
 		this.animable = new AnimableIsometrico(builder);
 

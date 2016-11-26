@@ -18,12 +18,12 @@ public class PersonajeElfo implements IDibujable {
 
 		AnimableIsometricoBuilder builder = new AnimableIsometricoBuilder();
 		builder.puntoInicial = posicion;
-		builder.rutaImagenStandBy1 = "/home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/ElfoStb1.png";
-		builder.rutaImagenStandBy2 = "/home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/ElfoStb2.png";
-		builder.rutaImagenDiagonalDerecha = "/home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/ElfoDiagDer.png";
-		builder.rutaImagenDiagonalIzquierda = "/home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/ElfoDiagIzq.png";
-		builder.rutaImagenBajaIzquierda ="/home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/ElfoBajaIzq.png";
-		builder.rutaImagenBajaDerecha ="/home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/ElfoBajaDer.png";
+		builder.rutaImagenStandBy1 = "/home/gparis/IdeaProjects/jrpg/cliente/Texturas/ElfoStb1.png";
+		builder.rutaImagenStandBy2 = "/home/gparis/IdeaProjects/jrpg/cliente/Texturas/ElfoStb2.png";
+		builder.rutaImagenDiagonalDerecha = "/home/gparis/IdeaProjects/jrpg/cliente/Texturas/ElfoDiagDer.png";
+		builder.rutaImagenDiagonalIzquierda = "/home/gparis/IdeaProjects/jrpg/cliente/Texturas/ElfoDiagIzq.png";
+		builder.rutaImagenBajaIzquierda ="/home/gparis/IdeaProjects/jrpg/cliente/Texturas/ElfoBajaIzq.png";
+		builder.rutaImagenBajaDerecha ="/home/gparis/IdeaProjects/jrpg/cliente/Texturas/ElfoBajaDer.png";
 
 		this.animable = new AnimableIsometrico(builder);
 

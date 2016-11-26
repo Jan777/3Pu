@@ -1,5 +1,6 @@
 package cliente.mundo.ui;
 
+import cliente.mundo.partida.CoordinadorEventos;
 import cliente.mundo.ui.entidades.TextInfo;
 
 import java.awt.*;
@@ -10,7 +11,7 @@ import java.awt.event.KeyListener;
 ///Cambio de nombre de telcado por ControladorTeclado
 public class ControladorTeclado implements KeyListener {
 
-
+	private CoordinadorEventos coordEventos;
 
 	 //Singleton
 	 private static ControladorTeclado instance = null;
@@ -64,7 +65,8 @@ public class ControladorTeclado implements KeyListener {
     	}
 
     	if(e.getKeyCode() == KeyEvent.VK_SPACE){
-    		TextInfo.getInstance().Log("[...]");
+    		TextInfo.getInstance().Log("Iniciando batalla [...]");
+			coordEventos.iniciarBatalla();
     	}
 
 
@@ -80,6 +82,11 @@ public class ControladorTeclado implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
+	}
+
+	public void bindCoordinador(CoordinadorEventos coordEventos) {
+		this.coordEventos = coordEventos;
+
 	}
 
 }

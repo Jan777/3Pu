@@ -112,7 +112,7 @@ public class ControladorMouse  extends TimerTask implements MouseListener {
 					usuarioPosicion.setY((int) posicion.getY());
 
 					String mensaje = mapper.writeValueAsString(usuarioPosicion);
-					TextInfo.getInstance().Log("Mando("+posicion.toString()+")");
+					//TextInfo.getInstance().Log("Mando("+posicion.toString()+")");
 					pw.println("MOVI" + mensaje);
 					pw.flush();
 				} catch (IOException e) {

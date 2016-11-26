@@ -21,7 +21,7 @@ public class Mapa implements IDibujable {
 
 
 		 try {
-	            tile = ImageIO.read(new File("/home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/textura_pasto.jpg"));
+	            tile = ImageIO.read(new File("/home/gparis/IdeaProjects/jrpg/cliente/Texturas/textura_pasto.jpg"));
 
 	        } catch (IOException ex) {
 	            ex.printStackTrace();
@@ -40,7 +40,7 @@ public class Mapa implements IDibujable {
         }
 
         g2d.setColor(Color.WHITE);
-        g2d.drawString("REGION VISIBLE  ("+r.toString()+")", 20, 20);
+        //g2d.drawString("REGION VISIBLE  ("+r.toString()+")", 20, 20);
         g2d.dispose();
 
 

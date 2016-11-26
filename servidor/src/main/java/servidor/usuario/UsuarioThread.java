@@ -69,6 +69,12 @@ public class UsuarioThread implements Runnable{
                         case "LOUT" :
                             logoutUsuario(mensaje);
                             break;
+                        case "BATA" :
+                            iniciarBatalla(mensaje);
+                            break;
+                        case "FIGH" :
+
+                            break;
                     }
                 }
             }
@@ -77,6 +83,15 @@ public class UsuarioThread implements Runnable{
         }finally {
             sc.close();
             pw.close();
+        }
+    }
+
+    private void iniciarBatalla(String mensaje) {
+        try {
+
+            mensajeBroadCast("BATA" + mensaje);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -133,7 +148,7 @@ public class UsuarioThread implements Runnable{
         try {
             UsuarioPosicion posicion = mapper.readValue(mensaje, UsuarioPosicion.class);
             servicioUsuario.getUsuario(posicion.getUsuario()).setPosicion(posicion);
-            System.out.println(mensaje);
+
             mensajeBroadCast("MOVI" + mensaje);
         } catch (JsonParseException e) {
             e.printStackTrace();

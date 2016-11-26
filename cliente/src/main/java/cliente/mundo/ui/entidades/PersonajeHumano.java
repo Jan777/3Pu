@@ -18,12 +18,12 @@ public class PersonajeHumano implements IDibujable {
 
 		AnimableIsometricoBuilder builder = new AnimableIsometricoBuilder();
 		builder.puntoInicial = posicion;
-		builder.rutaImagenStandBy1 = "/home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/HumanoStb1.png";
-		builder.rutaImagenStandBy2 = "/home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/HumanoStb2.png";
-		builder.rutaImagenDiagonalDerecha = "/home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/HumanoDiagDer.png";
-		builder.rutaImagenDiagonalIzquierda = "/home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/HumanoDiagIzq.png";
-		builder.rutaImagenBajaIzquierda ="/home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/HumanoBajaIzq.png";
-		builder.rutaImagenBajaDerecha ="/home/gparis/IdeaProjects/jrpg/cliente/src/main/resources/Texturas/HumanoBajaDer.png";
+		builder.rutaImagenStandBy1 = "/home/gparis/IdeaProjects/jrpg/cliente/Texturas/HumanoStb1.png";
+		builder.rutaImagenStandBy2 = "/home/gparis/IdeaProjects/jrpg/cliente/Texturas/HumanoStb2.png";
+		builder.rutaImagenDiagonalDerecha = "/home/gparis/IdeaProjects/jrpg/cliente/Texturas/HumanoDiagDer.png";
+		builder.rutaImagenDiagonalIzquierda = "/home/gparis/IdeaProjects/jrpg/cliente/Texturas/HumanoDiagIzq.png";
+		builder.rutaImagenBajaIzquierda ="/home/gparis/IdeaProjects/jrpg/cliente/Texturas/HumanoBajaIzq.png";
+		builder.rutaImagenBajaDerecha ="/home/gparis/IdeaProjects/jrpg/cliente/Texturas/HumanoBajaDer.png";
 
 		this.animable = new AnimableIsometrico(builder);
 

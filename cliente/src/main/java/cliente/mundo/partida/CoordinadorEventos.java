@@ -22,4 +22,7 @@ public class CoordinadorEventos implements IObservadorEventosJuego {
 	}
 
 
+    public void iniciarBatalla() {
+		partida.iniciarBatalla();
+    }
 }
