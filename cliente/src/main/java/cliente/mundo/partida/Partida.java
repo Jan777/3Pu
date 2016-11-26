@@ -1,5 +1,6 @@
 package cliente.mundo.partida;
 
+import cliente.comunicacion.Batalla;
 import cliente.mundo.ui.ControladorMouse;
 import cliente.mundo.ui.ControladorTeclado;
 import cliente.mundo.ui.UIService;
@@ -8,8 +9,11 @@ import cliente.mundo.ui.entidades.ModoBatalla;
 import cliente.mundo.ui.entidades.Relieve;
 import cliente.mundo.ui.entidades.TextInfo;
 import cliente.usuario.Usuario;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import java.awt.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Partida {
@@ -160,6 +164,21 @@ public class Partida {
 		this.modoBatalla.setJugadorLocal(jugadorLocal.getNombre());
 		this.modoBatalla.setJugadorRemoto(jugador.getNombre());
 		this.modoBatalla.setVisible(true);
+		try {
+			PrintWriter pw = new PrintWriter(usuario.getSocket().getOutputStream());
+			ObjectMapper mapper = new ObjectMapper();
+			Batalla batalla = new Batalla();
+			batalla.setPersonajeAtacante(jugadorLocal.getNombre());
+			batalla.setPersonajeAtacado(jugador.getNombre());
+
+			String mensaje = mapper.writeValueAsString(batalla);
+
+			pw.println("FIGH" + mensaje);
+			pw.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 

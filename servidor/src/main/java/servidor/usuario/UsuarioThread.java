@@ -11,6 +11,7 @@ import main.java.mergame.individuos.personajes.impl.Orco;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import servidor.comunicacion.Batalla;
 import servidor.comunicacion.MensajeCrearPersonaje;
 import servidor.comunicacion.PersonajesConectados;
 import servidor.service.ServicioUsuario;
@@ -73,7 +74,7 @@ public class UsuarioThread implements Runnable{
                             iniciarBatalla(mensaje);
                             break;
                         case "FIGH" :
-
+                            pelear(mensaje);
                             break;
                     }
                 }
@@ -83,6 +84,28 @@ public class UsuarioThread implements Runnable{
         }finally {
             sc.close();
             pw.close();
+        }
+    }
+
+    private void pelear(String mensaje) {
+        try {
+            Batalla batalla = mapper.readValue(mensaje, Batalla.class);
+
+            servicioUsuario.getUsuario(batalla.getPersonajeAtacante())
+                    .getPersonaje()
+                    .atacar(servicioUsuario.getUsuario(batalla.getPersonajeAtacado()).getPersonaje());
+
+            List<UsuarioPosicion> conectados = new ArrayList<>();
+            for (Usuario usuario : servicioUsuario.getUsuarios()) {
+                conectados.add(usuario.getPosicion());
+            }
+
+            PersonajesConectados pc = new PersonajesConectados(conectados);
+            mensaje = mapper.writeValueAsString(pc);
+            mensajeBroadCast("RFSH" + mensaje);
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

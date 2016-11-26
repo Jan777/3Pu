@@ -43,10 +43,11 @@ public class GameThread implements Runnable {
                     String mensaje = sc.next();
                     String codigoMensaje = mensaje.substring(0, 4);
                     mensaje = mensaje.substring(4, mensaje.length());
+                    PersonajesConectados pc;
 
                     switch (codigoMensaje) {
                         case "INGR" :
-                            PersonajesConectados pc = mapper.readValue(mensaje,
+                            pc = mapper.readValue(mensaje,
                                     PersonajesConectados.class);
 
                             for(UsuarioPosicion usuarioPosicion : pc.getPosicionPersonajes()) {
@@ -62,6 +63,15 @@ public class GameThread implements Runnable {
                                 if(!usuario.getUsuario().equals(posicion.getUsuario()))
                                     frame.getPartida().actualizarJugador(posicion.getUsuario(), new Point(posicion.getX(),posicion.getY ()));
                             break;
+                        case "RFSH" :
+                            pc = mapper.readValue(mensaje,
+                                    PersonajesConectados.class);
+
+                            for(UsuarioPosicion usuarioPosicion : pc.getPosicionPersonajes()) {
+                                //ACTUALIZAR VIDA JUGADORES
+                            }
+                            break;
+
                     }
 
 //                    if(codigoMensaje.equals("INGR")) {

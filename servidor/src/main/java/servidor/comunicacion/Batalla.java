@@ -1,8 +1,8 @@
-package cliente.comunicacion;
+package servidor.comunicacion;
 
 import java.io.Serializable;
 
-public class IniciarBatalla implements Serializable{
+public class Batalla implements Serializable{
 
     private String personajeAtacante;
     private String personajeAtacado;
