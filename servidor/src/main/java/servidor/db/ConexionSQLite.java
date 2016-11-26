@@ -5,9 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Created by gustavo on 20/11/2016.
- */
 public class ConexionSQLite {
     private Connection c;
     private static ConexionSQLite instancia;

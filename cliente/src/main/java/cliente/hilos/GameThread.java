@@ -1,11 +1,14 @@
 package cliente.hilos;
 
 import cliente.comunicacion.PersonajesConectados;
+import cliente.mundo.ViewGame;
+import cliente.mundo.partida.Jugador;
+import cliente.mundo.ui.entidades.TipoPersonaje;
 import cliente.usuario.Usuario;
-import cliente.vistas.ViewGame;
+import cliente.usuario.UsuarioPosicion;
 import org.codehaus.jackson.map.ObjectMapper;
 
-import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -29,6 +32,9 @@ public class GameThread implements Runnable {
     @Override
     public void run() {
         try {
+            //El bloque de red, cuando llega un nuevo player los crea
+            //Jugador jugadorRemoto1 = new Jugador("Albert1",TipoPersonaje.PJ_ORCO);
+            //Jugador jugadorRemoto2 = new Jugador("Albert1",TipoPersonaje.PJ_ELFO);
             sc = new Scanner(this.usuario.getSocket().getInputStream());
             pw = new PrintWriter(this.usuario.getSocket().getOutputStream());
 
@@ -38,19 +44,38 @@ public class GameThread implements Runnable {
                     String codigoMensaje = mensaje.substring(0, 4);
                     mensaje = mensaje.substring(4, mensaje.length());
 
-                    if(codigoMensaje.equals("INGR")) {
-                        System.out.println(mensaje);
-                        PersonajesConectados listaRecibida = mapper.readValue(mensaje,
-                            PersonajesConectados.class);
+                    switch (codigoMensaje) {
+                        case "INGR" :
+                            PersonajesConectados pc = mapper.readValue(mensaje,
+                                    PersonajesConectados.class);
 
-                        DefaultListModel modeloLista = new DefaultListModel();
-
-                        for (String nombrePersonajes : listaRecibida.getListaPersonajes()) {
-                            if(!usuario.getUsuario().equals(nombrePersonajes))
-                                modeloLista.addElement(nombrePersonajes);
-                        }
-                        frame.getListaPersonajesConectados().setModel(modeloLista);
+                            for(UsuarioPosicion usuarioPosicion : pc.getPosicionPersonajes()) {
+                                if(!usuario.getUsuario().equals(usuarioPosicion.getUsuario())) {
+                                    Jugador jugadorRemoto2 = new Jugador(usuarioPosicion.getUsuario(), TipoPersonaje.GetByName(usuarioPosicion.getPersonaje()));
+                                    frame.getPartida().RegistrarJugador(jugadorRemoto2,false);
+                                    frame.getPartida().actualizarJugador(usuarioPosicion.getUsuario(), new Point(usuarioPosicion.getX(),usuarioPosicion.getY()));
+                                }
+                            }
+                            break;
+                        case "MOVI" :
+                            UsuarioPosicion posicion = mapper.readValue(mensaje, UsuarioPosicion.class);
+                                if(!usuario.getUsuario().equals(posicion.getUsuario()))
+                                    frame.getPartida().actualizarJugador(posicion.getUsuario(), new Point(posicion.getX(),posicion.getY ()));
+                            break;
                     }
+
+//                    if(codigoMensaje.equals("INGR")) {
+//                        System.out.println(mensaje);
+//                        PersonajesConectados listaRecibida = mapper.readValue(mensaje,
+//                            PersonajesConectados.class);
+//
+//                        DefaultListModel modeloLista = new DefaultListModel();
+//
+//                        for (String nombrePersonajes : listaRecibida.getListaPersonajes()) {
+//                            if(!usuario.getUsuario().equals(nombrePersonajes))
+//                                modeloLista.addElement(nombrePersonajes);
+//                        }
+//                    }
                 }
             }
         } catch (IOException e) {
@@ -61,3 +86,4 @@ public class GameThread implements Runnable {
         }
     }
 }
+

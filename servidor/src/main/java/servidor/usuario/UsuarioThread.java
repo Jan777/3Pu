@@ -1,16 +1,23 @@
 package servidor.usuario;
 
+import main.java.mergame.casta.EsDeCasta;
+import main.java.mergame.casta.impl.Guerrero;
+import main.java.mergame.casta.impl.Mago;
+import main.java.mergame.individuos.personajes.Personaje;
+import main.java.mergame.individuos.personajes.impl.Elfo;
+import main.java.mergame.individuos.personajes.impl.Enano;
+import main.java.mergame.individuos.personajes.impl.Humano;
+import main.java.mergame.individuos.personajes.impl.Orco;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import servidor.comunicacion.MensajeCrearPersonaje;
 import servidor.comunicacion.PersonajesConectados;
 import servidor.service.ServicioUsuario;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class UsuarioThread implements Runnable{
     private Usuario usuario;
@@ -18,11 +25,23 @@ public class UsuarioThread implements Runnable{
     private Scanner sc;
     private PrintWriter pw;
     private ObjectMapper mapper;
+    private Map<String, Personaje> personajes;
+    private Map <String, EsDeCasta> casta;
 
     public UsuarioThread(Usuario usuario) {
         this.usuario = usuario;
         this.servicioUsuario = ServicioUsuario.getInstancia();
         this.mapper = new ObjectMapper();
+
+        personajes = new HashMap<>();
+        personajes.put("Humano", new Humano());
+        personajes.put("Elfo", new Elfo());
+        personajes.put("Enano", new Enano());
+        personajes.put("Orco", new Orco());
+
+        casta = new HashMap<>();
+        casta.put("Mago", new Mago());
+        casta.put("Guerrero", new Guerrero());
     }
 
     @Override
@@ -39,13 +58,13 @@ public class UsuarioThread implements Runnable{
 
                     switch (codigoMensaje) {
                         case "INGR" :
-                            System.out.println("Ingreso el usuario " + usuario.getUsuario());
                             actualizarUsuarios();
                             break;
                         case "MOVI" :
                             movimientoDetectado(mensaje);
                             break;
                         case "PERS" :
+                            insertarPersonaje(mensaje);
                             break;
                         case "LOUT" :
                             logoutUsuario(mensaje);
@@ -61,7 +80,34 @@ public class UsuarioThread implements Runnable{
         }
     }
 
+    private void insertarPersonaje(String mensaje) {
+        try {
+            MensajeCrearPersonaje m = mapper.readValue(mensaje, MensajeCrearPersonaje.class);
+
+            Personaje personaje = personajes.get(m.getRaza());
+            personaje.setCasta(casta.get(m.getCasta()));
+            personaje.setNombre(m.getNombre());
+
+        synchronized (servicioUsuario.getUsuarios()) {
+            servicioUsuario.getUsuario(m.getNombre())
+                    .setPersonaje(personaje);
+            servicioUsuario.getUsuario(m.getNombre())
+                    .setPosicion(new UsuarioPosicion(servicioUsuario.getUsuario(m.getNombre())));
+        }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     private void logoutUsuario(String usuario) {
+        try {
+            servicioUsuario.getUsuario(usuario).getSocket().close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         servicioUsuario.removerUsuario(usuario);
         actualizarUsuarios();
         System.out.println("El usuario " + this.usuario.getUsuario() + " se ha desconectado.");
@@ -69,9 +115,9 @@ public class UsuarioThread implements Runnable{
 
     private void actualizarUsuarios() {
         try {
-            List<String> conectados = new ArrayList<>();
+            List<UsuarioPosicion> conectados = new ArrayList<>();
             for (Usuario usuario : servicioUsuario.getUsuarios()) {
-                conectados.add(usuario.getUsuario());
+                conectados.add(usuario.getPosicion());
             }
 
             PersonajesConectados pc = new PersonajesConectados(conectados);
@@ -87,7 +133,7 @@ public class UsuarioThread implements Runnable{
         try {
             UsuarioPosicion posicion = mapper.readValue(mensaje, UsuarioPosicion.class);
             servicioUsuario.getUsuario(posicion.getUsuario()).setPosicion(posicion);
-
+            System.out.println(mensaje);
             mensajeBroadCast("MOVI" + mensaje);
         } catch (JsonParseException e) {
             e.printStackTrace();
@@ -99,11 +145,13 @@ public class UsuarioThread implements Runnable{
     }
 
     private void mensajeBroadCast(String mensaje) throws IOException {
-        for (Usuario usr : servicioUsuario.getUsuarios()) {
-            PrintWriter pw = new PrintWriter(usr.getSocket().getOutputStream());
+        synchronized (servicioUsuario.getUsuarios()) {
+            for (Usuario usr : servicioUsuario.getUsuarios()) {
+                PrintWriter pw = new PrintWriter(usr.getSocket().getOutputStream());
 
-            pw.println(mensaje);
-            pw.flush();
+                pw.println(mensaje);
+                pw.flush();
+            }
         }
     }
 }

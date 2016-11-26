@@ -18,7 +18,7 @@ public class ServicioUsuario {
     }
 
     public void addUsuario(Usuario usuario) {
-        this.usuarios.put(usuario.getUsuario(), usuario);
+        usuarios.put(usuario.getUsuario(), usuario);
     }
 
     public Collection<Usuario> getUsuarios() {

@@ -6,12 +6,13 @@ import main.java.mergame.individuos.personajes.Personaje;
 import main.java.mergame.interfaz.Mundo;
 import main.java.mergame.itemsConDecorator.PersonajeDecorator;
 import main.java.mergame.skill.Habilidad;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 public abstract class PersonajeImpl implements Personaje {
 	protected String tipo;
 	protected int salud = 100;
-	protected int estamina = 100;	
-	protected int nivel = 1;	
+	protected int estamina = 100;
+	protected int nivel = 1;
 	protected int experiencia = 0;
 	protected int defensa = 10;
 	protected int poderMagico = 5;
@@ -20,20 +21,20 @@ public abstract class PersonajeImpl implements Personaje {
 	protected String nombre;
 	public EsDeCasta casta;
 	protected int cantidadAtaquesRecibidos;
-	
+
 	protected final int []expMaxPorNivel = {100,200,300,400,500,600,700,800,900,1000};
 	protected final int expBaseOtorgada = 50;
-	
+
 	public PersonajeImpl(){
-		
+
 	}
-	
+
 	public PersonajeImpl(int nivel, int experiencia){
 		this.nivel = nivel;
 		this.experiencia = experiencia;
 	}
 
-	
+
 	/* METODOS INTERFAZ PERSONAJE */
 	@Override
 	public EsDeCasta getCasta() {
@@ -73,23 +74,26 @@ public abstract class PersonajeImpl implements Personaje {
 	public boolean estaVivo() {
 		return this.salud > 0 ? true : false;
 	}
-	
+
 	@Override
+	@JsonIgnore
 	public int getPuntosDeAtaqueFisico() {
 		return this.poderFisico;
 	}
-	
+
 	@Override
+	@JsonIgnore
 	public int getPuntosDeAtaqueMagico() {
 		return this.poderMagico;
 	}
-	
+
 	@Override
+	@JsonIgnore
 	public int getPuntosDeDefensa() {
 		return this.defensa;
 	}
 	/* FIN METODOS INTERFAZ INDIVIDUO */
-	
+
 	protected void despuesDeAtacar() {
 	}
 
@@ -106,22 +110,22 @@ public abstract class PersonajeImpl implements Personaje {
 			this.aumentarExperiencia(victima.getExpOtorgada());
 		}
 	}
-	
+
 	public void reestablecerEstamina(){
 		estamina = 100;
 	}
-	
+
 	public void serHechizado(int vidaCurada, int vidaQuitada, int turnosCongelado) {
 	}
-	
+
 	public void serAtacado(int danio) {
-		
+
 	}
-	
+
 	public boolean entrarAlMundo(Mundo mundo){
 		return mundo.verificarAccesoPersonaje(this);
 	}
-	
+
 	public int getCantidadAtaquesRecibidos() {
 		return cantidadAtaquesRecibidos;
 	}
@@ -161,7 +165,7 @@ public abstract class PersonajeImpl implements Personaje {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public int getNivel() {
 		return nivel;
 	}
@@ -201,7 +205,7 @@ public abstract class PersonajeImpl implements Personaje {
 	public void setNivel(int nivel) {
 		this.nivel = nivel;
 	}
-	
+
 	public void aumentarNivel(){
 		nivel++;
 		salud=(100*this.nivel);
@@ -210,7 +214,7 @@ public abstract class PersonajeImpl implements Personaje {
 		poderMagico+=(this.nivel*10);
 		poderFisico+=(this.nivel*10);
 	}
-	
+
 	public void aumentarExperiencia(int expGanada){
 		int expTotal = expGanada + this.experiencia;
 		while((this.nivel<=10) && expTotal >= expMaxPorNivel[this.nivel-1]){
@@ -224,17 +228,18 @@ public abstract class PersonajeImpl implements Personaje {
 			this.experiencia = 0;
 		}
 	}
-	
-	
+
+
 	@Override
+	@JsonIgnore
 	public int getExpOtorgada() {
 		return this.nivel*this.expBaseOtorgada;
 	}
-	
+
 	public boolean tiene(Class decorado) {
  		return false;
  	}
-		 
+
  	public Personaje desequipar(Class decorado) {
  		return this;
  	}

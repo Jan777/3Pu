@@ -5,6 +5,7 @@ import servidor.comunicacion.Login;
 import servidor.db.ConexionSQLite;
 import servidor.db.IniciarBD;
 import servidor.usuario.Usuario;
+import servidor.usuario.UsuarioPosicion;
 import servidor.usuario.UsuarioThread;
 import servidor.service.ServicioLogin;
 import servidor.service.ServicioUsuario;
@@ -48,8 +49,8 @@ public class Server {
                     ServicioLogin servicioLogin = new ServicioLogin();
                     if (servicioLogin.autenticar(login)) {
                         Usuario usuario = new Usuario(socket, login.getUsuario());
+                        servicioUsuario.addUsuario(usuario);
                         System.out.println("Usuario " + usuario.getUsuario() + " conectado");
-                        this.servicioUsuario.addUsuario(usuario);
                         PrintWriter tempOut = new PrintWriter(usuario.getSocket().getOutputStream());
 
                         UsuarioThread usuarioThread = new UsuarioThread(usuario);

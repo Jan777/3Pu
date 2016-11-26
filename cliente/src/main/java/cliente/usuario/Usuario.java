@@ -13,7 +13,6 @@ public class Usuario {
     public Usuario(Socket socket, String usuario){
         this.socket = socket;
         this.usuario = usuario;
-        this.posicion = new UsuarioPosicion();
     }
 
     public void setPersonaje(Personaje personaje){

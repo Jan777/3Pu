@@ -10,7 +10,7 @@ public class IniciarBD {
     public static void initDB() {
         ConexionSQLite conexionSQLite = ConexionSQLite.getInstancia();
 
-        String sql = "create table if not exists user_login " +
+        String query = "create table if not exists user_login " +
                 "(ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
                 " USUARIO           TEXT    NOT NULL, " +
                 " PASSWORD       INT     NOT NULL, " +
@@ -18,7 +18,7 @@ public class IniciarBD {
 
         try {
             Statement stmt = conexionSQLite.getStatement();
-            stmt.executeUpdate(sql);
+            stmt.executeUpdate(query);
             stmt.close();
 
         } catch (Exception e) {

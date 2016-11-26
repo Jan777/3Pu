@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import cliente.comunicacion.MensajeCrearPersonaje;
+import cliente.mundo.ViewGame;
 import cliente.usuario.Usuario;
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -142,7 +143,7 @@ public class ViewCrearPersonaje extends JFrame {
         if (!this.textField.getText().equals("")) {
             Personaje personaje = this.personajes.get(this.comboBoxPersonajes.getSelectedItem());
             personaje.setCasta(this.casta.get(this.comboBoxCastas.getSelectedItem()));
-            personaje.setNombre(textField.getText());
+            personaje.setNombre(textField.getText().toString());
             usuario.setPersonaje(personaje);
 
             try {
@@ -165,7 +166,7 @@ public class ViewCrearPersonaje extends JFrame {
 
     private void abrirVentanaJuego() {
         ViewGame viewGame = new ViewGame(usuario);
-        viewGame.setVisible(true);
+        viewGame.init();
         viewGame.levantaGameThread();
         dispose();
     }

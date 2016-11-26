@@ -1,14 +1,19 @@
 package servidor.comunicacion;
 
+import servidor.usuario.UsuarioPosicion;
+
 import java.io.Serializable;
 import java.util.List;
-import java.util.Observable;
 
 public class PersonajesConectados implements Serializable {
     List<String> listaPersonajes;
+    List<UsuarioPosicion> posicionPersonajes;
 
-    public PersonajesConectados(List<String> nombresPersonajeConectado) {
-        this.listaPersonajes = nombresPersonajeConectado;
+    public PersonajesConectados() {
+    }
+
+    public PersonajesConectados(List<UsuarioPosicion> posicionPersonajes) {
+        this.posicionPersonajes = posicionPersonajes;
     }
 
     public List<String> getListaPersonajes() {
@@ -19,6 +24,13 @@ public class PersonajesConectados implements Serializable {
         this.listaPersonajes = listaPersonajes;
     }
 
+    public List<UsuarioPosicion> getPosicionPersonajes() {
+        return posicionPersonajes;
+    }
+
+    public void setPosicionPersonajes(List<UsuarioPosicion> posicionPersonajes) {
+        this.posicionPersonajes = posicionPersonajes;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

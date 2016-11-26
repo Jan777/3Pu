@@ -1,21 +1,51 @@
 package cliente.usuario;
 
+import main.java.mergame.individuos.personajes.Personaje;
+
 import java.awt.*;
 import java.io.Serializable;
 
-/**
- * Created by gparis on 11/23/16.
- */
 public class UsuarioPosicion implements Serializable{
-    private Point point;
     private String usuario;
+    private Personaje personaje;
+    private int x;
+    private int y;
 
-    public UsuarioPosicion() {
-        this.point = new Point(0, 0);
+    public UsuarioPosicion(Usuario usuario) {
+        this.usuario = usuario.getUsuario();
+        this.personaje = usuario.getPersonaje();
+        this.x = 0;
+        this.y = 0;
     }
 
-    public void agregarPunto(int x, int y) {
-        this.point.setLocation(x, y);
+    public UsuarioPosicion() {}
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setPersonaje(Personaje personaje) {
+        this.personaje = personaje;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public Personaje getPersonaje() {
+        return this.personaje;
     }
 
     public String getUsuario() {
@@ -29,15 +59,19 @@ public class UsuarioPosicion implements Serializable{
 
         UsuarioPosicion that = (UsuarioPosicion) o;
 
-        if (point != null ? !point.equals(that.point) : that.point != null) return false;
-        return usuario != null ? usuario.equals(that.usuario) : that.usuario == null;
+        if (x != that.x) return false;
+        if (y != that.y) return false;
+        if (usuario != null ? !usuario.equals(that.usuario) : that.usuario != null) return false;
+        return personaje != null ? personaje.equals(that.personaje) : that.personaje == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = point != null ? point.hashCode() : 0;
-        result = 31 * result + (usuario != null ? usuario.hashCode() : 0);
+        int result = usuario != null ? usuario.hashCode() : 0;
+        result = 31 * result + (personaje != null ? personaje.hashCode() : 0);
+        result = 31 * result + x;
+        result = 31 * result + y;
         return result;
     }
 }
