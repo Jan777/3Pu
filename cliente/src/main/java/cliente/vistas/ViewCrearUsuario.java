@@ -1,6 +1,5 @@
 package cliente.vistas;
 
-import cliente.usuario.Usuario;
 import cliente.comunicacion.Login;
 import main.java.mergame.interfaz.Mundo;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -17,19 +16,18 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by gustavo on 20/11/2016.
- */
+
 public class ViewCrearUsuario extends JFrame {
     private JPanel contentPane;
     private JTextField textFieldUsuario;
     private List<Mundo> listaMundos;
     private JPasswordField passwordField;
     private ObjectMapper mapper;
-    private final String server = "127.0.0.1";
+    private String server;
     private final int PORT = 5553;
 
-    public ViewCrearUsuario() {
+    public ViewCrearUsuario(String ip) {
+    	this.server = ip;
         this.setAlwaysOnTop(true);
         this.mapper = new ObjectMapper();
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -103,7 +101,8 @@ public class ViewCrearUsuario extends JFrame {
                         crearUsuario();
                         cancelarNuevoUsuario();
                     } catch (IOException e1) {
-                        e1.printStackTrace();
+                        //e1.printStackTrace();
+
                     }
                 }
             }

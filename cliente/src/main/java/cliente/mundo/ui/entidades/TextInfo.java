@@ -1,6 +1,7 @@
 package cliente.mundo.ui.entidades;
 
 import cliente.mundo.ui.IDibujable;
+import main.java.mergame.individuos.personajes.impl.Enano;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -86,9 +87,12 @@ public class TextInfo extends TimerTask implements IDibujable {
 
 	@Override
 	public void run() {
-		if(mensajes!=null && mensajes.isEmpty()==false)
-			mensajes.removeFirst();
 
+		try {
+			if (mensajes != null && mensajes.isEmpty() == false)
+				mensajes.removeFirst();
+		}
+		catch (Exception e){}
 	}
 
 }

@@ -3,6 +3,7 @@ package cliente;
 import cliente.comunicacion.Login;
 import cliente.hilos.LoginThread;
 import cliente.usuario.Usuario;
+import cliente.vistas.ErrorServerDown;
 import cliente.vistas.ViewCrearUsuario;
 import main.java.mergame.interfaz.Mundo;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -20,15 +21,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Client extends JFrame {
+	public Client() {
+	}
     private JPanel contentPane;
     private JTextField textFieldUsuario;
+    private JTextField textFielIP;
+    private JTextField textFielPuerto;
     private List<Mundo> listaMundos;
     private JPasswordField passwordField;
     private JLabel labelError;
     private JComboBox comboBox ;
     private Usuario usuario;
     private static final int PORT = 5553;
-    private static final String server = "localhost";
+    private String server;
     private ObjectMapper mapper;
 
     public void init() {
@@ -42,11 +47,28 @@ public class Client extends JFrame {
         JLabel lblMergame = new JLabel("MerGame");
         lblMergame.setFont(new Font("Khmer OS", Font.BOLD, 50));
         lblMergame.setHorizontalAlignment(SwingConstants.CENTER);
-        lblMergame.setBounds(43, 50, 270, 58);
+        lblMergame.setBounds(43, 20, 270, 58);
         contentPane.add(lblMergame);
-
+        
+//        JLabel lblMergame = new JLabel("MerGame");
+//        lblMergame.setFont(new Font("Khmer OS", Font.BOLD, 50));
+//        lblMergame.setHorizontalAlignment(SwingConstants.CENTER);
+//        lblMergame.setBounds(43, 50, 270, 58);
+//        contentPane.add(lblMergame);
+        
+        JLabel lblInsertConexion = new JLabel("Ingresá tu ip");
+        lblInsertConexion.setBounds(80, 70, 270, 58);
+        contentPane.add(lblInsertConexion);
+        
+        textFielIP = new JTextField();
+        textFielIP.setBounds(165, 90, 130, 19);
+        contentPane.add(textFielIP);
+        textFielIP.setColumns(10);
+        
+        
+        
         JLabel lblInsertTuUsuario = new JLabel("Ingresá tu usuario:");
-        lblInsertTuUsuario.setBounds(95, 135, 190, 15);
+        lblInsertTuUsuario.setBounds(95, 140, 190, 15);
         contentPane.add(lblInsertTuUsuario);
 
         JLabel lblYAcTu = new JLabel("Y acá tu contraseña:");
@@ -76,6 +98,7 @@ public class Client extends JFrame {
         JButton btnSalvAClaudia = new JButton("Salvá a Claudia");
         btnSalvAClaudia.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
+            	server=textFielIP.getText();
                 intentarLoguear();
             }
         });
@@ -111,6 +134,7 @@ public class Client extends JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode()==KeyEvent.VK_ENTER){
+                	server=textFielIP.getText();
                     intentarLoguear();
                 }
             }
@@ -119,7 +143,7 @@ public class Client extends JFrame {
     }
 
     private void mostrarPantallaCrearUsuario() {
-        ViewCrearUsuario frame = new ViewCrearUsuario();
+        ViewCrearUsuario frame = new ViewCrearUsuario(this.server);
         frame.setVisible(true);
     }
 
@@ -147,14 +171,24 @@ public class Client extends JFrame {
                 Thread t = new Thread(l);
                 t.start();
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                //System.out.println(e.getMessage());
+            	ErrorServerDown mensaje = new ErrorServerDown();
+            	mensaje.setVisible(true);
             }
         }else{
             labelError.setVisible(true);
         }
     }
 
-    public JLabel getLabelError() {
+    public String getServer() {
+		return server;
+	}
+
+	public void setServer(String server) {
+		this.server = server;
+	}
+
+	public JLabel getLabelError() {
         return labelError;
     }
 

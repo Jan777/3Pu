@@ -1,31 +1,34 @@
 package cliente.mundo.ui.entidades;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Rectangle;
+
 import cliente.mundo.ui.IDibujable;
 import cliente.mundo.ui.math.MathUtils;
 
-import java.awt.*;
-
-
-public class PersonajeHumano implements IDibujable , ILife{
+public class PersonajeEnano implements IDibujable , ILife{
 
 	private AnimableIsometrico animable;
 	private Point posicion;
 	private String nombre;
 	private int vida;
 
-	public PersonajeHumano(String nombre){
+	public PersonajeEnano(String nombre){
+		this.vida = 100;
 		this.nombre = nombre;
 		this.posicion = new Point(1,1);
-		this.vida = 100;
 
 		AnimableIsometricoBuilder builder = new AnimableIsometricoBuilder();
 		builder.puntoInicial = posicion;
-		builder.rutaImagenStandBy1 = ".\\Texturas\\HumanoStb1.png";
-		builder.rutaImagenStandBy2 = ".\\Texturas\\HumanoStb2.png";
-		builder.rutaImagenDiagonalDerecha = ".\\Texturas\\HumanoDiagDer.png";
-		builder.rutaImagenDiagonalIzquierda = ".\\Texturas\\HumanoDiagIzq.png";
-		builder.rutaImagenBajaIzquierda =".\\Texturas\\HumanoBajaIzq.png";
-		builder.rutaImagenBajaDerecha =".\\Texturas\\HumanoBajaDer.png";
+		builder.rutaImagenStandBy1 = ".\\Texturas\\EnanoStb1.png";
+		builder.rutaImagenStandBy2 = ".\\Texturas\\EnanoStb2.png";
+		builder.rutaImagenDiagonalDerecha = ".\\Texturas\\EnanoDiagDer.png";
+		builder.rutaImagenDiagonalIzquierda = ".\\Texturas\\EnanoDiagIzq.png";
+		builder.rutaImagenBajaIzquierda =".\\Texturas\\EnanoBajaIzq.png";
+		builder.rutaImagenBajaDerecha =".\\Texturas\\EnanoBajaDer.png";
 
 		this.animable = new AnimableIsometrico(builder);
 
@@ -52,7 +55,7 @@ public class PersonajeHumano implements IDibujable , ILife{
 	        g2d.setColor(Color.RED);
 	        g2d.fillRect((int)puntoTransformado.getX()+30,(int)puntoTransformado.getY()+25,50,2);
 	        g2d.setColor(Color.green);
-			g2d.fillRect((int)puntoTransformado.getX()+30,(int)puntoTransformado.getY()+25,(vida*50/100),2);
+	        g2d.fillRect((int)puntoTransformado.getX()+30,(int)puntoTransformado.getY()+25,(vida*50/100),2);
 	        g2d.dispose();
 
 
@@ -64,13 +67,15 @@ public class PersonajeHumano implements IDibujable , ILife{
 	}
 
 
-	@Override
-	public void setVida(int vida) {
-		this.vida = vida;
-	}
+
 	@Override
 	public void setPos(Point pt) {
 		this.animable.actualizarPosicion(pt);
 		this.posicion = pt;
+	}
+
+	@Override
+	public void setVida(int vida) {
+		this.vida = vida;
 	}
 }

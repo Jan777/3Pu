@@ -111,7 +111,6 @@ public class UsuarioThread implements Runnable{
 
     private void iniciarBatalla(String mensaje) {
         try {
-
             mensajeBroadCast("BATA" + mensaje);
         } catch (IOException e) {
             e.printStackTrace();

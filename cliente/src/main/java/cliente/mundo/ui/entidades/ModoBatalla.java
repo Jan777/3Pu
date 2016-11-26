@@ -3,8 +3,6 @@ package cliente.mundo.ui.entidades;
 import cliente.mundo.ui.IDibujable;
 
 import java.awt.*;
-import java.util.LinkedList;
-import java.util.ListIterator;
 
 /**
  by
@@ -55,5 +53,9 @@ public class ModoBatalla implements IDibujable{
 
     public void setVisible(Boolean visible) {
         this.visible = visible;
+    }
+
+    public Boolean getVisible() {
+        return visible;
     }
 }

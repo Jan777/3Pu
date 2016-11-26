@@ -25,7 +25,7 @@ public class Piso implements IDibujable {
 			 	//Varia el sprite usado entre 3 modelos
 			 	Random rand = new Random();
 			 	int num=rand.nextInt(3);
-	            tile = ImageIO.read(new File("/home/gparis/IdeaProjects/jrpg/cliente/Texturas/piso"+num+".png"));
+	            tile = ImageIO.read(new File(".\\Texturas\\piso"+num+".png"));
 
 	        } catch (IOException ex) {
 	            ex.printStackTrace();

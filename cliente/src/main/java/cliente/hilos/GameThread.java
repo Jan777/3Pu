@@ -1,5 +1,6 @@
 package cliente.hilos;
 
+import cliente.comunicacion.Batalla;
 import cliente.comunicacion.PersonajesConectados;
 import cliente.mundo.ViewGame;
 import cliente.mundo.partida.Jugador;
@@ -68,24 +69,16 @@ public class GameThread implements Runnable {
                                     PersonajesConectados.class);
 
                             for(UsuarioPosicion usuarioPosicion : pc.getPosicionPersonajes()) {
-                                //ACTUALIZAR VIDA JUGADORES
+                                System.out.println(usuarioPosicion.getPersonaje().getSalud());
                             }
                             break;
-
+                        case "BATA" :
+                            Batalla batalla = mapper.readValue(mensaje, Batalla.class);
+                            Jugador jugador1 = this.frame.getPartida().ObtenerJugadorPorNombre(batalla.getPersonajeAtacante());
+                            Jugador jugador2 = this.frame.getPartida().ObtenerJugadorPorNombre(batalla.getPersonajeAtacado());
+                            this.frame.getPartida().IniciarBatalla(jugador1,jugador2);
+                            break;
                     }
-
-//                    if(codigoMensaje.equals("INGR")) {
-//                        System.out.println(mensaje);
-//                        PersonajesConectados listaRecibida = mapper.readValue(mensaje,
-//                            PersonajesConectados.class);
-//
-//                        DefaultListModel modeloLista = new DefaultListModel();
-//
-//                        for (String nombrePersonajes : listaRecibida.getListaPersonajes()) {
-//                            if(!usuario.getUsuario().equals(nombrePersonajes))
-//                                modeloLista.addElement(nombrePersonajes);
-//                        }
-//                    }
                 }
             }
         } catch (IOException e) {

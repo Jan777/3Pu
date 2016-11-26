@@ -4,17 +4,20 @@ import com.sun.glass.events.KeyEvent;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class UIService {
 
-	 private ArrayList<IDibujable> dibujables;
+	 private Collection<IDibujable> dibujables;
 	 private Rectangle regionVisible;
 	 private Point regionTotal;
 
 	 //Singleton
 	 private static UIService instance = null;
 	   protected UIService() {
-		   dibujables = new ArrayList<IDibujable>();
+		   dibujables = Collections.synchronizedCollection(new ArrayList<IDibujable>());
 		   regionVisible = new Rectangle(0,0,12,12);
 		   regionTotal = new Point(96,96);
 

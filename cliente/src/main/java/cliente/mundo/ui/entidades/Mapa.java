@@ -21,7 +21,7 @@ public class Mapa implements IDibujable {
 
 
 		 try {
-	            tile = ImageIO.read(new File("/home/gparis/IdeaProjects/jrpg/cliente/Texturas/textura_pasto.jpg"));
+	            tile = ImageIO.read(new File(".\\Texturas\\textura_pasto.jpg"));
 
 	        } catch (IOException ex) {
 	            ex.printStackTrace();

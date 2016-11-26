@@ -4,13 +4,11 @@ import cliente.comunicacion.Batalla;
 import cliente.mundo.ui.ControladorMouse;
 import cliente.mundo.ui.ControladorTeclado;
 import cliente.mundo.ui.UIService;
-import cliente.mundo.ui.entidades.Mapa;
-import cliente.mundo.ui.entidades.ModoBatalla;
-import cliente.mundo.ui.entidades.Relieve;
-import cliente.mundo.ui.entidades.TextInfo;
+import cliente.mundo.ui.entidades.*;
 import cliente.usuario.Usuario;
 import org.codehaus.jackson.map.ObjectMapper;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,10 +22,12 @@ public class Partida {
 	private CoordinadorEventos coordEventos;
 	private Usuario usuario;
 	private ModoBatalla modoBatalla;
+	private Golpe golpe;
 
 	public Partida(Usuario usuario){
 		this.usuario = usuario;
 		this.modoBatalla = new ModoBatalla();
+		this.golpe = new Golpe();
 		jugadoresPartida = new ArrayList<Jugador>();
 		coordEventos = new CoordinadorEventos(this);
 		ControladorMouse.getInstance().bindCoordinador(coordEventos);
@@ -123,47 +123,41 @@ public class Partida {
 		int x = (int)posicionLocal.getX();
 		int y = (int)posicionLocal.getY();
 		if(this.HayAlgunJugadorEn(new Point(x-1,y-1),this.jugadorLocal)){
-			IniciarBatalla(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x-1,y-1)));
+			IniciarBatallaServer(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x-1,y-1)));
 			return;
 		}
 		if(this.HayAlgunJugadorEn(new Point(x,y-1),this.jugadorLocal)){
-			IniciarBatalla(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x,y-1)));
+			IniciarBatallaServer(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x,y-1)));
 			return;
 		}
 		if(this.HayAlgunJugadorEn(new Point(x+1,y-1),this.jugadorLocal)){
-			IniciarBatalla(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x+1,y-1)));
+			IniciarBatallaServer(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x+1,y-1)));
 			return;
 		}
 		if(this.HayAlgunJugadorEn(new Point(x-1,y),this.jugadorLocal)){
-			IniciarBatalla(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x-1,y)));
+			IniciarBatallaServer(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x-1,y)));
 			return;
 		}
 		if(this.HayAlgunJugadorEn(new Point(x+1,y),this.jugadorLocal)){
-			IniciarBatalla(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x+1,y)));
+			IniciarBatallaServer(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x+1,y)));
 			return;
 		}
 		if(this.HayAlgunJugadorEn(new Point(x-1,y+1),this.jugadorLocal)){
-			IniciarBatalla(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x-1,y+1)));
+			IniciarBatallaServer(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x-1,y+1)));
 			return;
 		}
 		if(this.HayAlgunJugadorEn(new Point(x,y+1),this.jugadorLocal)){
-			IniciarBatalla(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x,y+1)));
+			IniciarBatallaServer(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x,y+1)));
 			return;
 		}
 		if(this.HayAlgunJugadorEn(new Point(x+1,y+1),this.jugadorLocal)){
-			IniciarBatalla(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x+1,y+1)));
+			IniciarBatallaServer(jugadorLocal,this.ObtenerJugadorPorPosicion(new Point(x+1,y+1)));
 			return;
 		}
 
-
-
 	}
 
-	private void IniciarBatalla(Jugador jugadorLocal, Jugador jugador) {
-		TextInfo.getInstance().Log("Iniciando batalla: "+jugadorLocal.getNombre()+" vs "+jugador.getNombre());
-		this.modoBatalla.setJugadorLocal(jugadorLocal.getNombre());
-		this.modoBatalla.setJugadorRemoto(jugador.getNombre());
-		this.modoBatalla.setVisible(true);
+	public void IniciarBatallaServer(Jugador jugadorLocal, Jugador jugador){
 		try {
 			PrintWriter pw = new PrintWriter(usuario.getSocket().getOutputStream());
 			ObjectMapper mapper = new ObjectMapper();
@@ -173,11 +167,33 @@ public class Partida {
 
 			String mensaje = mapper.writeValueAsString(batalla);
 
-			pw.println("FIGH" + mensaje);
+			pw.println("BATA" + mensaje);
 			pw.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	public void IniciarBatalla(Jugador jugadorLocal, Jugador jugador) {
+
+		UIService.getInstance().registrarComponente(golpe);
+		golpe.Golpe(jugador.getPos());
+		jugador.downVida();
+
+
+		if( jugador.getVida()<= 0) {
+			jugador.setPos(new Point(1,1));
+			jugadorLocal.setVida(100);
+
+			TextInfo.getInstance().Log("Has muerto. Vas a revivir ...");
+		}
+
+		/*ControladorTeclado.getInstance().setInvalidador(true);
+		TextInfo.getInstance().Log("Iniciando batalla: "+jugadorLocal.getNombre()+" vs "+jugador.getNombre());
+		this.modoBatalla.setJugadorLocal(jugadorLocal.getNombre());
+		this.modoBatalla.setJugadorRemoto(jugador.getNombre());
+		this
+		this.modoBatalla.setVisible(true);
+*/
 
 	}
 

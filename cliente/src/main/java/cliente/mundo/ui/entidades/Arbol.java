@@ -21,7 +21,7 @@ public class Arbol implements IDibujable {
 		this.posicion = pos;
 
 		 try {
-	            tile = ImageIO.read(new File("/home/gparis/IdeaProjects/jrpg/cliente/Texturas/textura_arbol.png"));
+	            tile = ImageIO.read(new File(".\\Texturas\\textura_arbol.png"));
 
 	        } catch (IOException ex) {
 	            ex.printStackTrace();

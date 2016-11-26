@@ -11,6 +11,7 @@ import java.awt.event.KeyListener;
 ///Cambio de nombre de telcado por ControladorTeclado
 public class ControladorTeclado implements KeyListener {
 
+	private Boolean invalidador;
 	private CoordinadorEventos coordEventos;
 
 	 //Singleton
@@ -36,7 +37,7 @@ public class ControladorTeclado implements KeyListener {
 	public boolean salir;
 
 	 public ControladorTeclado(){
-
+		 invalidador = false;
 	 }
 
 	public void actualizar(){
@@ -50,6 +51,12 @@ public class ControladorTeclado implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+
+		if(invalidador){
+			TextInfo.getInstance().Log("Modo batalla. Teclado invalidado");
+			return;
+		}
+
 		// CUANDO MANTENGO PRESIONADO UNA TECLA
 		teclas[e.getKeyCode()] = true;
 
@@ -89,4 +96,11 @@ public class ControladorTeclado implements KeyListener {
 
 	}
 
+	public Boolean getInvalidador() {
+		return invalidador;
+	}
+
+	public void setInvalidador(Boolean invalidador) {
+		this.invalidador = invalidador;
+	}
 }
